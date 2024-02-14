@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="/lib/jquery.js"></script> 
+    <script> 
+        $(function(){
+          $("#includedContent").load("/apps/head.html"); 
+        });
+        </script> 
+    <!--Import header using Jquery-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Apps</title>
 </head>
 <body>
-    <a href="http://enderbyteprograms.ddnsfree.com:10223/">
-        <img src="http://enderbyteprograms.ddnsfree.com:10223/downloads/assets/assets-home.png" alt="The Home Button" width="128" height="128" />
-    </a>
+    <div id="includedContent"></div>
+    <!--Remember! Copy this-->
     <h1 style="text-align: center;">My Web Apps</h1>
     <p style="text-align: center;">Here are some web apps I have created. I mainly dabble in desktop software, so these are all pretty bad.</p>
     <hr />
