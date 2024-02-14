@@ -1,4 +1,5 @@
 usercount.txt
 downloads/*
+!downloads/assets
 .vscode/*
 lib/*
