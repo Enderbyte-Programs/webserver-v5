@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><script src="/lib/jquery.js"></script> <script> $(function(){$("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery--><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>One Operation Calculator</title></head><body><div id="includedContent"></div><!--Remember! Copy this-->
+
+    <script src="main.js"></script>
+    <h1>One Operation Calculator</h1>
+    <p>The worst calculator you'll ever use.</p>
+    <form onsubmit="">
+        <label for="n1">Number 1:</label><br>
+        <input type="text" id="n1" name="n1" oninput="processdata()"><br>
+        <label for="todo">Operation: </label>
+        <select id="todo" name="todo" oninput="processdata()">
+            <option value="1">+ Add</option>
+            <option value="2">- Subtract</option>
+            <option value="3">* Multiply</option>
+            <option value="4">/ Divide</option>
+        </select><br>
+        <label for="n2">Number 2: </label><br>
+        <input type="text" id="n2" name="n2" oninput="processdata()"><br>
+    </form>
+    <div id='answer'></div>
+</body>
+</html>
