@@ -1,0 +1,9 @@
+LoadModule cgi_module modules/mod_cgi.so
+
+ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/ # update the second location according to your configuration. It has to be a place where apache is allow to use, otherwise see apache documentation for setting another directory.
+
+DirectoryIndex index.php
+
+Redirect permanent "/My Website/" "https://enderbyteprograms.weebly.com"
+
+Redirect permanent "/Teacher Ratings/" "http://enderbyteprograms.bsite.net"
