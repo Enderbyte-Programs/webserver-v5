@@ -17,8 +17,10 @@
     <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="Check out my web apps" href="/apps"><span style="background-color: #ccffff;">Check out my web apps</span></a></strong></span></em></h2>
     <p style="text-align: center;">I am starting to write some web apps. Check them out here</p>
     <hr />
-    
-    
+    <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="Check out my GitHub" href="https://github.com/Enderbyte-Programs"><span style="background-color: #ccffcc;">Check out my GitHub</span></a></strong></span></em></h2>
+    <p style="text-align: center;">All source code for all of my apps is hosted here</p>
+    <hr />
+
     <?php
         $filepath = "usercount.txt";
         $file = fopen($filepath,"r");
