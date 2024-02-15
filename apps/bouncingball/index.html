@@ -1,10 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><script src="/lib/jquery.js"></script> <script> $(function(){$("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery--><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bouncing Ball</title></head><body><div id="includedContent"></div><!--Remember! Copy this-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="/lib/jquery.js"></script>
+        <style>#cv {
+
+    height: 100%;
+    width: 100%;
+    margin: 100;
+    border: 1px solid blue;
+}   
+    .slider {
+        width: 80%;
+    }
+    </style>
+<script> $(function(){$("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery--><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bouncing Ball</title></head><body><div id="includedContent"></div><!--Remember! Copy this-->
 
     <script src="main.js"></script>
 
     <h2>Bouncing Ball</h2>
-    <p>Just a random bouncing ball, and nothing else</p>
-    <canvas id="cv" width="500" height="500"></canvas>
+    <p>Just a random bouncing ball, and nothing else. Click the box to hear ding if you can't hear.</p>
+    <canvas id="cv" width="1280" height="720"></canvas>
+    
+    <div id="debug"></div>
+    <form onsubmit="">
+        <input type="button" value="STOP" style="background-color: red;" onclick="halt()">
+        <input type="button" value="RESUME" style="background-color: aquamarine;" onclick="resume()">
+        <label for="cb">Play Audio? </label>
+        <input id="cb" type="checkbox" onclick="updateaud()" value="1">
+        <label for="range">Ball Speed: </label>
+        <div id="slider" class="slider" style="display: inline;">
+            <input class="slider" type="range" min="0" max="100" value="10" class="slider" id="range" onchange="updatespeeds()" onclick="updatespeeds()" ondrag="updatespeeds()">
+        </div>
+        
+        <div id="speed" style="display: inline;"></div>
+        <!--Some slider or something like that. -->
+    </form>
     <script>main()</script>
 
 </body></html>
