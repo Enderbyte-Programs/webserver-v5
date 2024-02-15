@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/lib/jquery.js"></script>
+    <script> $(function () { $("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+
+<body>
+    <div id="includedContent"></div><!--Remember! Copy this-->
+    <script src="main.js"></script>
+    <h1>Stopwatch</h1>
+    <p>A simple stopwatch</p>
+    <div id="watch">
+        <h1>0:00:00.000</h1>
+    </div>
+    <button type="button" style="background-color: aquamarine;">Start</button>
+    <button type="button" style="background-color: lightcoral;display: inline;">Stop</button>
+    <button type="button" style="display: inline;">Reset</button>
+    <button type="button" style="display: inline;">Lap</button>
+
+</body>
+
+</html>
