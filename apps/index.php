@@ -31,7 +31,7 @@
             }
 
             $subdirs = array();
-            $items = glob("/home/jordan/master_web/apps" . '/*');
+            $items = glob($_SERVER['DOCUMENT_ROOT'] . "/apps" . '/*');
             foreach ($items as $item) {
                 
                 if (is_dir($item)) {
@@ -49,7 +49,7 @@
                     $procdata = splitlines($data);
                     $title = $procdata[0];
                     $description = $procdata[1];
-                    $strippedpath = str_replace("/home/jordan/master_web","",$subdir);
+                    $strippedpath = str_replace($_SERVER['DOCUMENT_ROOT'],"",$subdir);
 
                     $inspath = $subdir . "/index.html";
                     echo sprintf("<li style=\"text-align: left;\">%s: %s <a 
