@@ -26,6 +26,12 @@ async function CheckAvail(title) {
     return pr
 }
 
+async function CheckAnaly(title) {
+    const response = await fetch(`http://enderbyteprograms.ddnsfree.com:10223/apps/forwards/api/get?name=${title}`,{method:"GET"})
+    const pr = await response.text()
+    return pr
+}
+
 async function CheckCreate(title,forward) {
     const response = await fetch(`http://enderbyteprograms.ddnsfree.com:10223/apps/forwards/api/create/`,{
         method:"POST",
@@ -40,7 +46,14 @@ async function CheckCreate(title,forward) {
 }
 
 function collect() {
+    var tocheck = getTextBoxValue("gtitle")
+    getAnaly(tocheck)
+}
 
+function getAnaly(name) {
+    CheckAnaly(name).then(function(result) {
+        document.getElementById("analytics").innerHTML = `Views: ${result}`
+    })
 }
 
 function setCreateCheck(data) {
