@@ -3,16 +3,18 @@
 <head>
     <meta charset='utf-8'>
     <title>Enderbyte Programs</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2494058265892846"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <h1 style="text-align: center;">Enderbyte Programs Server</h1>
-    <p style="text-align: center;">This page has web apps and video downloads!</p>
+    <p style="text-align: center;">This page has web apps and software downloads!</p>
     <hr />
-    <h2 style="text-align: center;"><span style="background-color: #999999;"><a style="background-color: #999999;" title="Go to video downloads" href="/downloads"><span style="text-decoration: underline;"><em><strong><span style="background-color: #ff99cc;">Go to video downloads</span></strong></em></span></a></span></h2>
-    <p style="text-align: center;">Download some random videos. Go to /downloads/videos/private an input a password to get access to private videos.</p>
+	<h2 style="text-align: center;"><a title="My Software" href="/software.html"><span style="text-decoration: underline;"><em><strong><span style="background-color: #ff9999;">My Software</span></strong></em></span></a></h2>
+    <p style="text-align: center;">My best software that you should download</p>
     <hr />
-    <h2 style="text-align: center;"><a title="Go to my main website" href="https://enderbyteprograms.weebly.com"><span style="text-decoration: underline;"><em><strong><span style="background-color: #ffcc99;">Go to my main website</span></strong></em></span></a></h2>
-    <p style="text-align: center;">My main website looks nicer and has download links to my software</p>
+    <h2 style="text-align: center;"><a title="Go to my other website" href="https://enderbyteprograms.weebly.com"><span style="text-decoration: underline;"><em><strong><span style="background-color: #ffcc99;">Go to my main website</span></strong></em></span></a></h2>
+    <p style="text-align: center;">My other website looks nicer and has download links to all my software, even the bad ones</p>
     <hr />
     <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="Check out my web apps" href="/apps"><span style="background-color: #ccffff;">Check out my web apps</span></a></strong></span></em></h2>
     <p style="text-align: center;">I am starting to write some web apps. Check them out here</p>
@@ -35,5 +37,6 @@
         fwrite($wfile,$count);
         fclose($wfile);
     ?>
+	<p>Privacy Policy: <a href="/privacy.html">here</a></p>
 </body>
 </html>
