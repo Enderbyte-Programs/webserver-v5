@@ -5,8 +5,16 @@
     <title>Enderbyte Programs</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2494058265892846"
      crossorigin="anonymous"></script>
+     <style>
+        p {
+            color: white;
+        }
+        h1 {
+            color:white;
+        }
+     </style>
 </head>
-<body>
+<body style="font-family: helvetica;background-image: url('/downloads/assets/background.png');">
     <h1 style="text-align: center;">Enderbyte Programs Server</h1>
     <p style="text-align: center;">This page has web apps and software downloads!</p>
     <hr />

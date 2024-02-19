@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Apps</title>
 </head>
-<body>
+<body style="font-family: helvetica;background-image:url('/downloads/assets/appback.png')">
     <div id="includedContent"></div>
     <!--Remember! Copy this-->
     <h1 style="text-align: center;">My Web Apps</h1>
