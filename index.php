@@ -30,6 +30,9 @@
     <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="Check out my GitHub" href="https://github.com/Enderbyte-Programs"><span style="background-color: #ccffcc;">Check out my GitHub</span></a></strong></span></em></h2>
     <p style="text-align: center;">All source code for all of my apps is hosted here</p>
     <hr />
+    <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="Open Trails Map" href="/trails"><span style="background-color: #ddccff;">Open Trails Map</span></a></strong></span></em></h2>
+    <p style="text-align: center;"><b>Warning! This is highly experimental!</b> I used Trailforks for many years and loved it. Unfortunately, nearly every feature has fallen under the greedy mouth of capitalism. This is my own trails system.</p>
+    <hr />
 
     <?php
         $filepath = "usercount.txt";
