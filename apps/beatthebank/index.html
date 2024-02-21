@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/lib/jquery.js"></script>
+    <script> $(function () { $("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat The Bank!</title>
+    <style>
+        .button {
+            height: 50px;
+            width: 300px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            transition: 0.5s ease-in-out !important;
+            
+        }
+        .button:hover {
+            background-color: gray !important;
+            cursor: pointer !important;
+        }
+        .fat {
+            font-size: 200%;
+        }
+        .gamearea {
+            font-size: 200%;
+            margin: 0;
+        }
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body style="font-family: Helvetica">
+    <div id="includedContent"></div><!--Remember! Copy this-->
+    <h1>Beat The Bank (Web Edition)</h1>
+    
+    <p>BeatTheBank was the first full-featured game I made. It was invented (never released officially), you can find a copy as part of Basic Utilities 1.0, which is archived and located<a href="/downloads/hosted/software/legacy/BasicUtilities-original.zip"> here</a>
+    That version was written in Python. It was a desktop app and kept getting flagged by the virus detector. This is re-make on the web as part of my Legacy Revitalization Program. This is based off of the radio game show Beat The Bank which is on 103.5 Mhz in Vancouver, Canada. I don't even know if they still do it.
+    The premise of this game is that you need to open more vaults without running into the alarm. If you run into the alarm, you will LOSE! This is purely a game of chance. Unless you are some master cryptographer, you probably will not be able to get "good" at this.
+    </p>
+    <br>
+    <form>
+        <input type="button" value="New Game" class="button fat" style="background-color: mediumslateblue;" onclick="finish()">
+        <input type="button" id="open" value="Open Vault" class="button fat" style="background-color: aquamarine;" onclick="openvault()">
+        <input type="button" id="save" value="Finish Game" class="button fat" style="background-color: indianred;" onclick="finish()">
+    </form>
+    <div id="game" class="gamearea">
+        <p><i>Ready to play</i></p>
+        <p>Vault Number: 0</p>
+        <p><b>Money: $0</b></p>
+    </div>
+    <h2>Statistics</h2>
+    <div id="stats">
+        <p><b>Games Played: 0</b></p>
+        <p>Vaults Opened: 0</p>
+        <p>Total Money Earned: $0</p>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
