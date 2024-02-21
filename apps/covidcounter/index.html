@@ -6,14 +6,25 @@
     <script> $(function () { $("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Covid Time Counter</title>
 </head>
 
 <body style="font-family: Helvetica">
     <div id="includedContent"></div><!--Remember! Copy this-->
     <script src="main.js"></script>
     <h1>Covid Counter</h1>
-    <p>Under construction</p>
+    <div id="counter">
+        <p>It has been <b>0 years, 0 weeks, 0 days, 0 hours, 0 minutes, and 0.0 seconds</b> since life was normal</p>
+        <p>0 years</p>
+        <p>0 weeks</p>
+        <p>0 days</p>
+        <p>0 hours</p>
+        <p>0 minutes</p>
+        <p>0 seconds</p>
+    </div>
+    <script>
+        window.setInterval(update,100)
+    </script>
 </body>
 
 </html>

@@ -21,19 +21,19 @@ function create() {
 }
 
 async function CheckAvail(title) {
-    const response = await fetch(`http://enderbyteprograms.ddnsfree.com:10223/apps/forwards/api/available?dir=${title}`,{method:"GET"})
+    const response = await fetch(`/apps/forwards/api/available?dir=${title}`,{method:"GET"})
     const pr = await response.text()
     return pr
 }
 
 async function CheckAnaly(title) {
-    const response = await fetch(`http://enderbyteprograms.ddnsfree.com:10223/apps/forwards/api/get?name=${title}`,{method:"GET"})
+    const response = await fetch(`/apps/forwards/api/get?name=${title}`,{method:"GET"})
     const pr = await response.text()
     return pr
 }
 
 async function CheckCreate(title,forward) {
-    const response = await fetch(`http://enderbyteprograms.ddnsfree.com:10223/apps/forwards/api/create/`,{
+    const response = await fetch(`/apps/forwards/api/create/`,{
         method:"POST",
         body: `dir=${title}&link=${forward}`,
         headers: {
