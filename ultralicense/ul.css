@@ -1,0 +1,91 @@
+/* CSS */
+
+.button {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  
+  .button:hover,
+  .button:focus {
+    background-color: #b3d3ea  !important;
+    color: #2c5777 !important;
+  }
+  
+  .button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  }
+  
+  .button:active {
+    background-color: #a0c7e4  !important;
+    box-shadow: none;
+    color: #2c5777  !important;
+  }
+  
+  /*
+  .button {
+      height: 50px;
+      border: solid;
+      border-color: black;
+      background-color: lightblue;
+      border-radius: 10px;
+      border-width: 1px;
+      transition: 0.5s ease-in-out !important;
+      
+  }
+  .button:hover {
+      background-color: gray !important;
+      cursor: pointer !important;
+  }
+  */
+  .inx {
+      height: 50px;
+      border: solid;
+      border-color: black;
+      border-radius: 10px;
+      border-width: 2px;
+      transition: 0.5s ease-in-out !important;
+      background-color: #e1ecf4;
+      
+  }
+  .inx:hover {
+      cursor: pointer !important;
+  }
+  table,th,td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  td {
+      background-color: lightblue;
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+  th {
+      background-color: aqua;
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+
+body {
+    font-family: Helvetica;
+}
