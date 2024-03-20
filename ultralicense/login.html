@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | UltraLicense</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/libep.js"></script>
+    <link rel="stylesheet" href="./ul.css">
+</head>
+<body>
+    <h1>Login</h1>
+    <p>Log in with your organization name and organization password</p>
+    <hr>
+    <p id="status" style="background-color: red;"></p>
+    <form>
+        <input id="cname" type="text" placeholder="Company Name"><br>
+        <input id="cpwd" type="password" placeholder="Company Password"><br><br>
+        <input  type="button" style="background-color: lightgreen;" value="Login" class="button" onclick="trylogin()">
+        <input  type="button" title="If you need to create an organization, click here" class="button" value="Create Account" onclick="document.location.href = './newco.html'">
+    </form>
+    <script src="js/login.js"></script>
+</body>
+</html>

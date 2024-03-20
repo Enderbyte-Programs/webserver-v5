@@ -16,6 +16,7 @@
     </p>
     <hr>
     <div id="forms">
+        <p id="status" style="background-color: red;"></p>
         <form>
             <label for="cname">Choose a name for your organization: </label><br>
             <input type="text" placeholder="Name" id="cname" style="width: 500px;"><br>
@@ -24,8 +25,8 @@
     </div>
     <div id="result" hidden>
         <h2 id="pwd">Your password is: </h2>
-        <p>Copy this password and keep it somewhere safe! You need it to access your account. YOU WILL NOT SEE THIS AGAIN.</p>
-        <button class="button">Complete Registration</button>
+        <p>Copy this password and keep it somewhere safe! You need it to access your account. YOU WILL NOT SEE THIS AGAIN. You should also remember your company name exactly as you will need this too.</p>
+        <button class="button" onclick="document.location.href = './manager.html'">Complete Registration</button>
     </div>
     <div id="progress-wrapper" style="position: fixed;width: 100%; height: 100%;background-color: rgba(0,0,0,0.7); top: 0; left: 0;" hidden>
         <div id="progress" style="position: fixed;
