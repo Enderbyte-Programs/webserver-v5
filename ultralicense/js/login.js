@@ -5,7 +5,24 @@ function trylogin() {
         document.getElementById("status").innerText = "Fill in all fields in the below form."
         return
     } else {
-
+        var encryptedpassword = rotrot_encrypt(pwd)
+        //console.log(encryptedpassword)
+        fetch(`/ultralicense/api/do_login.php?name=${name}&pwd=${encryptedpassword}`).then(function(r) {
+            r.text().then(function(t) {
+                let tx = new StandardizedResponse(t.trim())
+                if (tx.isgood()) {
+                    createCookie("pwd",encryptedpassword,30)
+                    createCookie("name",name,30)
+                    if (findGetParameter("return") == null) {
+                        window.location.href = "/ultralicense/manager.html"
+                    } else {
+                        window.location.href = findGetParameter("return")
+                    }
+                } else {
+                    document.getElementById("status").innerText = "Incorrect username or password"
+                }
+            })
+        })
     }
 }
 

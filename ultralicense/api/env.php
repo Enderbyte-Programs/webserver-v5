@@ -46,20 +46,29 @@ function extract_data($sqli) {
     return $result;
 }
 
+function mod($x,$n) {
+    $r = $x % $n;
+    if ($r < 0)
+    {
+        $r += abs($n);
+    }
+    return $r;
+}
+
 function decrypt_rot_rot($data) {
-    $chars = explode("","1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM");
+    $chars = str_split("1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM");
     $ri = -1;
     $final = array();
-    foreach (explode("",$data) as $key => $value) {
+    foreach (str_split($data) as $key => $value) {
         $ri++;
         $loc = array_search($value,$chars);
         if (!$loc) {
             array_push($final,$value);
         } else {
             $offset = $loc - $ri;
-            $nc = $chars[$offset % count($chars)];
+            $nc = $chars[mod($offset, count($chars))];
             array_push($final,$nc);
         }
     }
-    return $final;
+    return join($final);
 }

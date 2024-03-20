@@ -7,6 +7,7 @@ require("env.php");
 $name = $_GET["name"] or die("E2");
 $name = escape_things($name);
 $password = $_GET["pwd"] or die("E2");
+$password = decrypt_rot_rot($password);
 $password = escape_things($password);
 
 $conn = new mysqli($server_name,"root",$db_admin_password) or die("E1");
