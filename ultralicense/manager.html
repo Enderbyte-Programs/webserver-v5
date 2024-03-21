@@ -24,8 +24,12 @@
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.cactive, .collapsible:hover {
+.collapsible:hover {
   background-color: #ccc;
+}
+
+.cactive {
+    background-color: rgb(214, 236, 217);
 }
 
 /* Style the collapsible content. Note: hidden by default */
@@ -62,7 +66,17 @@
      
     <button type="button" class="collapsible">Manage Products</button>
     <div class="content">
-      <p>Lorem ipsum Imar Rary Tehhd Teh yu Rioe The equifjcmmys fbrumsa is a fbrveyr nag afat bum</p>
+      <h2>Manage Products</h2>
+      <h3>List of Products</h3>
+      <table>
+            <tbody id="ptable">
+
+            </tbody>
+      </table>
+      <button type="button" class="collapsible">Manage Products</button>
+      <div class="content">
+        <p>Addbox</p>
+      </div>
     </div> 
 
     <script src="js/colfooter.js"></script>
