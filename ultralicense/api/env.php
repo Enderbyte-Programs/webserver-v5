@@ -30,6 +30,10 @@ function de_escape($input) {
     return $result;
 }
 
+function scescape($input) {
+    return str_replace(";","#SC",$input);
+}
+
 function extract_data($sqli) {
     $result = array();
     if ($sqli->num_rows > 0) {
@@ -71,4 +75,18 @@ function decrypt_rot_rot($data) {
         }
     }
     return join($final);
+}
+
+function get_db_by_pasword($name,$password) {
+    global $server_name,$db_admin_password;
+    $conn = new mysqli($server_name,"root",$db_admin_password) or die("E1");
+    $conn->select_db("ul_master") or die("E4");
+    $data = extract_data($conn->query("select dbname from ul_master.companies where name like '$name' and password like '$password' "));
+    try {
+    $dbn = $data[0]["dbname"];
+    } catch(Exception) {
+        die("E3");
+    }
+    $conn->close();
+    return $dbn;
 }

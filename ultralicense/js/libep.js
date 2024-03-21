@@ -53,3 +53,7 @@ function findGetParameter(parameterName) {
         });
     return result;
 }
+
+function unescape(text) {
+    return text.replace("#SC",";");
+}

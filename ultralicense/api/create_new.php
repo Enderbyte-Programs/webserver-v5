@@ -34,17 +34,22 @@ if (count(extract_data($conn->query("select * from companies where name like '$n
     create table products (
         name text,
         config text,
-        active bool
+        active bool,
+        defaultType int
     );
     
     ") or die("E3");
     $conn->query("
     create table licenses (
+        parentProduct text,
         data text,
         expires datetime,
         used bool,
         identifier text,
-        expirytime datetime
+        onTrial bool,
+        lastUsed datetime,
+        allowDouble bool,
+        keyType int
     );
     ");
     //GRANT ALL PRIVILEGES ON *.* TO 'db_user'@'localhost' IDENTIFIED BY 'P@s$w0rd123!';
