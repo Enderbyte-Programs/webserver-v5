@@ -8,6 +8,46 @@
     <script src="./js/libep.js"></script>
     <script src="./js/authhead.js"></script>
     <link rel="stylesheet" href="./ul.css">
+    <style>
+         /* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #e1ecf4;
+  color: #444;
+  cursor: pointer;
+  padding: 9px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.cactive, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: left;
+  margin-left: 5px;
+}
+
+.cactive:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+    </style>
 </head>
 <body>
     <div class="topnav">
@@ -19,6 +59,13 @@
       <script src="js/navmgr.js"></script>
     <h1>Management Console</h1>
     <strong id="subtitle">Welcome to UltraLicense, </strong>
+     
+    <button type="button" class="collapsible">Manage Products</button>
+    <div class="content">
+      <p>Lorem ipsum Imar Rary Tehhd Teh yu Rioe The equifjcmmys fbrumsa is a fbrveyr nag afat bum</p>
+    </div> 
+
+    <script src="js/colfooter.js"></script>
     <script src="js/manager.js"></script>
 </body>
 </html>
