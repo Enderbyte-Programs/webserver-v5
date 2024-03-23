@@ -16,11 +16,11 @@ $password = escape_things($password);
 $dbname = get_db_by_pasword($name,$password);
 $conn = new mysqli($server_name,$dbname,$password);
 $conn->select_db($dbname);
-$data = extract_data($conn->query("select * from products"));
+$data = extract_data($conn->query("select * from products")) or die("E3");
 echo "G";
 foreach ($data as $row) {
     $n = scescape($row["name"]);
-    $a = scescape($row["active"]);
+    $a = scescape(convert_b_t_s($row["active"]));
     $dt = scescape($row["defaultType"]);
 
     echo "$n;$a;$dt;;";

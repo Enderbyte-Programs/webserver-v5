@@ -57,3 +57,20 @@ function findGetParameter(parameterName) {
 function unescape(text) {
     return text.replace("#SC",";");
 }
+
+function preproescape(text) {
+    return text.replace("&","#AM")
+}
+
+function showVignette() {
+    document.getElementById("progress-wrapper").hidden = false
+}
+function hideVignette() {
+    document.getElementById("progress-wrapper").hidden = true
+}
+
+function construct_auth_url(base,param) {
+    let lname = readCookie("name")
+    let lp = readCookie("pwd")
+    return base+"?name="+lname+"&pwd="+lp+"&"+param
+}

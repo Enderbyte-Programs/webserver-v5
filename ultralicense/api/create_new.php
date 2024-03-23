@@ -18,6 +18,7 @@ function generateRandomString($length = 10) {
 }
 
 $secretpassword = generateRandomString(16);
+$hashpassword = sha256($secretpassword);
 
 $conn = new mysqli($server_name,"root",$db_admin_password) or die("E1");
 $conn->select_db("ul_master") or die("E4");

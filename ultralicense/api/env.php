@@ -90,3 +90,15 @@ function get_db_by_pasword($name,$password) {
     $conn->close();
     return $dbn;
 }
+
+function convert_b_t_s($input) {
+    if ($input) {
+        return "Yes";
+    } else {
+        return "No";
+    }
+}
+
+function sha256($data) {
+    return hash("sha256",$data);
+}
