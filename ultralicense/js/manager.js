@@ -1,3 +1,4 @@
+
 function makeBoldText(text) {
     let bld = document.createElement("strong")
     bld.appendChild(document.createTextNode(text))
@@ -32,6 +33,16 @@ function newproduct() {
     }
 }
 
+function enableButton(element,colour="#e1ecf4") {
+    element.disabled = false
+    //element.style.backgroundColor = colour
+}
+
+function disableButton(element) {
+    element.disabled = true
+    //element.style.backgroundColor = "gray"
+}
+
 function ptactive(loc) {
 
     let newdat = document.getElementById("ptablew").rows[loc+1].cells[1].innerText.startsWith("N")
@@ -54,6 +65,39 @@ function prename(loc) {
     let namecell = document.getElementById("ptablew").rows[loc+1].cells[0]
     namecell.contentEditable = true
     namecell.style.backgroundColor = "lightgray"
+    let savebutton = document.createElement("button")
+    savebutton.classList.add("button")
+    savebutton.innerText = "Save"
+    savebutton.style.backgroundColor = "lightgreen"
+    savebutton.onclick = function() {
+        psave(loc)
+    }
+    buttoncell.appendChild(savebutton)
+
+    let cancelbutton = document.createElement("button")
+    cancelbutton.classList.add("button")
+    cancelbutton.innerText = "Cancel"
+    cancelbutton.style.backgroundColor = "pink"
+    cancelbutton.onclick = function() {
+        pcancel(loc)
+    }
+    buttoncell.appendChild(cancelbutton)
+
+    disableButton(buttoncell.childNodes[0])
+    disableButton(buttoncell.childNodes[1])
+    disableButton(buttoncell.childNodes[2])
+}
+
+function psave(loc) {
+
+}
+
+function pcancel(loc) {
+
+}
+
+function pReturnButtons(loc) {
+
 }
 
 function pdelete(loc) {

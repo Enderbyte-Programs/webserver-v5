@@ -27,7 +27,7 @@
   }
   
   .button:hover,
-  .button:focus {
+  .button:focus:not(:disabled) {
     background-color: #b3d3ea  !important;
     color: #2c5777 !important;
   }
@@ -36,10 +36,15 @@
     box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
   }
   
-  .button:active {
-    background-color: #a0c7e4  !important;
+  .button:active:not(:disabled) {
+    background-color: #a0c7e4 !important;
     box-shadow: none;
     color: #2c5777  !important;
+  }
+  .button:disabled {
+    pointer-events: none;
+    background-color: lightgray !important;
+    color: gray !important;
   }
   
   /*
