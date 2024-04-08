@@ -74,3 +74,11 @@ function construct_auth_url(base,param) {
     let lp = readCookie("pwd")
     return base+"?name="+lname+"&pwd="+lp+"&"+param
 }
+
+function removeSpecificNode(el, index) {
+    var children = el.children;
+    if(children.length > 0) {
+        el.removeChild(children[index]);
+    }
+}
+//Thank you SO

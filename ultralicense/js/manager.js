@@ -89,15 +89,17 @@ function prename(loc) {
 }
 
 function psave(loc) {
-
+    pReturnButtons(loc)
 }
 
 function pcancel(loc) {
-
+    pReturnButtons(loc)
 }
 
 function pReturnButtons(loc) {
-
+    let buttoncell = document.getElementById("ptablew").rows[loc+1].cells[3]
+    removeSpecificNode(buttoncell,4)
+    removeSpecificNode(buttoncell,3)
 }
 
 function pdelete(loc) {

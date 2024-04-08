@@ -33,6 +33,9 @@
     <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="About Us / Contact Us" href="/about.html"><span style="background-color: #ddccff;">About Us / Contact Us</span></a></strong></span></em></h2>
     <p style="text-align: center;">Contact Enderbyte Programs. Also see information about Enderbyte Programs</p>
     <hr />
+    <h2 style="text-align: center;"><em><span style="text-decoration: underline;"><strong><a title="What File is that?" href="/blogs/whatfile/index.php"><span style="background-color: #ffffff;">What File is That?</span></a></strong></span></em></h2>
+    <p style="text-align: center;">Find out about files you find in your task manager or file explorer</p>
+    <hr />
 
     <?php
         $filepath = "usercount.txt";
