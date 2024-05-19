@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Registration</title>
+    <style>
+        /* CSS */
+
+.button {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #b3d3ea  !important;
+  color: #2c5777 !important;
+}
+
+.button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button:active {
+  background-color: #a0c7e4  !important;
+  box-shadow: none;
+  color: #2c5777  !important;
+}
+
+/*
+.button {
+    height: 50px;
+    border: solid;
+    border-color: black;
+    background-color: lightblue;
+    border-radius: 10px;
+    border-width: 1px;
+    transition: 0.5s ease-in-out !important;
+    
+}
+.button:hover {
+    background-color: gray !important;
+    cursor: pointer !important;
+}
+*/
+.inx {
+    height: 30px;
+    border: solid;
+    border-color: black;
+    border-radius: 10px;
+    border-width: 1px;
+    transition: 0.5s ease-in-out !important;
+    background-color: #e1ecf4;
+    
+}
+.inx:hover {
+    cursor: pointer !important;
+}
+table,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+td {
+    background-color: lightblue;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+th {
+    background-color: aqua;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.hl:hover {
+  cursor: pointer;
+  opacity: 1.0 !important;
+}
+
+input[type=text] {
+border: 1px solid #000;
+border-radius: 3px;
+height: 30px;
+line-height: normal;
+color: #282828;
+display: block;
+box-sizing: border-box;
+user-select: auto;
+font-size: 16px;
+}
+input[type=text]:focus{
+    border: 1px solid darkblue;
+}
+
+::placeholder {
+  text-align: center; 
+}
+
+    </style>
+</head>
+<body style="font-family: Helvetica;">
+    <h1>Handsworth Bottle Drive Registration</h1>
+    <i>Signing up for 2024-05-25 bottle drive</i><br>
+    <b>How to use:</b>
+    <ol>
+        <li>Choose a route below</li>
+        <li>If you are the only person doing this route, click "Submit and Reserve". If not, click "Submit" and wait for your friends to sign up before Reserving.</li>
+        <li>Get the bag of flyers for your route form the band room.</li>
+        <li>Deliver the flyers by <b>May 19, 2024</b></li>
+        <li>Return the bag and map to the band room</li>
+        <li>On this website, click "Complete" on the route you did</li>
+    </ol>
+    <p>For support using this software, please email <a href="mailto:jordan.rahim@outlook.com">jordan.rahim@outlook.com</a></p>
+    <hr>
+    <div id="main">
+        <p id="status">Please wait...</p>
+        <form>
+            <label for="hfr">Hide finished routes</label>
+            <input type="checkbox" id="hfr" value="Hide finished routes"><br>
+            <label for="hrr">Hide reserved routes</label>
+            <input type="checkbox" id="hrr" value="Hide reserved routes"><br>
+        </form>
+    </div>
+    <div id="admin" hidden>
+        <h2>All Registrations</h2>
+        <form>
+            <label for="har">Hide archived registrations</label>
+            <input type="checkbox" id="har" value="Hide archived registrations"><br>
+            <label for="hir">Hide inactive registrations</label>
+            <input type="checkbox" id="hir" value="Hide inactive registrations"><br>
+        </form>
+        <table id="regtable">
+            <td id="rtbody">
+
+            </td>
+        </table>
+        <hr>
+        <h2>Teacher Comments</h2>
+        <textarea id="notes"></textarea>
+        <button class="button">Save Notes</button>
+        <hr>
+        <h2>Add new route</h2>
+        <form>
+            <input type="text" id="newroutename" placeholder="Route Name"><br>
+            <input type="button" class="button" value="Add route">
+        </form>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
