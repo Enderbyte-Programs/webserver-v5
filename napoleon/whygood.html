@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napoleon's Good Qualities</title>
+    <link rel="stylesheet" href="/assets/main.css" type="text/css">
+    <script src="../assets/libs/jquery.js"></script>
+</head>
+<body style="background-color: rgba(64, 64, 64,1);background-image: url('/assets/pictures/france.png');background-blend-mode: darken;">
+    <button class="button" id="hb" onclick="window.location.href='/napoleon/index.html'" style="position: fixed;">Home</button>
+    <div id="master" style="align-self: center;max-width: 850px;margin: auto;background-color: lightblue;padding: 20px;">
+        <h1 style="text-align: center;">What made Napoleon such a good general?</h1>
+        <ul>
+            <li>He had a photographic memory, meaning he could generate and read perfect copies of everything he saw.</li>
+            <li>He was also a military genius, and could meticulously plan battles down to a small scale.</li>
+            <li>He was extremely ambitious and would do anything to secure more power for himself and France.</li>
+            <li>He was very charismatic and was able to increase morale in his soldiers through motivational speeches.</li>
+        </ul>
+        <h3>Napoleon also used many military strategies during battle to get the victory:</h3>
+        <ul>
+            <li>Napoleon never used orthodox methods of attack.</li>
+            <li>He prided himself on being lightning-fast to catch enemies off guard.</li>
+            <li>Rather than face enemies head on, he would sneak up behind them.</li>
+            <li>He would use a figure-8 motion to divide and conquer an opposing army.</li>
+        </ul>
+        <img src="/assets/pictures/animations/battle-strategy.gif" style="max-width: 100%;max-height: 300px;"><br>
+        <i id="strategy">Please wait...</i>
+        <hr>
+        <p style="color: blue;"><u><i><a onclick="history.back()">Click me to go back to the page your were reading before</a></i></u></p>
+        <script src="/code/strategy/anim.js"></script>
+        <script>run()</script>
+    </div>
+</body>
+</html>
