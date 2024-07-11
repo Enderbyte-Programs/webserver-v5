@@ -221,3 +221,12 @@ input[type=text]:focus, input[type=password]:focus {
 input[type=date] {
     margin:5px;
 }
+.map {
+    /*width: 300px;*/
+    height: 300px;
+}
+
+input[type=number] {
+    margin: 5px;
+    padding: 5px;
+}

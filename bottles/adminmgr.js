@@ -97,8 +97,13 @@ function showCBlock(rootid) {
 }
 
 function loadPriviliges() {
+    if (!doesCookieExist("password")) {//If you ran var isadmin = true;loadPriviliges(), you could hack thewebsite. Not any more!!
+        alert("Please stop trying to hack this website. There is nothing of value on it.")
+        return;
+    }
     if (isadmin) {
         showCBlock("managedrives")
+        document.getElementById("addroutebox").hidden = false
     }
 }
 

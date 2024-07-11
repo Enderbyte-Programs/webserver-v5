@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Handsworth Bottle Drive</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +20,7 @@
     <script src="./adminmgr.js" defer></script>
     <script src="./libcookie.js"></script>
     <script src="./libcollapse.js" defer></script>
-    
+    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.0.14 Beta</p>
     <div hidden id="adminlogin" class="overlaybox">
         <div id="adminlogini" class="overlayboxi">
             <p id="loginhead">Insert the admin password to gain access to admin features</p>
@@ -81,7 +89,41 @@
             <p style="color: red;" id="adddriveerror"></p>
         </div>
     </div>
-
+    <hr>
+    <div id="addroutebox" hidden>
+        <button class="button" onclick="openRouteBox()">Create New Route</button>
+        <hr>
+    </div>
+    <div hidden id="addroute" class="overlaybox">
+        <div id="addroutei" class="overlayboxi">
+            <h3 style="text-align: center;">Add new route</h3>
+            <form onsubmit="event.preventDefault()">
+                <input type="text" id="nrname" placeholder="Route Name" style="width: 80%;">
+                <br>
+                <label for="nrnum">How many people should do this route?</label>
+                <input type="number" min="1" max="5" value="1" id="nrnum">
+                <br>
+            </form>
+            <p>Now, draw out the route on the map. Click on each point<br>in order, then click Finish Drawing</p>
+            <div id="addmap" class="map"></div>
+            <br>
+            <button id="mc1" class="button" onclick="mapClear()">Clear Drawing</button>
+            <button id="mc2" class="button" onclick="mapFinish()">Finish Drawing</button>
+            <button id="mc3" class="button" style="margin-left: 10px;" onclick="mapUndo()">Undo last point</button>
+            <hr>
+            <button class="button" style="background-color: pink;" onclick="closeRouteBox()">Cancel</button>
+            <button class="button" style="background-color: lightgreen;" onclick="submitRouteBox()">Submit</button>
+            <br>
+            <p id="addrouteerror" style="color: red;"></p>
+        </div>
+    </div>
+    <div id="routelist">
+        <div id="_template" hidden>
+            <!--Todo: Write here a template for each route box-->
+            
+        </div>
+    </div>
     <script src="drivemgr.js"></script>
+    <script src="routemgr.js"></script>
 </body>
 </html>

@@ -72,6 +72,21 @@
             ],
             "returns" : false,
             "sendbool" : false
+        },
+        {
+            "action" : "add-route",
+            "accepts" : {
+                "name" : "str",
+                "points" : "str",
+                "centerlat" : "str",
+                "centerlong" : "str",
+                "people" : "num"
+            },
+            "sql" : [
+                "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong) values ('$name','$points','$people','$centerlat','$centerlat')"
+            ],
+            "returns" : false,
+            "sendbool" : false
         }
     ]
 }
