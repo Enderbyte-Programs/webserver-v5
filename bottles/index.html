@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handsworth Bottle Drive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="./utils.js"></script>
+    <script src="./api.js"></script>
+    <script src="./adminmgr.js" defer></script>
+    <script src="./libcookie.js"></script>
+    <script src="./libcollapse.js" defer></script>
+    
+    <div hidden id="adminlogin" class="overlaybox">
+        <div id="adminlogini" class="overlayboxi">
+            <p id="loginhead">Insert the admin password to gain access to admin features</p>
+            <form onsubmit="event.preventDefault()">
+                <input id="password" type="password" placeholder="Admin password">
+                <button class="smallbutton" onclick="togglepassword('shbutton','password')" id="shbutton">👁️</button>
+                <br>
+                <input hidden id="newpassword" type="password" placeholder="New password">
+                <button hidden class="smallbutton" onclick="togglepassword('newshbutton','newpassword')" id="newshbutton">👁️</button>
+            </form>
+            
+            <button class="button" id="cancelpassword" style="background-color: pink;" onclick="closeLogin()">Cancel</button>
+            <button class="button" id="submitpassword" style="background-color: lightgreen;" onclick="tryLogin(document.getElementById('password').value,true)">Login</button>
+            <button class="button" style="display: none;" id="srsp2" hidden onclick="tryChangePassword()">Change Password</button>
+            <button class="button" id="srsp" onclick="openForgotPassword()">Change Password</button>
+            <br>
+            <p id="loginerror" style="color: red;"></p>
+        </div>
+    </div>
+    <div class="topnav">
+        <a id="n1" onclick="openLogin()">Administrative login</a>
+    </div> 
+    <h1 style="text-align: center;">Handsworth Bottle Drive</h1>
+    <button id="managedrives" onclick="refreshDrivePage()" class="collapsible" hidden>Manage Drives</button>
+    <div id="managedrivesc" class="content" hidden>
+        <h2 style="text-align: center;">Drive Manager</h2>
+        <h3>Active Bottle Drive</h3>
+        <form onsubmit="event.preventDefault()">
+            <label id="adname">Name: </label>
+            <br>
+            <label id="adcdate">Date Created:</label>
+            <br>
+            <label>Delivery due date:</label>
+            <input id="adddate" type="date">
+            <br>
+            <label>Bottle drive date:</label>
+            <input type="date" id="adadate">
+            <br>
+            <input type="button" class="button" value="Save Changes" onclick="updateActiveDrive()" style="background-color: lightgreen;">
+        </form>
+        <hr>
+        <button class="button" onclick="openAddDrive()">Reset and create new drive</button>
+        <hr>
+        <h3>Historical Bottle Drives</h3>
+        <ul id="historicaldrives">
+
+        </ul>
+    </div>
+    <div hidden id="adddrive" class="overlaybox">
+        <div id="adddrivei" class="overlayboxi">
+            <p style="text-align: center;"><b>Create New Bottle Drive</b></p>
+            <p>Note: You will not be able to change the name later</p>
+            <p>Note: This will overwrite the current drive and delete all data!</p>
+            <form onsubmit="event.preventDefault()">
+                <input type="text" id="ndname" placeholder="Choose a name">
+                <br>
+                <input type="date" id="ndddate">
+                <label for="ndddate">Select a date for flyer delivery to be due by</label>
+                <br>
+                <input type="date" id="ndadate">
+                <label for="ndadate">Select a date for the actual bottle drive</label>
+                <br>
+            </form>
+            <button class="button" style="background-color: pink;" onclick="closeAddDrive()">Cancel</button>
+            <button class="button" style="background-color: lightgreen;" onclick="submitAddDrive()">Confirm and Reset</button>
+            <p style="color: red;" id="adddriveerror"></p>
+        </div>
+    </div>
+
+    <script src="drivemgr.js"></script>
+</body>
+</html>

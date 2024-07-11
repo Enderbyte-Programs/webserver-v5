@@ -1,0 +1,77 @@
+{
+    "api" : [
+        {
+            "action" : "get-all-drives",
+            "accepts" : {},
+            "sql" : ["select * from drives;"],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-active-drive",
+            "accepts" : {},
+            "sql" : ["select * from drives where IsActive is true;"],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "check-password",
+            "accepts" : {
+                "forwho":"str",
+                "password":"str"
+            },
+            "sql" : ["select * from accounts where UserName = '$forwho' and Password = '$password'"],
+            "returns" : true,
+            "sendbool" : true
+        },
+        {
+            "action" : "reset-password",
+            "accepts" : {
+                "forwho" : "str",
+                "oldpassword" : "str",
+                "newpassword" : "str"
+            },
+            "sql" : ["update accounts set Password = '$newpassword' where UserName = '$forwho' and Password = '$oldpassword'","select * from accounts where UserName = '$forwho' and Password = '$newpassword'"],
+            "returns" : true,
+            "sendbool" : true
+        },
+        {
+            "action" : "update-ad",
+            "accepts" : {
+                "drivename" : "str",
+                "newddate" : "str",
+                "newadate" : "str"
+            },
+            "sql" : [
+                "update drives set DueDate = STR_TO_DATE('$newddate','%Y-%m-%d'), ActionDate = STR_TO_DATE('$newadate','%Y-%m-%d') where Name = '$drivename'"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "drive-exists",
+            "accepts" : {
+                "drivename" : "str"
+            },
+            "sql" : [
+                "select * from drives where Name = '$drivename'"
+            ],
+            "returns" : true,
+            "sendbool" : true
+        },
+        {
+            "action" : "new-drive",
+            "accepts" : {
+                "drivename" : "str",
+                "ddate" : "str",
+                "adate" : "str"
+            },
+            "sql" : [
+                "update drives set IsActive = false where IsActive = true",
+                "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true)"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        }
+    ]
+}
