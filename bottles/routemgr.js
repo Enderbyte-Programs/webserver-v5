@@ -45,6 +45,7 @@ function submitRouteBox() {
                 alert("Added route successfully.")
                 mapClear()
                 closeRouteBox()
+                refreshPage()
             }
         })
     } catch {

@@ -47,6 +47,9 @@ function tvconv($iv) {
         return false;
     }
     if (is_numeric($iv)) {
+        if (str_contains($iv,".")) {
+            return (float)$iv;
+        }
         return (int)$iv;
     } else {
         return $iv;

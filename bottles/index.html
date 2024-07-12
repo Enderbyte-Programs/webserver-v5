@@ -118,12 +118,26 @@
         </div>
     </div>
     <div id="routelist">
-        <div id="_template" hidden>
+        <div id="$ridroot" class="route" hidden>
             <!--Todo: Write here a template for each route box-->
-            
+            <div id="$ridmap" style="background-color: darkgray;" class="smallmap"></div>
+            <p style="top: 0;left: 220px;position: absolute;"><b>$routename</b></p>
+            <ul style="top: 10px;left:210px" id="$ridpeople">
+                <!--List of people-->
+            </ul>
+            <div style="top: 50px;right:0;position: absolute;">
+                <button id="$ridb1" style="background-color: lightgreen" class="button">Volunteer</button>
+                <br>
+                <button id="$ridb2" class="button">Mark Completed</button>
+                <br>
+                <button id="$ridb3" class="button">Edit route</button>
+                <br>
+                <button id="$ridb4" style="background-color: pink;" class="button">Delete route</button>
+            </div>
         </div>
     </div>
     <script src="drivemgr.js"></script>
     <script src="routemgr.js"></script>
+    <script src="volunteer.js" defer></script>
 </body>
 </html>

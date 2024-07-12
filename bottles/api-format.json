@@ -83,9 +83,20 @@
                 "people" : "num"
             },
             "sql" : [
-                "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong) values ('$name','$points','$people','$centerlat','$centerlat')"
+                "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong,IsCompleted) values ('$name','$points','$people','$centerlat','$centerlong',false)"
             ],
             "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-all-routes",
+            "accepts" : {
+                
+            },
+            "sql" : [
+                "select * from routes;"
+            ],
+            "returns" : true,
             "sendbool" : false
         }
     ]

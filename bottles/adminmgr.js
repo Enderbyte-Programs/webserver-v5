@@ -1,4 +1,4 @@
-var isadmin = false
+var isadmin = true
 var ispasswordhidden = false
 
 function openLogin() {
