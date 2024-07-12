@@ -29,8 +29,7 @@ function refreshPage() {
             let nci = ci
             routeids.push(element.RouteID)
             let d = new Route(element,nci)
-            //d.loadMap()
-            d.loadEvents()
+            
             routes.push(d)// Why Wont You Just Work!?
             
             ci = ci + 1
@@ -97,16 +96,25 @@ function compileNodes(raw) {
 }
 
 function runVolunteer(index) {
-    alert(index)
+    
 }
 function runComplete(index) {
 
 }
 function runEditRoute(index) {
-
+    let d = routes[index]
+    document.getElementById("nrname").value = d.routename
+    document.getElementById("nrnum").value = d.neededvolunteers
+    addedMapPoints = d.polygon
+    openRouteBox(true)
 }
 function runDeleteRoute(index) {
-
+    let d = routes[index]
+    if (confirm(`Are you sure you wish to delete ${d.routename}?`)) {
+        call("delete-route",{name:d.routename},function(r) {
+            refreshPage()
+        })
+    }
 }
 function runDeletePerson(index,lindex) {
 

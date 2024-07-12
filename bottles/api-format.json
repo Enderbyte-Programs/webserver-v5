@@ -83,6 +83,7 @@
                 "people" : "num"
             },
             "sql" : [
+                "delete from routes where CenterLat = '$centerlat'",
                 "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong,IsCompleted) values ('$name','$points','$people','$centerlat','$centerlong',false)"
             ],
             "returns" : false,
@@ -94,9 +95,20 @@
                 
             },
             "sql" : [
-                "select * from routes;"
+                "select * from routes order by RouteName;"
             ],
             "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "delete-route",
+            "accepts" : {
+                "name" : "str"
+            },
+            "sql" : [
+                "delete from routes where Routename = '$name'"
+            ],
+            "returns" : false,
             "sendbool" : false
         }
     ]

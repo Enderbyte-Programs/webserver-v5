@@ -2,21 +2,30 @@ var isAcceptingMapInput = false
 var polycolour = "blue"
 var addedMapPoints = Array()
 
-function openRouteBox() {
+function openRouteBox(isedit=false) {
     document.getElementById("addroute").hidden = false
     addmap.invalidateSize()
     isAcceptingMapInput = true
-    polycolour = "blue"
-    document.getElementById("mc1").disabled = false
-    document.getElementById("mc2").disabled = false
-    document.getElementById("mc3").disabled = false
-    document.getElementById("addrouteerror").innerHTML = ""
+    if (!isedit) {
+        polycolour = "blue" 
+        document.getElementById("mc1").disabled = false
+        document.getElementById("mc2").disabled = false
+        document.getElementById("mc3").disabled = false
+        document.getElementById("addrouteerror").innerHTML = ""
+    } else {
+        polycolour = "purple"
+        document.getElementById("mc1").disabled = true
+        document.getElementById("mc2").disabled = true
+        document.getElementById("mc3").disabled = true
+        document.getElementById("addrouteerror").innerHTML = ""
+    }
+    updateMap()
 }
 function closeRouteBox() {
     document.getElementById("addroute").hidden = true
     isAcceptingMapInput = false
 }
-function submitRouteBox() {
+function submitRouteBox(isedit=false) {
     try {
         let mp = collapsePolygon()
         let bounds = addMapPolygon.getBounds().getCenter()
@@ -42,7 +51,6 @@ function submitRouteBox() {
         console.log(JSON.stringify(args))
         call("add-route",args,function(r) {
             if (!r.iserror) {
-                alert("Added route successfully.")
                 mapClear()
                 closeRouteBox()
                 refreshPage()
@@ -54,7 +62,7 @@ function submitRouteBox() {
 }
 var lastMarkerPosition;
 //Set up leaflet map
-var addmap = L.map('addmap').setView([49.3515, -123.1015], 14);
+var addmap = L.map('addmap').setView([49.3515, -123.1015], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
