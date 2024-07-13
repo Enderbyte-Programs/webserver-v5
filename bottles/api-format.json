@@ -124,6 +124,45 @@
             ],
             "returns" : false,
             "sendbool" : false
+        },
+        {
+            "action" : "volunteer",
+            "accepts" : {
+                "name" : "str",
+                "grade" : "str",
+                "class" : "str",
+                "forwhich" : "int"
+
+            },
+            "sql" : [
+
+                "insert into volunteers values ('$name','$grade','$class',$forwhich,NOW(),true)"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-contributions",
+            "accepts" : {
+                "name" : "str"
+            },
+            "sql" : [
+                "select VolunteeredForID from volunteers where VolunteerName = '$name'"
+            ],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "unvolunteer",
+            "accepts" : {
+                "name" : "str",
+                "forwhich" : "int"
+            },
+            "sql" : [
+                "delete from volunteers where VolunteerName = '$name' and VolunteeredForID = $forwhich"
+            ],
+            "returns" : false,
+            "sendbool" : false
         }
     ]
 }

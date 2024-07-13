@@ -68,9 +68,10 @@
                 </select>
             </form>
             <p>Students: When you are done, click Continue</p>
-            <button class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true">Skip for now</button>
+            <button id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true">Skip for now</button>
             <button id="islaa" class="button" onclick="document.getElementById('infoselect').hidden = true;openLogin()">Login as admin</button>
             <button style="background-color: lightgreen;" class="button" onclick="submitIS()">Continue</button>
+            <button id="isc" style="background-color: pink;" class="button" onclick="document.getElementById('infoselect').hidden = true">Cancel</button>
         </div>
     </div>
     <!--
@@ -162,7 +163,7 @@
         <div id="$ridroot" class="route" hidden>
             <!--Todo: Write here a template for each route box-->
             <div id="$ridmap" style="background-color: darkgray;" class="smallmap"></div>
-            <p style="top: 0;left: 220px;position: absolute;"><b>$routename</b></p>
+            <p style="top: 0;left: 220px;position: absolute;"><b>$routename (recommended $people)</b></p>
             <p style="top: 10px;right:10px">Volunteers</p>
             <ul style="top: 10px;left:210px" id="$ridpeople">
                 <!--List of people-->
@@ -179,6 +180,12 @@
             <div style="position: absolute;top: 0;left: 0;background-color: rgba(200, 255, 200, 0.8);z-index: 99999;" class="routeo" id="$ridoverlay" hidden>
                 <p style="text-align: center;vertical-align: middle;color: green;">This route has already been completed</p>
             </div>
+        </div>
+    </div>
+
+    <div id="progress" class="overlaybox" hidden>
+        <div class="overlayboxi">
+            <p>Loading...</p>
         </div>
     </div>
     <script src="selection.js"></script>

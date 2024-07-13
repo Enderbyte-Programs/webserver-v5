@@ -1,11 +1,16 @@
 var routeids = Array()
 var template = structuredClone(document.getElementById("routelist").innerHTML)
 class Route {
-    constructor(apiretr,nloc) {
+    constructor(apiretr,nloc,completedrouteids) {
+        //completedrouteids will be used to determine if the person has permission to do this. It will be set to [0] if admin
+        let lia = false
+        if (completedrouteids[0] === 0) {
+            lia = true
+        }
+        //console.log(completedrouteids)
         this.loc = nloc
         this.polygon = compileNodes(apiretr.MapNodes)
         this.routeid = deforce(apiretr.RouteID)
-        
         this.routename = apiretr.RouteName
         this.neededvolunteers = deforce(apiretr.NeededPeople)
         this.centerlocation = {
@@ -13,60 +18,87 @@ class Route {
             lng: apiretr.CenterLong
         }
         this.completed = apiretr.IsCompleted
-        document.getElementById("routelist").innerHTML += template.replaceAll("$rid",this.routeid).replaceAll("$routename",this.routename).replace("hidden=\"\"","")
+        
+        document.getElementById("routelist").innerHTML += template.replaceAll("$rid",this.routeid).replaceAll("$routename",this.routename).replace("hidden=\"\"","").replace("$people",conjugatepeople(this.neededvolunteers))
         this.respbox = document.getElementById(this.routeid+"root")
+        if (this.completed) {
+            document.getElementById(this.routeid+"overlay").hidden = false
+            document.getElementById(this.routeid+"b2").innerHTML = "Mark route incomplete"
+        }
+        if (completedrouteids.includes(this.routeid)) {
+            document.getElementById(this.routeid+"b1").innerHTML = "Unvolunteer"
+            document.getElementById(this.routeid+"b1").style.backgroundColor = "pink"
+        }
+        if (!completedrouteids.includes(this.routeid) && !lia) {
+            document.getElementById(this.routeid+"b2").disabled = true
+        }
     }
 }
 
 var routes = Array()
 function refreshPage() {
+    let oldpos = window.scrollY
+    startProgress()
     routes = Array()
     routeids = Array()
     document.getElementById("routelist").innerHTML = ""
     let ci = 0
     call("get-all-routes",{},function(r) {
-        r.data.forEach(element => {
-            let nci = ci
-            routeids.push(element.RouteID)
-            let d = new Route(element,nci)
+        call("get-contributions",{name:username},function(r2) {
+            let permits = Array()
+            if (isadmin) {
+                permits.push(0)
+            }
+            r2.data.forEach(element => {
+                permits.push(element.VolunteeredForID)
+            });
             
-            routes.push(d)// Why Wont You Just Work!?
-            
-            ci = ci + 1
-        });
-        ci = 0
-        routeids.forEach(rid => {
-            let nci = ci
-            if (!isadmin) {
-                document.getElementById(rid+"b3").style.display = "none"
-                document.getElementById(rid+"b4").style.display = "none"
-            } else {
-                document.getElementById(rid+"b3").style.display = "inline"
-                document.getElementById(rid+"b4").style.display = "inline"
-            }
-            console.log(rid)
-            document.getElementById(rid+"b1").onclick = function() {
-                runVolunteer(nci)
-            }
-            document.getElementById(rid+"b2").onclick = function() {
-                runComplete(nci)
-            }
-            document.getElementById(rid+"b3").onclick = function() {
-                runEditRoute(nci)
-            }
-            document.getElementById(rid+"b4").onclick = function() {
-                runDeleteRoute(nci)
-            }
-            ci = ci + 1
-        });
-        routes.forEach(routedata => {
-            let map = L.map(routedata.routeid+"map").setView(routedata.centerlocation,15)
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-            new L.Polygon(routedata.polygon).addTo(map)
-        });
+            r.data.forEach(element => {
+                let nci = ci
+                routeids.push(element.RouteID)
+                let d = new Route(element,nci,permits)
+                
+                routes.push(d)// Why Wont You Just Work!?
+                
+                ci = ci + 1
+            });
+            ci = 0
+            routeids.forEach(rid => {
+                let nci = ci
+                if (!isadmin) {
+                    document.getElementById(rid+"b3").style.display = "none"
+                    document.getElementById(rid+"b4").style.display = "none"
+                } else {
+                    document.getElementById(rid+"b3").style.display = "inline"
+                    document.getElementById(rid+"b4").style.display = "inline"
+                }
+                //console.log(rid)
+                document.getElementById(rid+"b1").onclick = function() {
+                    runVolunteer(nci)
+                }
+                document.getElementById(rid+"b2").onclick = function() {
+                    runComplete(nci)
+                }
+                document.getElementById(rid+"b3").onclick = function() {
+                    runEditRoute(nci)
+                }
+                document.getElementById(rid+"b4").onclick = function() {
+                    runDeleteRoute(nci)
+                }
+                ci = ci + 1
+            });
+            routes.forEach(routedata => {
+                let map = L.map(routedata.routeid+"map").setView(routedata.centerlocation,15)
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                new L.Polygon(routedata.polygon).addTo(map)
+            });
+            window.scrollTo(0,oldpos)
+            endProgress()
+        })
+        
     })
 }
 function deforce(val) {
@@ -95,8 +127,38 @@ function compileNodes(raw) {
     return d
 }
 
-function runVolunteer(index) {
+function runVolunteerA(index) {
     
+    let rid = routeids[index]
+    if (document.getElementById(rid+"b1").innerHTML.toLowerCase().startsWith("un")) {
+        call("unvolunteer",{
+            forwhich:rid,
+            name:username
+        },function(r) {
+            refreshPage()
+        })
+        return
+    }
+    let d2p = {
+        forwhich:rid,
+        name:username,
+        class:userclass,
+        grade:usergrade
+    }
+    console.log(d2p)
+    call("volunteer",d2p,function(r) {
+        refreshPage()
+    })
+}
+
+function runVolunteer(index) {
+    if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
+        loadsb(function() {
+            runVolunteerA(index)
+        })
+    } else {
+        runVolunteerA(index)
+    }
 }
 function runComplete(index) {
 

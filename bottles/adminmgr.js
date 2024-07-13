@@ -91,6 +91,7 @@ if (!doesCookieExist("password")) {
     loadsb()
 } else {
     tryLogin(getCookie("password"),false)
+    loadsbunsafe()
 }
 
 function showCBlock(rootid) {
