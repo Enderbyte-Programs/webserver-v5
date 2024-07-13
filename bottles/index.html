@@ -106,6 +106,11 @@
 
         </ul>
     </div>
+    <button id="contrib" class="collapsible" hidden>Check Contributions</button>
+    <div id="contribc" class="content" hidden>
+        <h2 style="text-align: center;">Contributions</h2>
+        <ul id="contriblist"></ul>
+    </div>
     <div hidden id="adddrive" class="overlaybox">
         <div id="adddrivei" class="overlayboxi">
             <p style="text-align: center;"><b>Create New Bottle Drive</b></p>
@@ -173,23 +178,27 @@
                 <br>
                 <button style="z-index: 100000;" id="$ridb2" class="button">Mark Completed</button>
                 <br>
-                <button id="$ridb3" class="button">Edit route</button>
+                <button id="$ridb3" style="pointer-events: all;" class="button">Edit route</button>
                 <br>
-                <button id="$ridb4" style="background-color: pink;" class="button">Delete route</button>
+                <button id="$ridb4" style="background-color: pink;pointer-events: all;" class="button">Delete route</button>
             </div>
             <div style="position: absolute;top: 0;left: 0;background-color: rgba(200, 255, 200, 0.8);z-index: 99999;" class="routeo" id="$ridoverlay" hidden>
                 <p style="text-align: center;vertical-align: middle;color: green;text-shadow: 5px black;">This route has already been completed</p>
+            </div>
+            <div style="position: absolute;top: 0;left: 0;background-color: rgba(255,200,200, 0.8);z-index: 99999;" class="routeo" id="$ridcoverlay" hidden>
+                <p style="text-align: center;vertical-align: middle;color: red;text-shadow: 5px black;">This route has been disabled</p>
             </div>
         </div>
     </div>
 
     <div id="progress" class="overlaybox" hidden>
         <div class="overlayboxi">
-            <p>Loading...</p>
+            <p>Loading, Please wait...</p>
         </div>
     </div>
     <script src="selection.js"></script>
     <script src="routemgr.js"></script>
     <script src="volunteer.js" defer></script>
+    <script src="contrib.js" defer></script>
 </body>
 </html>

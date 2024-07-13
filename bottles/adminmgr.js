@@ -106,6 +106,7 @@ function loadPriviliges() {
     }
     if (isadmin) {
         showCBlock("managedrives")
+        showCBlock("contrib")
         document.getElementById("addroutebox").hidden = false
         document.getElementById("addroutebox").style.display = "inline"
     }

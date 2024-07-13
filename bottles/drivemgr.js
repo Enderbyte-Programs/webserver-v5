@@ -1,3 +1,5 @@
+var isClosed = false
+
 function refreshDrivePage() {
     call("get-active-drive",{},function(r) {
         if (r.data.length == 0) {
@@ -92,11 +94,29 @@ function createWithText(tagname,text) {
     return d
 }
 
+function updateStatus() {
+    if (isClosed) {
+        let children=document.getElementById("routelist").children
+        for (let i = 0;i<children.length;i++) {
+            let child = children[i]
+            let buttons = child.getElementsByTagName("button")
+            for (let j = 0;j<buttons.length;j++) {
+                let button = buttons[j]
+                if (button.id.endsWith("3") || button.id.endsWith("4")) {
+                    continue
+                }
+                button.disabled = true
+            }
+        }
+    }
+}
+
 //Load notice box
 call("get-active-drive",{},function(r) {
     if (r.data.length == 0) {
         let docs = document.getElementById("notice")
-        document.getElementById("routelist").classList.add("disabled")//If no active drive, hide everything
+        //document.getElementById("routelist").classList.add("disabled")//If no active drive, hide everything
+        isClosed = true
         docs.classList.add("errorarea")
         docs.appendChild(createWithText("p",`There are no active bottle drives. This website is now closed.`))
         return
@@ -123,6 +143,7 @@ call("get-active-drive",{},function(r) {
         docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b>.`))
     } else if (today > ddate && today > adate) {
         docs.classList.add("errorarea")
+        isClosed = true
         docs.appendChild(createWithText("p",`The bottle drive's date has passed. This website is now closed.`))
         document.getElementById("routelist").classList.add("disabled")//If no active drive, hide everything
     } else {

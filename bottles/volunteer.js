@@ -108,6 +108,7 @@ function refreshPage() {
                 new L.Polygon(routedata.polygon).addTo(map)
             });
             window.scrollTo(0,oldpos)
+            updateStatus()
             endProgress()
         })
         

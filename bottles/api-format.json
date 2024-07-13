@@ -69,6 +69,7 @@
             "sql" : [
                 "update drives set IsActive = false where IsActive = true",
                 "update routes set CompletedDate = NULL",
+                "update routes set IsCompleted = false",
                 "update volunteers set IsActive = false where IsActive = true",
                 "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true)"
             ],
@@ -80,9 +81,7 @@
             "accepts" : {
             },
             "sql" : [
-                "update drives set IsActive = false where IsActive = true",
-                "update volunteers set IsActive = false where IsActive = true",
-                "update routes set CompletedDate = NULL"
+                "update drives set IsActive = false where IsActive = true"
             ],
             "returns" : false,
             "sendbool" : false
@@ -147,7 +146,7 @@
                 "name" : "str"
             },
             "sql" : [
-                "select VolunteeredForID from volunteers where VolunteerName = '$name'"
+                "select VolunteeredForID from volunteers where VolunteerName = '$name' and IsActive = true"
             ],
             "returns" : true,
             "sendbool" : false
@@ -159,7 +158,7 @@
                 "forwhich" : "int"
             },
             "sql" : [
-                "delete from volunteers where VolunteerName = '$name' and VolunteeredForID = $forwhich"
+                "delete from volunteers where VolunteerName = '$name' and VolunteeredForID = $forwhich and IsActive = true"
             ],
             "returns" : false,
             "sendbool" : false
@@ -170,7 +169,7 @@
                 "routeid" : "int"
             },
             "sql" : [
-                "select * from volunteers where VolunteeredForID = $routeid"
+                "select * from volunteers where VolunteeredForID = $routeid and IsActive = true"
             ],
             "returns" : true,
             "sendbool" : false
@@ -185,6 +184,13 @@
                 "update routes set CompletedDate = IF ( IsCompleted, NOW(), NULL ) where RouteID = $routeid"
             ],
             "returns": false,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-all-volunteers",
+            "accepts" : {},
+            "sql" : ["select * from volunteers where IsActive = true"],
+            "returns" : true,
             "sendbool" : false
         }
     ]
