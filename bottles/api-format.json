@@ -163,6 +163,29 @@
             ],
             "returns" : false,
             "sendbool" : false
+        },
+        {
+            "action" : "get-volunteers",
+            "accepts" : {
+                "routeid" : "int"
+            },
+            "sql" : [
+                "select * from volunteers where VolunteeredForID = $routeid"
+            ],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "invert-route",
+            "accepts" : {
+                "routeid" : "int"
+            },
+            "sql" : [
+                "update routes set IsCompleted = IF ( IsCompleted , FALSE, TRUE )  where RouteID = $routeid",
+                "update routes set CompletedDate = IF ( IsCompleted, NOW(), NULL ) where RouteID = $routeid"
+            ],
+            "returns": false,
+            "sendbool" : false
         }
     ]
 }

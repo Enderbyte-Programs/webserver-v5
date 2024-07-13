@@ -32,6 +32,7 @@ class Route {
         if (!completedrouteids.includes(this.routeid) && !lia) {
             document.getElementById(this.routeid+"b2").disabled = true
         }
+        
     }
 }
 
@@ -85,6 +86,17 @@ function refreshPage() {
                 document.getElementById(rid+"b4").onclick = function() {
                     runDeleteRoute(nci)
                 }
+                call("get-volunteers",{routeid:rid},function(r3) {
+                    let lci = 0;
+                    r3.data.forEach(element => {
+                        let nlci = lci;
+                        let fn = `${element.VolunteerName} in ${element.VolunteerGrade} ${element.VolunteerPrimaryClass}`
+                        let c = document.createElement("li")
+                        c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>X</button>`
+                        document.getElementById(rid+"people").appendChild(c)
+                        lci = lci + 1
+                    });
+                })
                 ci = ci + 1
             });
             routes.forEach(routedata => {
@@ -157,11 +169,18 @@ function runVolunteer(index) {
             runVolunteerA(index)
         })
     } else {
+        username = getCookie("name")
+        usergrade = getCookie("grade")
+        userclass = getCookie("class")
         runVolunteerA(index)
     }
 }
 function runComplete(index) {
-
+    call("invert-route",{
+        routeid:routeids[index]
+    },function(r) {
+        refreshPage()
+    })
 }
 function runEditRoute(index) {
     let d = routes[index]
@@ -179,7 +198,16 @@ function runDeleteRoute(index) {
     }
 }
 function runDeletePerson(index,lindex) {
-
+    let rid = index
+    let dbox = document.getElementById(rid+"people")
+    let sd = dbox.children[lindex].innerHTML.split("<")[0]
+    let pname = sd.split(" in ")[0]
+    call("unvolunteer",{
+        forwhich:rid,
+        name:pname
+    },function(r) {
+        refreshPage()
+    })
 }
 
 refreshPage()

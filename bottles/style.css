@@ -299,3 +299,9 @@ select {
     border-radius: 5px;
     min-width: 150px;
 }
+
+.route ul {
+    list-style: none;
+    line-height: 2;
+}
+
