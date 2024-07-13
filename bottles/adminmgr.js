@@ -83,10 +83,12 @@ function tryLogin(pwd,isfromui) {
             }
             isadmin = false
         }
+        //loadsb()
     })
 }
 if (!doesCookieExist("password")) {
     isadmin = false
+    loadsb()
 } else {
     tryLogin(getCookie("password"),false)
 }
@@ -104,6 +106,7 @@ function loadPriviliges() {
     if (isadmin) {
         showCBlock("managedrives")
         document.getElementById("addroutebox").hidden = false
+        document.getElementById("addroutebox").style.display = "inline"
     }
 }
 

@@ -251,3 +251,51 @@ input[type=number] {
     max-width: 800px;
     min-width: 600px;
 }
+.routeo {
+    border: 0px black solid;
+    border-radius: 10px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.area {
+    margin: 10px;
+    padding: 10px;
+    /*height: 100px;*/
+    width: calc(100% - 40px);
+    overflow: hidden;
+}
+
+.noticearea {
+    background-color: lightblue;
+    border: 5px solid blue;
+}
+
+.warningarea {
+    
+    background-color: lightyellow;
+    border: 5px solid yellow;
+}
+
+.errorarea {
+    background-color: pink;
+    border: 5px solid red;
+}
+
+.area h3 {
+    text-align: center;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+select {
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 5px;
+    min-width: 150px;
+}

@@ -16,10 +16,12 @@
 </head>
 <body>
     <script src="./utils.js"></script>
+    
     <script src="./api.js"></script>
     <script src="./adminmgr.js" defer></script>
     <script src="./libcookie.js"></script>
     <script src="./libcollapse.js" defer></script>
+    <script src="./drivemgr.js" defer></script>
     <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.0.17 Beta</p>
     <div hidden id="adminlogin" class="overlaybox">
         <div id="adminlogini" class="overlayboxi">
@@ -40,15 +42,48 @@
             <p id="loginerror" style="color: red;"></p>
         </div>
     </div>
+
+    <div hidden id="infoselect" class="overlaybox">
+        <div id="infoselecti" class="overlayboxi">
+            <p>Please input your name and grade, then select the class you participate in.
+                <br>If you participate in multiple classes, pick one that is on timetable</p>
+            <form onsubmit="event.preventDefault()">
+                <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="isname" placeholder="Your full name">
+                <br>
+                <label for="isselg">Your Grade </label>
+                <select id="isselg">
+                    <option>Grade 8</option>
+                    <option>Grade 9</option>
+                    <option>Grade 10</option>
+                    <option>Grade 11</option>
+                    <option>Grade 12</option>
+                </select>
+                <br>
+                <label for="isselc">Your Class </label>
+                <select id="isselc">
+                    <option>Concert Band</option>
+                    <option>Jazz Band</option>
+                    <option>Choir</option>
+                    <option>Strings</option>
+                </select>
+            </form>
+            <p>Students: When you are done, click Continue</p>
+            <button class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true">Skip for now</button>
+            <button id="islaa" class="button" onclick="document.getElementById('infoselect').hidden = true;openLogin()">Login as admin</button>
+            <button style="background-color: lightgreen;" class="button" onclick="submitIS()">Continue</button>
+        </div>
+    </div>
+    <!--
     <div class="topnav">
         <a id="n1" onclick="openLogin()">Administrative login</a>
     </div> 
+-->
     <h1 style="text-align: center;">Handsworth Bottle Drive</h1>
     <button id="managedrives" onclick="refreshDrivePage()" class="collapsible" hidden>Manage Drives</button>
     <div id="managedrivesc" class="content" hidden>
         <h2 style="text-align: center;">Drive Manager</h2>
         <h3>Active Bottle Drive</h3>
-        <form onsubmit="event.preventDefault()">
+        <form id="cadinput" onsubmit="event.preventDefault()">
             <label id="adname">Name: </label>
             <br>
             <label id="adcdate">Date Created:</label>
@@ -62,7 +97,8 @@
             <input type="button" class="button" value="Save Changes" onclick="updateActiveDrive()" style="background-color: lightgreen;">
         </form>
         <hr>
-        <button class="button" onclick="openAddDrive()">Reset and create new drive</button>
+        <button id="rcd" class="button" onclick="openAddDrive()">Reset and create new drive</button>
+        <button id="ccd" class="button" onclick="deleteDrive()" style="background-color: pink;">Close current drive</button>
         <hr>
         <h3>Historical Bottle Drives</h3>
         <ul id="historicaldrives">
@@ -90,10 +126,15 @@
         </div>
     </div>
     <hr>
-    <div id="addroutebox" hidden>
-        <button class="button" onclick="openRouteBox()">Create New Route</button>
-        <hr>
+    <div class="area" id="notice">
+
     </div>
+    <div id="addroutebox"  style="display: none;" hidden>
+        <button class="button" onclick="openRouteBox()">Create New Route</button>    
+    </div>
+    <button id="n1" class="button" onclick="openLogin()">Administrative Login</button>
+    
+    <hr>
     <div hidden id="addroute" class="overlaybox">
         <div id="addroutei" class="overlayboxi">
             <h3 style="text-align: center;">Add new route</h3>
@@ -122,21 +163,25 @@
             <!--Todo: Write here a template for each route box-->
             <div id="$ridmap" style="background-color: darkgray;" class="smallmap"></div>
             <p style="top: 0;left: 220px;position: absolute;"><b>$routename</b></p>
+            <p style="top: 10px;right:10px">Volunteers</p>
             <ul style="top: 10px;left:210px" id="$ridpeople">
                 <!--List of people-->
             </ul>
-            <div style="top: 50px;right:0;position: absolute;">
+            <div style="top: 50px;left:220px;position: absolute;">
                 <button id="$ridb1" style="background-color: lightgreen" class="button">Volunteer</button>
                 <br>
-                <button id="$ridb2" class="button">Mark Completed</button>
+                <button style="z-index: 100000;" id="$ridb2" class="button">Mark Completed</button>
                 <br>
                 <button id="$ridb3" class="button">Edit route</button>
                 <br>
                 <button id="$ridb4" style="background-color: pink;" class="button">Delete route</button>
             </div>
+            <div style="position: absolute;top: 0;left: 0;background-color: rgba(200, 255, 200, 0.8);z-index: 99999;" class="routeo" id="$ridoverlay" hidden>
+                <p style="text-align: center;vertical-align: middle;color: green;">This route has already been completed</p>
+            </div>
         </div>
     </div>
-    <script src="drivemgr.js"></script>
+    <script src="selection.js"></script>
     <script src="routemgr.js"></script>
     <script src="volunteer.js" defer></script>
 </body>

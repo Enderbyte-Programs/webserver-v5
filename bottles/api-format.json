@@ -68,7 +68,21 @@
             },
             "sql" : [
                 "update drives set IsActive = false where IsActive = true",
+                "update routes set CompletedDate = NULL",
+                "update volunteers set IsActive = false where IsActive = true",
                 "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true)"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "close-drive",
+            "accepts" : {
+            },
+            "sql" : [
+                "update drives set IsActive = false where IsActive = true",
+                "update volunteers set IsActive = false where IsActive = true",
+                "update routes set CompletedDate = NULL"
             ],
             "returns" : false,
             "sendbool" : false
