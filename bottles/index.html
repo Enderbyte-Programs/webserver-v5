@@ -22,7 +22,7 @@
     <script src="./libcookie.js"></script>
     <script src="./libcollapse.js" defer></script>
     <script src="./drivemgr.js" defer></script>
-    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.0.17 Beta</p>
+    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.1</p>
     <div hidden id="adminlogin" class="overlaybox">
         <div id="adminlogini" class="overlayboxi">
             <p id="loginhead">Insert the admin password to gain access to admin features</p>
@@ -45,6 +45,7 @@
 
     <div hidden id="infoselect" class="overlaybox">
         <div id="infoselecti" class="overlayboxi">
+            <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
             <p>Please input your name and grade, then select the class you participate in.
                 <br>If you participate in multiple classes, pick one that is on timetable</p>
             <form onsubmit="event.preventDefault()">
@@ -95,6 +96,13 @@
             <label>Bottle drive date:</label>
             <input type="date" id="adadate">
             <br>
+            <label>Drive start time:</label>
+            <input type="time" id="stime">
+            <br>
+            <label>Drive end time:</label>
+            <input type="time" id="etime">
+
+            <br>
             <input type="button" class="button" value="Save Changes" onclick="updateActiveDrive()" style="background-color: lightgreen;">
         </form>
         <hr>
@@ -124,6 +132,14 @@
                 <br>
                 <input type="date" id="ndadate">
                 <label for="ndadate">Select a date for the actual bottle drive</label>
+                <br>
+                
+                <input type="time" id="nstime">
+                <label for="nstime">Select the time that the first people should arrive</label>
+                <br>
+                
+                <input type="time" id="netime">
+                <label for="netime">Select the end time of the bottle drive</label>
                 <br>
             </form>
             <button class="button" style="background-color: pink;" onclick="closeAddDrive()">Cancel</button>

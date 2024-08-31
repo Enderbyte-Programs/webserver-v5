@@ -12,6 +12,9 @@ function openLogin() {
 
 function closeLogin() {
     document.getElementById('adminlogin').hidden = true
+    if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
+        document.getElementById('infoselect').hidden = false
+    }
 }
 
 function togglepassword(buttonid,inputid) {
@@ -70,6 +73,7 @@ function tryLogin(pwd,isfromui) {
     },function(res) {
         let success = res.data
         if (success) {
+            
             setCookie("password",pwd,60)
             if (isfromui) {
                 document.location.reload()//Reload to apply changes
@@ -78,6 +82,7 @@ function tryLogin(pwd,isfromui) {
             isadmin = true
             loadPriviliges()
         } else {
+            
             if (isfromui) {
                 document.getElementById("loginerror").innerText = "Incorrect password"
             }

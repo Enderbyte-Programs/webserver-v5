@@ -40,10 +40,12 @@
             "accepts" : {
                 "drivename" : "str",
                 "newddate" : "str",
-                "newadate" : "str"
+                "newadate" : "str",
+                "stime" : "str",
+                "etime" : "str"
             },
             "sql" : [
-                "update drives set DueDate = STR_TO_DATE('$newddate','%Y-%m-%d'), ActionDate = STR_TO_DATE('$newadate','%Y-%m-%d') where Name = '$drivename'"
+                "update drives set DueDate = STR_TO_DATE('$newddate','%Y-%m-%d'), ActionDate = STR_TO_DATE('$newadate','%Y-%m-%d'), StartTime = '$stime', EndTime = '$etime' where Name = '$drivename'"
             ],
             "returns" : false,
             "sendbool" : false
@@ -64,14 +66,16 @@
             "accepts" : {
                 "drivename" : "str",
                 "ddate" : "str",
-                "adate" : "str"
+                "adate" : "str",
+                "stime" : "str",
+                "etime" : "str"
             },
             "sql" : [
                 "update drives set IsActive = false where IsActive = true",
                 "update routes set CompletedDate = NULL",
                 "update routes set IsCompleted = false",
                 "update volunteers set IsActive = false where IsActive = true",
-                "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true)"
+                "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true,'$stime','$etime')"
             ],
             "returns" : false,
             "sendbool" : false

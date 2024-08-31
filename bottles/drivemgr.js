@@ -14,6 +14,8 @@ function refreshDrivePage() {
             document.getElementById("adcdate").innerText = `Created Date: ${data.CreateDate}`
             document.getElementById("adddate").value = r2jst(data.DueDate)
             document.getElementById("adadate").value = r2jst(data.ActionDate)
+            document.getElementById("stime").value = data.StartTime
+            document.getElementById("etime").value = data.EndTime
         }
     })
     call("get-all-drives",{},function(r2) {
@@ -36,14 +38,18 @@ function updateActiveDrive() {
     //alert(currentname)
     let newddate = document.getElementById("adddate").value
     let newadate = document.getElementById("adadate").value
-    if (newddate == null || newddate === "" || newadate == null || newadate === "") {
+    let newstime = document.getElementById("stime").value
+    let newetime = document.getElementById("etime").value
+    if (newddate == null || newddate === "" || newadate == null || newadate === "" || newstime === "" || newetime === "") {
         alert("Please fill in all dates.")
         return
     }
     call("update-ad",{
         "newddate" : newddate,
         "newadate" : newadate,
-        "drivename" : currentname
+        "drivename" : currentname,
+        "stime" : newstime,
+        "etime" : newetime
     },function(r) {
         document.location.reload()
     })
@@ -64,7 +70,9 @@ function submitAddDrive() {
     let ddate = document.getElementById("ndddate").value
     let adate = document.getElementById("ndadate").value
     let dname = document.getElementById("ndname").value
-    if (dname.trim() === "" || ddate === "" || adate === "") {
+    let stime = document.getElementById("nstime").value
+    let etime = document.getElementById("netime").value
+    if (dname.trim() === "" || ddate === "" || adate === "" || etime === "" || stime === "") {
         document.getElementById("adddriveerror").innerHTML = "Invalid. Please verify you have filled in the data"
     } else {
         call("drive-exists",{
@@ -76,7 +84,9 @@ function submitAddDrive() {
                 call("new-drive",{
                     "drivename" : dname,
                     "ddate" : ddate,
-                    "adate" : adate
+                    "adate" : adate,
+                    "stime" : stime,
+                    "etime" : etime
                 },function(r2) {
                     if (!r2.iserror) {
                         alert("Drive reset")
@@ -129,6 +139,10 @@ call("get-active-drive",{},function(r) {
     let cname = data.Name
     let ddate = new Date(data.DueDate)
     let adate = new Date(data.ActionDate)
+    let stime = data.StartTime
+    let etime = data.EndTime
+    ddate.setDate(ddate.getDate() + 1)
+    adate.setDate(adate.getDate() + 1)
     let today = new Date()
     let docs = document.getElementById("notice")
     docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
@@ -136,11 +150,13 @@ call("get-active-drive",{},function(r) {
         docs.classList.add("noticearea")
         
         docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
-        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b>`))
+        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+        docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
     } else if (today > ddate && today < adate) {
         docs.classList.add("warningarea")
         docs.appendChild(createWithText("p",`Delieveries were due on <b>${ddate.toDateString()}</b>. If you have not delivered, please do so as soon as possible.`))
-        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b>.`))
+        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+        docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
     } else if (today > ddate && today > adate) {
         docs.classList.add("errorarea")
         isClosed = true

@@ -8,6 +8,7 @@ $sql_loc = "localhost";
 $sql_db = "bottles";
 $sql_user = "handsworth";
 $sql_password = "hss4ever";
+$sql_port = 3306;
 
 function run_non_query($qs) {
     //Returns a bool, true if success
