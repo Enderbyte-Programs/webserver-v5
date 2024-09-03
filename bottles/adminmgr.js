@@ -88,7 +88,7 @@ function tryLogin(pwd,isfromui) {
             if (isfromui) {
                 document.location.reload()//Reload to apply changes
             }
-            document.getElementById("n1").hidden = true
+            document.getElementById("n1").style = "display:none"
             isadmin = true
             loadPriviliges()
         } else {

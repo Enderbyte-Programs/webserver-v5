@@ -75,6 +75,7 @@
                 "update routes set CompletedDate = NULL",
                 "update routes set IsCompleted = false",
                 "update volunteers set IsActive = false where IsActive = true",
+                "update ParentVolunteers set IsActive = false where IsActive = true",
                 "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true,'$stime','$etime')"
             ],
             "returns" : false,
@@ -149,7 +150,7 @@
                 "name" : "str",
                 "grade" : "str",
                 "class" : "str",
-                "forwhich" : "int"
+                "forwhich" : "num"
 
             },
             "sql" : [
@@ -174,7 +175,7 @@
             "action" : "unvolunteer",
             "accepts" : {
                 "name" : "str",
-                "forwhich" : "int"
+                "forwhich" : "num"
             },
             "sql" : [
                 "delete from volunteers where VolunteerName = '$name' and VolunteeredForID = $forwhich and IsActive = true"
@@ -185,7 +186,7 @@
         {
             "action" : "get-volunteers",
             "accepts" : {
-                "routeid" : "int"
+                "routeid" : "num"
             },
             "sql" : [
                 "select * from volunteers where VolunteeredForID = $routeid and IsActive = true"
@@ -196,7 +197,7 @@
         {
             "action" : "invert-route",
             "accepts" : {
-                "routeid" : "int"
+                "routeid" : "num"
             },
             "sql" : [
                 "update routes set IsCompleted = IF ( IsCompleted , FALSE, TRUE )  where RouteID = $routeid",
@@ -210,6 +211,19 @@
             "accepts" : {},
             "sql" : ["select * from volunteers where IsActive = true"],
             "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "add-pvi",
+            "accepts" : {
+                "title" : "str",
+                "slots" : "num",
+                "description" : "str"
+            },
+            "sql" : [
+                "insert into ParentItems (Title,Description,Slots) values ('$title','$description',$slots)"
+            ],
+            "returns" : false,
             "sendbool" : false
         }
     ]

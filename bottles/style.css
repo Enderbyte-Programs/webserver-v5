@@ -265,6 +265,10 @@ input[type=number] {
     width: 100%;
 }
 
+textarea {
+    font-family: Helvetica;
+}
+
 .area {
     margin: 10px;
     padding: 10px;

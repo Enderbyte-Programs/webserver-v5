@@ -183,6 +183,7 @@
     </div>
     <div id="addroutebox"  style="display: none;" hidden>
         <button class="button" onclick="openRouteBox()">Create New Route</button>    
+        <button class="button" onclick="document.getElementById('cpibox').hidden = false">Create Parent Sign-up Item</button>
     </div>
     <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
     <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
@@ -241,10 +242,47 @@
             </div>
         </div>
     </div>
-    
-    <div id="parentlist">
+    <div class="overlaybox" id="cpibox" hidden>
+        <div class="overlayboxi" id="cpiboxi">
+            <h3 style="text-align: center;">Create Parent's Item</h3>
+            <form onsubmit="event.preventDefault()">
+                <label for="cpislots">How many slots are there?</label>
+                <input type="number" min="1" value="1" id="cpislots">
+                <br>
+                <p>Write a short title:</p>
+                <input style="width: 100%;" placeholder="Title" type="text" id="cpititle">
+                <br>
+                <p>Write a detailed description:</p>
+                <textarea id="cpita" cols="50" rows="10" placeholder="Write a detailed description"></textarea>
+                <br>
+                <button class="button" style="background-color: pink;" onclick="document.getElementById('cpibox').hidden = true">Cancel</button>
+                <button class="button" style="background-color: lightgreen;" onclick="submitAddPVI()">Add Item</button>
+            </form>      
+        </div>
+    </div>
+    <div id="parentlists">
         <hr>
         <h2 style="text-align: center;">Parent Sign-ups</h2>
+    </div>
+    <div id="parentlist">
+        <div id="$pidroot" hidden>
+            <h3>$title</h3>
+            <p style="display: inline;">$nslots volunteers needed</p>
+            <button id="$pidvolbutton" class="button" style="background-color: lightgreen;">Volunteer</button><!--TODO - Button, more info hidden, description-->
+            <button id="$pidinfobutton" class="smallbutton" hidden>ℹ️</button> <!--Hide from non admins-->
+            <div id="$pidinfobox" class="overlaybox" hidden>
+                <div class="overlayboxi">
+                    <h3 style="text-align: center;">Info for $title</h3>
+                    <ul id="$pidvlist">
+                        
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <p id="$description"></p>
+            <br>
+            <br>
+        </div>
     </div>
 
     <div id="progress" class="overlaybox" hidden>

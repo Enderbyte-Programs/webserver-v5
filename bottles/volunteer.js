@@ -212,4 +212,24 @@ function runDeletePerson(index,lindex) {
     })
 }
 
+function submitAddPVI() {
+    let slots = document.getElementById("cpislots").value
+    let title = document.getElementById("cpititle").value
+    let description = document.getElementById("cpita").value
+    if (title === "" || description === "") {
+        alert("Ensure you have filled out all text fields.")
+        return
+    } else {
+        args = {
+            slots:slots,
+            title:title,
+            description:description
+        }
+        call("add-pvi",args,function(r) {
+            document.getElementById('cpibox').hidden = true
+            refreshPage()
+        })
+    }
+}
+
 refreshPage()

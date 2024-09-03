@@ -58,6 +58,7 @@ function submitRouteBox(isedit=false) {
                 if (!r.iserror) {
                     mapClear()
                     closeRouteBox()
+                    resetFields()
                     refreshPage()
                 }
             })
@@ -75,6 +76,7 @@ function submitRouteBox(isedit=false) {
                 if (!r.iserror) {
                     mapClear()
                     closeRouteBox()
+                    resetFields()
                     refreshPage()
                 }
             })
