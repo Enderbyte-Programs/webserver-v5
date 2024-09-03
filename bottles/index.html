@@ -186,7 +186,7 @@
     </div>
     <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
     <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
-    <hr>
+    
     <div hidden id="addroute" class="overlaybox">
         <div id="addroutei" class="overlayboxi">
             <h3 style="text-align: center;">Add new route</h3>
@@ -210,8 +210,12 @@
             <p id="addrouteerror" style="color: red;"></p>
         </div>
     </div>
-    <div id="routelist">
+    <div id="routelists">
+        <hr>
         <h2 style="text-align: center;">Route List</h2>
+    </div>
+    <div id="routelist">
+        
         <div id="$ridroot" class="route" hidden>
             <!--Todo: Write here a template for each route box-->
             <div id="$ridmap" style="background-color: darkgray;" class="smallmap"></div>

@@ -16,11 +16,13 @@ function masterInit() {
         } else if (isLoggedInAsTeacher()) {
             //Hide student data
             document.getElementById("routelist").hidden = true
+            document.getElementById("routelists").hidden = true
         }
         if (isadmin) {
             //Force show everything
             document.getElementById("parentlist").hidden = false
             document.getElementById("routelist").hidden = false
+            document.getElementById("routelists").hidden = false
         }
     
     }
