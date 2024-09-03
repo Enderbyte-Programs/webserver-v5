@@ -42,7 +42,38 @@
             <p id="loginerror" style="color: red;"></p>
         </div>
     </div>
+    <div hidden id="welcomebox" class="overlaybox">
+        <div id="welcomeboxi" class="overlayboxi">
+            <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
+            <p><b>Who are you?</b></p>
+            <form onsubmit="event.preventDefault()">
+                <input class="button" type="button" value="I am a STUDENT" onclick="initStudent()">
 
+                <input class="button" type="button" value="I am a TEACHER" onclick="initTeacher()">
+
+                <input class="button" type="button" value="I am a PARENT" onclick="initParent()">
+
+                <br><br>
+                <input class="button" value="Skip for now" type="button" onclick="hasAnswered=false;document.getElementById('welcomebox').hidden = true">
+            </form>
+        </div>
+    </div>
+    <div hidden id="parentbox" class="overlaybox">
+        <div id="parentboxi" class="overlayboxi">
+            <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
+            <p>To be a parent volunteer, please provide your name, email, and phone number.<br>They will not be shared with other parents.</p>
+            <form onsubmit="event.preventDefault()">
+                <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvname" placeholder="Your full name">
+                <br>
+                <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvemail" placeholder="Your email address">
+                <br>
+                <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvphone" placeholder="Your phone number">
+                <br>
+                <input type="button" value="Back" class="button" onclick="hasAnswered = false;document.getElementById('parentbox').hidden = true;masterInit()">
+                <input type="button" value="Continue" class="button" style="background-color: lightgreen;" onclick="submitPV()">
+            </form>
+        </div>
+    </div>
     <div hidden id="infoselect" class="overlaybox">
         <div id="infoselecti" class="overlayboxi">
             <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
@@ -69,8 +100,7 @@
                 </select>
             </form>
             <p>Students: When you are done, click Continue</p>
-            <button id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true">Skip for now</button>
-            <button id="islaa" class="button" onclick="document.getElementById('infoselect').hidden = true;openLogin()">Login as admin</button>
+            <button id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true;masterInit()">Back</button>
             <button style="background-color: lightgreen;" class="button" onclick="submitIS()">Continue</button>
             <button id="isc" style="background-color: pink;" class="button" onclick="document.getElementById('infoselect').hidden = true">Cancel</button>
         </div>
@@ -154,8 +184,8 @@
     <div id="addroutebox"  style="display: none;" hidden>
         <button class="button" onclick="openRouteBox()">Create New Route</button>    
     </div>
-    <button id="n1" class="button" onclick="openLogin()">Administrative Login</button>
-    
+    <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
+    <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
     <hr>
     <div hidden id="addroute" class="overlaybox">
         <div id="addroutei" class="overlayboxi">
@@ -167,7 +197,7 @@
                 <input type="number" min="1" max="5" value="1" id="nrnum">
                 <br>
             </form>
-            <p>Now, draw out the route on the map. Click on each point<br>in order, then click Finish Drawing</p>
+            <p>Now, draw out the route on the map. Click on each point<br>in order, then click Finish Drawing.<br></p>
             <div id="addmap" class="map"></div>
             <br>
             <button id="mc1" class="button" onclick="mapClear()">Clear Drawing</button>
@@ -175,12 +205,13 @@
             <button id="mc3" class="button" style="margin-left: 10px;" onclick="mapUndo()">Undo last point</button>
             <hr>
             <button class="button" style="background-color: pink;" onclick="closeRouteBox()">Cancel</button>
-            <button class="button" style="background-color: lightgreen;" onclick="submitRouteBox()">Submit</button>
+            <button class="button" style="background-color: lightgreen;" onclick="submitRouteBox(isEditingRoute)">Submit</button>
             <br>
             <p id="addrouteerror" style="color: red;"></p>
         </div>
     </div>
     <div id="routelist">
+        <h2 style="text-align: center;">Route List</h2>
         <div id="$ridroot" class="route" hidden>
             <!--Todo: Write here a template for each route box-->
             <div id="$ridmap" style="background-color: darkgray;" class="smallmap"></div>
@@ -205,6 +236,11 @@
                 <p style="text-align: center;vertical-align: middle;color: red;text-shadow: 5px black;">This route has been disabled</p>
             </div>
         </div>
+    </div>
+    
+    <div id="parentlist">
+        <hr>
+        <h2 style="text-align: center;">Parent Sign-ups</h2>
     </div>
 
     <div id="progress" class="overlaybox" hidden>

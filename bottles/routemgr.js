@@ -1,5 +1,7 @@
 var isAcceptingMapInput = false
 var polycolour = "blue"
+var isEditingRoute = false
+var currentRouteIndex = 0
 var addedMapPoints = Array()
 
 function openRouteBox(isedit=false) {
@@ -7,16 +9,18 @@ function openRouteBox(isedit=false) {
     addmap.invalidateSize()
     isAcceptingMapInput = true
     if (!isedit) {
+        isEditingRoute = false
         polycolour = "blue" 
         document.getElementById("mc1").disabled = false
         document.getElementById("mc2").disabled = false
         document.getElementById("mc3").disabled = false
         document.getElementById("addrouteerror").innerHTML = ""
     } else {
-        polycolour = "purple"
-        document.getElementById("mc1").disabled = true
-        document.getElementById("mc2").disabled = true
-        document.getElementById("mc3").disabled = true
+        isEditingRoute = true
+        polycolour = "darkgreen"
+        document.getElementById("mc1").disabled = false
+        document.getElementById("mc2").disabled = false
+        document.getElementById("mc3").disabled = false
         document.getElementById("addrouteerror").innerHTML = ""
     }
     updateMap()
@@ -41,21 +45,41 @@ function submitRouteBox(isedit=false) {
             document.getElementById("addrouteerror").innerHTML = "Route polygon must have at least three nodes"
             return
         }
-        let args = {
-            name:nn,
-            points:mp,
-            centerlat:blat,
-            centerlong:blong,
-            people:np
-        }
-        console.log(JSON.stringify(args))
-        call("add-route",args,function(r) {
-            if (!r.iserror) {
-                mapClear()
-                closeRouteBox()
-                refreshPage()
+        if (!isedit) {
+            let args = {
+                name:nn,
+                points:mp,
+                centerlat:blat,
+                centerlong:blong,
+                people:np
             }
-        })
+            console.log(JSON.stringify(args))
+            call("add-route",args,function(r) {
+                if (!r.iserror) {
+                    mapClear()
+                    closeRouteBox()
+                    refreshPage()
+                }
+            })
+        } else {
+            let args = {
+                name:nn,
+                points:mp,
+                centerlat:blat,
+                centerlong:blong,
+                people:np,
+                rid:routeids[currentRouteIndex]
+            }
+            console.log(JSON.stringify(args))
+            call("edit-route",args,function(r) {
+                if (!r.iserror) {
+                    mapClear()
+                    closeRouteBox()
+                    refreshPage()
+                }
+            })
+        }
+        
     } catch {
         document.getElementById("addrouteerror").innerHTML = "There was an error"
     }
@@ -87,6 +111,7 @@ function updateMap() {
 
 function mapClear() {
     addedMapPoints = Array()//Clear points array
+    polycolour = "blue"
     updateMap()
 }
 

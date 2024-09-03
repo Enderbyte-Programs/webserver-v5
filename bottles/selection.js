@@ -6,13 +6,70 @@ var usergrade;
 var userclass;
 var sbcallback;
 
+function masterInit() {
+    if (!isLoggedInAsStudent() && !isLoggedInAsTeacher() && !isadmin) {
+        document.getElementById("welcomebox").hidden = false
+    } else {
+        if (isLoggedInAsStudent()) {
+            //Hide parent data
+            document.getElementById("parentlist").hidden = true
+        } else if (isLoggedInAsTeacher()) {
+            //Hide student data
+            document.getElementById("routelist").hidden = true
+        }
+        if (isadmin) {
+            //Force show everything
+            document.getElementById("parentlist").hidden = false
+            document.getElementById("routelist").hidden = false
+        }
+    
+    }
+}
+
+function initStudent() {
+    document.getElementById("welcomebox").hidden = true
+    loadsb()
+}
+
+function initTeacher() {
+    document.getElementById("welcomebox").hidden = true
+    openLogin()
+}
+
+function initParent() {
+    document.getElementById("welcomebox").hidden = true
+    document.getElementById("parentbox").hidden = false
+}
+
+function submitPV() {
+    let pname = document.getElementById("pvname").value
+    let pemail = document.getElementById("pvemail").value
+    let pphone = document.getElementById("pvphone").value
+    if (pemail === "" && pphone === "") {
+        alert("You must provide an email or a phone.")
+        return
+    }
+    if (pname === "") {
+        alert("You must specify your name.")
+        return
+    }
+    if (pemail === "") {
+        pemail = "[UNSET]"
+    }
+    if (pphone === "") {
+        pphone = "[UNSET]"
+    }
+    setCookie("name",pname,60)
+    setCookie("email",pemail,60)
+    setCookie("phone",pphone,60)
+    document.getElementById("parentbox").hidden = true
+    masterInit()
+}
+
 function loadsb(callback=null) {
     sbcallback = callback
     if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
         document.getElementById("infoselect").hidden = false//Prompt user
-        if (isadmin) {
-            document.getElementById("islaa").disabled = true
-        }
 
         if (callback == null) {
             document.getElementById("isc").disabled = true
@@ -26,6 +83,7 @@ function loadsb(callback=null) {
         usergrade = getCookie("grade")
         userclass = getCookie("class")
         hasAnswered = true
+        masterInit()
     }
 }
 
@@ -34,6 +92,7 @@ function loadsbunsafe() {
     usergrade = getCookie("grade")
     userclass = getCookie("class")
     hasAnswered = true
+    masterInit()
 }
 
 function submitIS() {
@@ -50,8 +109,17 @@ function submitIS() {
         setCookie("grade",ngr,60)
         setCookie("class",ncl,60)
         document.getElementById('infoselect').hidden = true
+        masterInit()
         if (sbcallback != null) {
             sbcallback()
         }
     }
+}
+
+function isLoggedInAsStudent() {
+    return doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class")
+}
+
+function isLoggedInAsTeacher() {
+    return doesCookieExist("name") && doesCookieExist("email") && doesCookieExist("phone")
 }

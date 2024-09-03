@@ -100,8 +100,23 @@
                 "people" : "num"
             },
             "sql" : [
-                "delete from routes where CenterLat = '$centerlat'",
                 "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong,IsCompleted) values ('$name','$points','$people','$centerlat','$centerlong',false)"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "edit-route",
+            "accepts" : {
+                "name" : "str",
+                "points" : "str",
+                "centerlat" : "str",
+                "centerlong" : "str",
+                "people" : "num",
+                "rid" : "num"
+            },
+            "sql" : [
+                "update routes set RouteName = '$name',MapNodes = '$points',CenterLat = '$centerlat',CenterLong = '$centerlong',NeededPeople = $people where RouteID = $rid"
             ],
             "returns" : false,
             "sendbool" : false

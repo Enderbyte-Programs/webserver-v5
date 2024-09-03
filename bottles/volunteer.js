@@ -188,6 +188,7 @@ function runEditRoute(index) {
     document.getElementById("nrname").value = d.routename
     document.getElementById("nrnum").value = d.neededvolunteers
     addedMapPoints = d.polygon
+    currentRouteIndex = index
     openRouteBox(true)
 }
 function runDeleteRoute(index) {

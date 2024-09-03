@@ -10,10 +10,20 @@ function openLogin() {
     }
 }
 
+function fullLogout() {
+    eraseCookie("password")
+    eraseCookie("name")
+    eraseCookie("grade")
+    eraseCookie("class")
+    eraseCookie("email")
+    eraseCookie("phone")
+    document.location.reload()
+}
+
 function closeLogin() {
     document.getElementById('adminlogin').hidden = true
-    if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
-        document.getElementById('infoselect').hidden = false
+    if (!isLoggedInAsStudent() && !isLoggedInAsTeacher()) {
+        document.getElementById('welcomebox').hidden = false
     }
 }
 
@@ -78,7 +88,7 @@ function tryLogin(pwd,isfromui) {
             if (isfromui) {
                 document.location.reload()//Reload to apply changes
             }
-            document.getElementById("n1").innerText = "Logout"
+            document.getElementById("n1").hidden = true
             isadmin = true
             loadPriviliges()
         } else {
@@ -93,7 +103,7 @@ function tryLogin(pwd,isfromui) {
 }
 if (!doesCookieExist("password")) {
     isadmin = false
-    loadsb()
+    masterInit()
 } else {
     tryLogin(getCookie("password"),false)
     loadsbunsafe()
