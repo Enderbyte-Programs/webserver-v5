@@ -1,5 +1,8 @@
 var routeids = Array()
 var template = structuredClone(document.getElementById("routelist").innerHTML)
+var ptemplate = structuredClone(document.getElementById("parentlist").innerHTML)
+var parentContributedToIds = Array()
+var ToVolunteerCallback = -1
 class Route {
     constructor(apiretr,nloc,completedrouteids) {
         //completedrouteids will be used to determine if the person has permission to do this. It will be set to [0] if admin
@@ -36,13 +39,36 @@ class Route {
     }
 }
 
+class ParentItem {
+    constructor(id,title,description,slots,contributors) {
+        this.id = id
+        this.title = title
+        this.description = description
+        this.slots = slots
+        let ncont = Array()
+        contributors.forEach(element => {
+            if (deforce(element.VolunteerForID) === id) {
+                ncont.push(element)
+            }
+        });
+        this.contributors = ncont
+        this.neededslots = slots - ncont.length
+    }
+}
+
+var ParentData = Array()
+
+
 var routes = Array()
 function refreshPage() {
     let oldpos = window.scrollY
     startProgress()
     routes = Array()
+    parentContributedToIds = Array()
+    ParentData = Array()
     routeids = Array()
     document.getElementById("routelist").innerHTML = ""
+    document.getElementById("parentlist").innerHTML = ""
     let ci = 0
     call("get-all-routes",{},function(r) {
         call("get-contributions",{name:username},function(r2) {
@@ -92,7 +118,7 @@ function refreshPage() {
                         let nlci = lci;
                         let fn = `${element.VolunteerName} in ${element.VolunteerGrade} ${element.VolunteerPrimaryClass}`
                         let c = document.createElement("li")
-                        c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>X</button>`
+                        c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>❌</button>`
                         document.getElementById(rid+"people").appendChild(c)
                         lci = lci + 1
                     });
@@ -107,13 +133,143 @@ function refreshPage() {
                 }).addTo(map);
                 new L.Polygon(routedata.polygon).addTo(map)
             });
-            window.scrollTo(0,oldpos)
-            updateStatus()
-            endProgress()
+
+            //Add parent data
+            call("get-all-pvi",{},function(itemr) {
+                call("get-all-parents",{},function(pvr) {
+
+                    itemr.data.forEach(pitem => {
+                        let iiid = deforce(pitem.ItemID)
+                        let iin = pitem.Title
+                        let iis = pitem.Slots
+                        let iid = pitem.Description
+                        ParentData.push(new ParentItem(iiid,iin,iid,iis,pvr.data))
+                    });
+                    //Iter through newly structured data and parse
+                    call("get-parent-contributions",{name:username},function(conts) {
+                        //To do, load contributed to ids into array then parse onto page
+                        conts.data.forEach(cond => {
+                            parentContributedToIds.push(deforce(cond.VolunteerForID))
+                        });
+                        let ci = -1
+                        ParentData.forEach(element => {
+                            ci += 1
+                            let eid = structuredClone(element.id)
+                            let cindex = structuredClone(ci)
+                            //Parse it onto a page
+                            let outdata = structuredClone(ptemplate)
+                            outdata = outdata.replaceAll("$pid",eid).replace("hidden=\"\"","").replace("$title",element.title).replace("$description",element.description).replace("$nslots",conjugatevolunteers(element.neededslots))
+                            document.getElementById("parentlist").innerHTML += outdata
+                            if (isadmin) {
+                                document.getElementById(eid+"infobutton").style.display = "inline"
+                                document.getElementById(eid+"editbutton").style.display = "inline"
+                                document.getElementById(eid+"deletebutton").style.display = "inline"
+                            }
+                           
+                        });
+                        ci = 0
+                        ParentData.forEach(edata => {
+                            let element = edata
+                            eid = edata.id
+                            let cindex = ci
+                            if (parentContributedToIds.includes(eid)) {
+                                document.getElementById(eid+"volbutton").innerText = "Unvolunteer"
+                                document.getElementById(eid+"volbutton").style.backgroundColor = "pink"
+                            }
+                            let vlist = document.getElementById(eid+"vlist")
+                            let vloc = -1
+                            element.contributors.forEach(element2 => {
+                                vloc += 1
+                                let vlocc = structuredClone(vloc)
+                                let a = document.createElement("p")
+                                a.style.display = "inline"
+                                let mb = document.createElement("button")
+                                mb.classList.add("smallbutton")
+                                mb.innerHTML = "ℹ️"
+                                mb.onclick = function() {
+                                    runOustParent(cindex,vlocc)
+                                }
+                                mb.style.float = "right"
+
+                                a.innerText = element2
+                                vlist.appendChild(a)
+                                vlist.appendChild(mb)
+                                vlist.appendChild(document.createElement("br"))
+                            });
+ 
+                            document.getElementById(eid+"volbutton").onclick = function() {
+                                runParentVolunteer(cindex)
+                            }
+                            document.getElementById(eid+"deletebutton").onclick = function() {
+                                runDeleteParentItem(cindex)
+                            }
+                            document.getElementById(eid+"editbutton").onclick = function() {
+                                runEditParentItem(cindex)
+                            }
+                            document.getElementById(eid+"infobutton").onclick = function() {
+                                runShowParentContrib(cindex)
+                            }
+                            ci = ci + 1
+                        })
+                        
+                        window.scrollTo(0,oldpos)
+                        updateStatus()
+                        endProgress()
+                    })
+
+                    
+                })
+            })
+
+            
         })
         
     })
 }
+
+function runParentVolunteer(index) {
+    let routedata = ParentData[index]
+    if (!isLoggedInAsParent()) {
+        ToVolunteerCallback = index
+        initParent()
+    } else {
+        if (parentContributedToIds.includes(routedata.id)) {
+            call("parent-unvolunteer",{
+                name:username,
+                forwhat:routedata.id
+            },function(r) {
+                refreshPage()
+            })
+        } else {
+            call("parent-volunteer",{
+                name : username,
+                email : useremail,
+                phone : userphone,
+                forwhat : routedata.id
+            },function(r) {
+                refreshPage()
+            })
+        }
+    }
+    
+}
+
+function runEditParentItem(index) {
+
+}
+
+function runDeleteParentItem(index) {
+
+}
+
+function runShowParentContrib(index) {
+
+}
+
+function runOustParent(index,lindex) {
+
+}
+
 function deforce(val) {
     //Fix weird things with PHP by converting false bools back to ints
     if (val === false) {

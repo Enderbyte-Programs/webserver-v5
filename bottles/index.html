@@ -267,19 +267,21 @@
     <div id="parentlist">
         <div id="$pidroot" hidden>
             <h3>$title</h3>
-            <p style="display: inline;">$nslots volunteers needed</p>
+            <p id="$piddescription">$description</p>
+            <p style="display: inline;">$nslots needed</p>
             <button id="$pidvolbutton" class="button" style="background-color: lightgreen;">Volunteer</button><!--TODO - Button, more info hidden, description-->
-            <button id="$pidinfobutton" class="smallbutton" hidden>ℹ️</button> <!--Hide from non admins-->
+            <button id="$pidinfobutton" class="smallbutton" style="display: none;">ℹ️</button> <!--Hide from non admins-->
+            <button id="$pideditbutton" class="smallbutton" style="display: none;">✏️</button>
+            <button id="$piddeletebutton" class="smallbutton" style="display: none;">❌</button>
             <div id="$pidinfobox" class="overlaybox" hidden>
                 <div class="overlayboxi">
                     <h3 style="text-align: center;">Info for $title</h3>
-                    <ul id="$pidvlist">
+                    <div id="$pidvlist">
                         
-                    </ul>
+                    </div>
                 </div>
             </div>
-            <br>
-            <p id="$description"></p>
+            
             <br>
             <br>
         </div>

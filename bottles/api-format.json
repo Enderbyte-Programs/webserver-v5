@@ -225,6 +225,61 @@
             ],
             "returns" : false,
             "sendbool" : false
+        },
+        {
+            "action" : "get-all-pvi",
+            "accepts" : {},
+            "sql" : [
+                "select * from ParentItems"
+            ],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-all-parents",
+            "accepts" : {},
+            "sql" : [
+                "select * from ParentVolunteers where IsActive = true"
+            ],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "get-parent-contributions",
+            "accepts" : {
+                "name" : "str"
+            },
+            "sql" : [
+                "select VolunteerForID from ParentVolunteers where VolunteerName = '$name' and IsActive = true"
+            ],
+            "returns" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "parent-volunteer",
+            "accepts" : {
+                "name" : "str",
+                "email" : "str",
+                "phone" : "str",
+                "forwhat" : "num"
+            },
+            "sql" : [
+                "insert into ParentVolunteers values ('$name','$email','$phone',$forwhat,true,NOW())"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "parent-unvolunteer",
+            "accepts" : {
+                "name" : "str",
+                "forwhat" : "num"
+            },
+            "sql" : [
+                "delete from ParentVolunteers where VolunteerForID = $forwhat and VolunteerName = '$name'"
+            ],
+            "returns" : false,
+            "sendbool" : false
         }
     ]
 }

@@ -4,20 +4,25 @@ var hasAnswered = false
 var username = "";
 var usergrade;
 var userclass;
+var useremail;
+var userphone;
 var sbcallback;
 
 function masterInit() {
-    if (!isLoggedInAsStudent() && !isLoggedInAsTeacher() && !isadmin) {
+    if (!isLoggedInAsStudent() && !isLoggedInAsParent() && !isadmin) {
         document.getElementById("welcomebox").hidden = false
     } else {
         if (isLoggedInAsStudent()) {
             //Hide parent data
             document.getElementById("parentlist").hidden = true
             document.getElementById("parentlists").hidden = true
-        } else if (isLoggedInAsTeacher()) {
+        } else if (isLoggedInAsParent()) {
             //Hide student data
             document.getElementById("routelist").hidden = true
             document.getElementById("routelists").hidden = true
+            username = getCookie("name")
+            useremail = getCookie("email")
+            userphone = getCookie("phone")
         }
         if (isadmin) {
             //Force show everything
@@ -68,6 +73,10 @@ function submitPV() {
     setCookie("phone",pphone,60)
     document.getElementById("parentbox").hidden = true
     masterInit()
+    if (ToVolunteerCallback > -1) {
+        runParentVolunteer(ToVolunteerCallback)
+        ToVolunteerCallback = -1//Reset it for the next time
+    }
 }
 
 function loadsb(callback=null) {
@@ -124,6 +133,6 @@ function isLoggedInAsStudent() {
     return doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class")
 }
 
-function isLoggedInAsTeacher() {
+function isLoggedInAsParent() {
     return doesCookieExist("name") && doesCookieExist("email") && doesCookieExist("phone")
 }

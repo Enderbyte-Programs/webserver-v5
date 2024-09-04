@@ -22,7 +22,7 @@ function fullLogout() {
 
 function closeLogin() {
     document.getElementById('adminlogin').hidden = true
-    if (!isLoggedInAsStudent() && !isLoggedInAsTeacher()) {
+    if (!isLoggedInAsStudent() && !isLoggedInAsParent()) {
         document.getElementById('welcomebox').hidden = false
     }
 }

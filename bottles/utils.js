@@ -13,6 +13,14 @@ function conjugatepeople(p) {
     }
 }
 
+function conjugatevolunteers(p) {
+    if (p == 1) {
+        return `${p} volunteer`
+    } else {
+        return `${p} volunteers`
+    }
+}
+
 function startProgress() {
     document.getElementById("progress").hidden = false
 }
