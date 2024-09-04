@@ -3,6 +3,8 @@ var polycolour = "blue"
 var isEditingRoute = false
 var currentRouteIndex = 0
 var addedMapPoints = Array()
+var isEditingParentItem = false
+var editingParentItemID
 
 function openRouteBox(isedit=false) {
     document.getElementById("addroute").hidden = false

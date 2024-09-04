@@ -44,7 +44,7 @@ class ParentItem {
         this.id = id
         this.title = title
         this.description = description
-        this.slots = slots
+        this.slots = deforce(slots)
         let ncont = Array()
         contributors.forEach(element => {
             if (deforce(element.VolunteerForID) === id) {
@@ -158,7 +158,7 @@ function refreshPage() {
                             let cindex = structuredClone(ci)
                             //Parse it onto a page
                             let outdata = structuredClone(ptemplate)
-                            outdata = outdata.replaceAll("$pid",eid).replace("hidden=\"\"","").replace("$title",element.title).replace("$description",element.description).replace("$nslots",conjugatevolunteers(element.neededslots))
+                            outdata = outdata.replaceAll("$pid",eid).replace("hidden=\"\"","").replaceAll("$title",element.title).replace("$description",element.description).replace("$nslots",conjugatevolunteers(element.neededslots))
                             document.getElementById("parentlist").innerHTML += outdata
                             if (isadmin) {
                                 document.getElementById(eid+"infobutton").style.display = "inline"
@@ -175,6 +175,10 @@ function refreshPage() {
                             if (parentContributedToIds.includes(eid)) {
                                 document.getElementById(eid+"volbutton").innerText = "Unvolunteer"
                                 document.getElementById(eid+"volbutton").style.backgroundColor = "pink"
+                            } else {
+                                if (edata.neededslots == 0) {
+                                    document.getElementById(eid+"volbutton").disabled = true
+                                }
                             }
                             let vlist = document.getElementById(eid+"vlist")
                             let vloc = -1
@@ -185,13 +189,14 @@ function refreshPage() {
                                 a.style.display = "inline"
                                 let mb = document.createElement("button")
                                 mb.classList.add("smallbutton")
-                                mb.innerHTML = "ℹ️"
+                                mb.innerHTML = "❌"
+                                mb.style.padding = "0"
                                 mb.onclick = function() {
                                     runOustParent(cindex,vlocc)
                                 }
                                 mb.style.float = "right"
 
-                                a.innerText = element2
+                                a.innerText = `${element2.VolunteerName} - ${element2.VolunteerEmail} / ${element2.VolunteerPhone}`
                                 vlist.appendChild(a)
                                 vlist.appendChild(mb)
                                 vlist.appendChild(document.createElement("br"))
@@ -255,7 +260,13 @@ function runParentVolunteer(index) {
 }
 
 function runEditParentItem(index) {
-
+    let routedata = ParentData[index]
+    document.getElementById("cpititle").value = routedata.title
+    document.getElementById("cpita").value = routedata.description
+    document.getElementById("cpislots").value = routedata.slots
+    isEditingParentItem = true
+    editingParentItemID = routedata.id
+    document.getElementById("cpibox").hidden = false
 }
 
 function runDeleteParentItem(index) {
@@ -263,7 +274,7 @@ function runDeleteParentItem(index) {
 }
 
 function runShowParentContrib(index) {
-
+    document.getElementById(ParentData[index].id+"infobox").hidden = false
 }
 
 function runOustParent(index,lindex) {
@@ -376,15 +387,30 @@ function submitAddPVI() {
         alert("Ensure you have filled out all text fields.")
         return
     } else {
-        args = {
-            slots:slots,
-            title:title,
-            description:description
+        if (isEditingParentItem) {
+            isEditingParentItem = false//Reset
+            args = {
+                slots:slots,
+                title:title,
+                description:description,
+                id:editingParentItemID
+            }
+            call("update-pvi",args,function(r) {
+                document.getElementById('cpibox').hidden = true
+                refreshPage()
+            })
+        } else {
+            args = {
+                slots:slots,
+                title:title,
+                description:description
+            }
+            call("add-pvi",args,function(r) {
+                document.getElementById('cpibox').hidden = true
+                refreshPage()
+            })
         }
-        call("add-pvi",args,function(r) {
-            document.getElementById('cpibox').hidden = true
-            refreshPage()
-        })
+        
     }
 }
 

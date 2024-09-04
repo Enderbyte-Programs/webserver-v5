@@ -227,6 +227,20 @@
             "sendbool" : false
         },
         {
+            "action" : "update-pvi",
+            "accepts" : {
+                "title" : "str",
+                "slots" : "num",
+                "description" : "str",
+                "id" : "num"
+            },
+            "sql" : [
+                "update ParentItems set Title = '$title', Description = '$description', Slots = $slots where ItemID = $id"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
             "action" : "get-all-pvi",
             "accepts" : {},
             "sql" : [

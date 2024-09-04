@@ -23,6 +23,13 @@ function masterInit() {
             username = getCookie("name")
             useremail = getCookie("email")
             userphone = getCookie("phone")
+            //TODO! Add detect and load for student data
+            if (doesCookieExist("class")) {
+                userclass = getCookie("class")
+            }
+            if (doesCookieExist("grade")) {
+                usergrade = getCookie("grade")
+            }
         }
         if (isadmin) {
             //Force show everything
@@ -83,6 +90,7 @@ function loadsb(callback=null) {
     sbcallback = callback
     if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
         document.getElementById("infoselect").hidden = false//Prompt user
+        document.getElementById("isname").value = getCookie("name")
 
         if (callback == null) {
             document.getElementById("isc").disabled = true
@@ -104,6 +112,12 @@ function loadsbunsafe() {
     username = getCookie("name")
     usergrade = getCookie("grade")
     userclass = getCookie("class")
+    if (doesCookieExist("email")) {
+        useremail = getCookie("email")
+    }
+    if (doesCookieExist("phone")) {
+        userphone = getCookie("phone")
+    }
     hasAnswered = true
     masterInit()
 }

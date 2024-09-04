@@ -255,8 +255,8 @@
                 <p>Write a detailed description:</p>
                 <textarea id="cpita" cols="50" rows="10" placeholder="Write a detailed description"></textarea>
                 <br>
-                <button class="button" style="background-color: pink;" onclick="document.getElementById('cpibox').hidden = true">Cancel</button>
-                <button class="button" style="background-color: lightgreen;" onclick="submitAddPVI()">Add Item</button>
+                <button class="button" style="background-color: pink;" onclick="document.getElementById('cpibox').hidden = true;resetFields()">Cancel</button>
+                <button class="button" style="background-color: lightgreen;" onclick="submitAddPVI()">Save</button>
             </form>      
         </div>
     </div>
@@ -270,15 +270,17 @@
             <p id="$piddescription">$description</p>
             <p style="display: inline;">$nslots needed</p>
             <button id="$pidvolbutton" class="button" style="background-color: lightgreen;">Volunteer</button><!--TODO - Button, more info hidden, description-->
-            <button id="$pidinfobutton" class="smallbutton" style="display: none;">ℹ️</button> <!--Hide from non admins-->
-            <button id="$pideditbutton" class="smallbutton" style="display: none;">✏️</button>
-            <button id="$piddeletebutton" class="smallbutton" style="display: none;">❌</button>
+            <button id="$pidinfobutton" class="smallbutton" style="display: none;font-size: 20px;">ℹ️</button> <!--Hide from non admins-->
+            <button id="$pideditbutton" class="smallbutton" style="display: none;font-size: 20px;">✏️</button>
+            <button id="$piddeletebutton" class="smallbutton" style="display: none;font-size: 20px;">❌</button>
             <div id="$pidinfobox" class="overlaybox" hidden>
                 <div class="overlayboxi">
-                    <h3 style="text-align: center;">Info for $title</h3>
+                    <h3 style="text-align: center;">Volunteers for $title</h3>
                     <div id="$pidvlist">
                         
                     </div>
+                    <br>
+                    <button class="button" onclick="document.getElementById('$pidinfobox').hidden = true">Close</button>
                 </div>
             </div>
             
