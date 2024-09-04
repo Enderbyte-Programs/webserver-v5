@@ -294,6 +294,29 @@
             ],
             "returns" : false,
             "sendbool" : false
+        },
+        {
+            "action" : "delete-pvi",
+            "accepts" : {
+                "id" : "num"
+            },
+            "sql" : [
+                "delete from ParentItems where ItemID = $id"
+            ],
+            "returns" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "oust",
+            "accepts" : {
+                "id" : "num",
+                "name" : "str"
+            },
+            "sql" : [
+                "delete from ParentVolunteers where VolunteerForID = $id and VolunteerName = '$name'"
+            ],
+            "returns" : false,
+            "sendbool" : false
         }
     ]
 }

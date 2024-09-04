@@ -3,6 +3,7 @@ var template = structuredClone(document.getElementById("routelist").innerHTML)
 var ptemplate = structuredClone(document.getElementById("parentlist").innerHTML)
 var parentContributedToIds = Array()
 var ToVolunteerCallback = -1
+var OpenPviInfoID = 0
 class Route {
     constructor(apiretr,nloc,completedrouteids) {
         //completedrouteids will be used to determine if the person has permission to do this. It will be set to [0] if admin
@@ -214,6 +215,10 @@ function refreshPage() {
                             document.getElementById(eid+"infobutton").onclick = function() {
                                 runShowParentContrib(cindex)
                             }
+                            if (eid == OpenPviInfoID) {
+                                OpenPviInfoID = 0// Reset it
+                                document.getElementById(eid+"infobox").hidden = false
+                            }
                             ci = ci + 1
                         })
                         
@@ -270,7 +275,12 @@ function runEditParentItem(index) {
 }
 
 function runDeleteParentItem(index) {
-
+    let routedata = ParentData[index]
+    if (confirm(`Are you sure you wish to delete ${routedata.title}?`)) {
+        call("delete-pvi",{id:routedata.id},function(r) {
+            refreshPage()
+        })
+    }
 }
 
 function runShowParentContrib(index) {
@@ -278,7 +288,15 @@ function runShowParentContrib(index) {
 }
 
 function runOustParent(index,lindex) {
+    let routedata = ParentData[index]
+    let cdata = routedata.contributors[lindex]
+    call("oust",{name:cdata.VolunteerName,id:routedata.id},function(r) {
+        OpenPviInfoID = routedata.id
+        document.getElementById(routedata.id+"infobox").hidden = true
+        refreshPage()
+    })
 
+    
 }
 
 function deforce(val) {
