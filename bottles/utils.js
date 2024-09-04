@@ -43,3 +43,7 @@ function resetFields() {
         }
     }
 }
+
+function registerEnter(callback) {
+    //Todo - add submit press for associated forms
+}

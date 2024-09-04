@@ -28,16 +28,15 @@
             <p id="loginhead">Insert the admin password to gain access to admin features</p>
             <form onsubmit="event.preventDefault()">
                 <input id="password" type="password" placeholder="Admin password">
-                <button class="smallbutton" onclick="togglepassword('shbutton','password')" id="shbutton">👁️</button>
+                <input type="button" class="smallbutton" onclick="togglepassword('shbutton','password')" id="shbutton" value="👁️">
                 <br>
                 <input hidden id="newpassword" type="password" placeholder="New password">
-                <button hidden class="smallbutton" onclick="togglepassword('newshbutton','newpassword')" id="newshbutton">👁️</button>
+                <input type="button" hidden class="smallbutton" onclick="togglepassword('newshbutton','newpassword')" id="newshbutton" value="👁️">
+                <input type="button" class="button" id="cancelpassword" style="background-color: pink;" onclick="closeLogin()" value="Cancel">
+                <input type="submit" class="button" id="submitpassword" style="background-color: lightgreen;" onclick="tryLogin(document.getElementById('password').value,true)" value="Login">
+                <input type="button" class="button" style="display: none;" id="srsp2" hidden onclick="tryChangePassword()" value="Change Password">
+                <input type="button" class="button" id="srsp" onclick="openForgotPassword()" value="Change Password">
             </form>
-            
-            <button class="button" id="cancelpassword" style="background-color: pink;" onclick="closeLogin()">Cancel</button>
-            <button class="button" id="submitpassword" style="background-color: lightgreen;" onclick="tryLogin(document.getElementById('password').value,true)">Login</button>
-            <button class="button" style="display: none;" id="srsp2" hidden onclick="tryChangePassword()">Change Password</button>
-            <button class="button" id="srsp" onclick="openForgotPassword()">Change Password</button>
             <br>
             <p id="loginerror" style="color: red;"></p>
         </div>
@@ -62,7 +61,7 @@
         <div id="parentboxi" class="overlayboxi">
             <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
             <p>To be a parent volunteer, please provide your name, email, and phone number.<br>They will not be shared with other parents.</p>
-            <form onsubmit="event.preventDefault()">
+            <form onsubmit="event.preventDefault()" novalidate>
                 <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvname" placeholder="Your full name">
                 <br>
                 <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvemail" placeholder="Your email address">
@@ -70,7 +69,7 @@
                 <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvphone" placeholder="Your phone number">
                 <br>
                 <input type="button" value="Back" class="button" onclick="hasAnswered = false;document.getElementById('parentbox').hidden = true;masterInit()">
-                <input type="button" value="Continue" class="button" style="background-color: lightgreen;" onclick="submitPV()">
+                <input type="submit" value="Continue" class="button" style="background-color: lightgreen;" onclick="submitPV()">
             </form>
         </div>
     </div>
@@ -98,11 +97,12 @@
                     <option>Choir</option>
                     <option>Strings</option>
                 </select>
+                <p>Students: When you are done, click Continue</p>
+                <input type="button" id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true;masterInit()" value="Back">
+                <input type="submit" style="background-color: lightgreen;" class="button" onclick="submitIS()" value="Continue">
+                <input type="button" id="isc" style="background-color: pink;" class="button" onclick="document.getElementById('infoselect').hidden = true" value="Cancel">
             </form>
-            <p>Students: When you are done, click Continue</p>
-            <button id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true;masterInit()">Back</button>
-            <button style="background-color: lightgreen;" class="button" onclick="submitIS()">Continue</button>
-            <button id="isc" style="background-color: pink;" class="button" onclick="document.getElementById('infoselect').hidden = true">Cancel</button>
+            
         </div>
     </div>
     <!--
@@ -268,7 +268,7 @@
         <div id="$pidroot" hidden>
             <h3>$title</h3>
             <p id="$piddescription">$description</p>
-            <p style="display: inline;">$nslots needed</p>
+            <p style="display: inline;">$nslots needed ($hslots / $slots)</p>
             <button id="$pidvolbutton" class="button" style="background-color: lightgreen;">Volunteer</button><!--TODO - Button, more info hidden, description-->
             <button id="$pidinfobutton" class="smallbutton" style="display: none;font-size: 20px;">ℹ️</button> <!--Hide from non admins-->
             <button id="$pideditbutton" class="smallbutton" style="display: none;font-size: 20px;">✏️</button>

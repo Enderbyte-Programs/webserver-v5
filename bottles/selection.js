@@ -16,6 +16,10 @@ function masterInit() {
             //Hide parent data
             document.getElementById("parentlist").hidden = true
             document.getElementById("parentlists").hidden = true
+            username = getCookie("name")
+            usergrade = getCookie("grade")
+            userclass = getCookie("class")
+
         } else if (isLoggedInAsParent()) {
             //Hide student data
             document.getElementById("routelist").hidden = true

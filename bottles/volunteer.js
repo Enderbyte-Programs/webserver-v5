@@ -119,7 +119,11 @@ function refreshPage() {
                         let nlci = lci;
                         let fn = `${element.VolunteerName} in ${element.VolunteerGrade} ${element.VolunteerPrimaryClass}`
                         let c = document.createElement("li")
-                        c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>❌</button>`
+                        if (isadmin) {
+                            c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>❌</button>`
+                        } else {
+                            c.innerHTML = fn
+                        }
                         document.getElementById(rid+"people").appendChild(c)
                         lci = lci + 1
                     });
@@ -159,7 +163,7 @@ function refreshPage() {
                             let cindex = structuredClone(ci)
                             //Parse it onto a page
                             let outdata = structuredClone(ptemplate)
-                            outdata = outdata.replaceAll("$pid",eid).replace("hidden=\"\"","").replaceAll("$title",element.title).replace("$description",element.description).replace("$nslots",conjugatevolunteers(element.neededslots))
+                            outdata = outdata.replaceAll("$pid",eid).replace("hidden=\"\"","").replaceAll("$title",element.title).replace("$description",element.description).replace("$nslots",conjugatevolunteers(element.neededslots)).replace("$hslots",element.slots - element.neededslots).replace("$slots",element.slots)
                             document.getElementById("parentlist").innerHTML += outdata
                             if (isadmin) {
                                 document.getElementById(eid+"infobutton").style.display = "inline"

@@ -145,6 +145,9 @@ call("get-active-drive",{},function(r) {
     adate.setDate(adate.getDate() + 1)
     let today = new Date()
     let docs = document.getElementById("notice")
+    if (isLoggedInAsParent() && !isadmin) {
+        docs.hidden = true//Hide notices for parents
+    }
     docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
     if (today < adate && today < ddate) {
         docs.classList.add("noticearea")

@@ -30,7 +30,7 @@ function call(action,variables,callback) {
     }).then(
         function(r) {
             r.text().then(function(t) {
-                console.log(t)
+                console.log(`${action} [${rawvars}] -> ${t}`)
                 //alert(t)
                 callback(new APIResponse(t))
             })
