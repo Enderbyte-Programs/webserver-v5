@@ -27,7 +27,7 @@ class Route {
         this.respbox = document.getElementById(this.routeid+"root")
         if (this.completed) {
             document.getElementById(this.routeid+"overlay").hidden = false
-            document.getElementById(this.routeid+"b2").innerHTML = "Mark route incomplete"
+            document.getElementById(this.routeid+"b2").innerHTML = "✖️"
         }
         if (completedrouteids.includes(this.routeid)) {
             document.getElementById(this.routeid+"b1").innerHTML = "Unvolunteer"
