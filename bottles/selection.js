@@ -1,5 +1,18 @@
-var grades = ["Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"]
-var positions = ["Concert Band","Jazz Band","Choir","Strings"]
+var grades = ["UNSET"]
+var positions = [
+    "Grade 8 Beginning Concert Band",
+                    "Junior Concert Band (8/9)",
+                    "Intermediate Concert Band (9/10)",
+                    "Senior Concert Band (11/12)",
+                    "Grade 8 Jazz Band",
+                    "Grade 9/10 Jazz Band",
+                    "Senior Jazz Band (11/12)",
+                    "Choir",
+                    "Tocatti Strings (8)",
+                    "Converti Strings (9/10)",
+                    "Chamber Strings (11/12)",
+                    "Virtuosi Strings",
+]
 var hasAnswered = false
 var username = "";
 var usergrade;

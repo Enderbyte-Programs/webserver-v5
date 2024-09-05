@@ -117,7 +117,7 @@ function refreshPage() {
                     let lci = 0;
                     r3.data.forEach(element => {
                         let nlci = lci;
-                        let fn = `${element.VolunteerName} in ${element.VolunteerGrade} ${element.VolunteerPrimaryClass}`
+                        let fn = `${element.VolunteerName} in ${element.VolunteerPrimaryClass}`
                         let c = document.createElement("li")
                         if (isadmin) {
                             c.innerHTML = fn+`<button class="smallbutton" onclick=runDeletePerson(${rid},${nlci})>❌</button>`

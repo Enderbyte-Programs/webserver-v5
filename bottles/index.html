@@ -60,7 +60,7 @@
     <div hidden id="parentbox" class="overlaybox">
         <div id="parentboxi" class="overlayboxi">
             <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
-            <p>To be a parent volunteer, please provide your name, email, and phone number.<br>They will not be shared with other parents.</p>
+            <p>To be a parent volunteer, please provide your name, email, and phone number.<br>They will not be shared with other users.</p>
             <form onsubmit="event.preventDefault()" novalidate>
                 <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="pvname" placeholder="Your full name">
                 <br>
@@ -76,26 +76,30 @@
     <div hidden id="infoselect" class="overlaybox">
         <div id="infoselecti" class="overlayboxi">
             <h3 style="text-align: center;">Welcome to the HSS Bottle Drive</h3>
-            <p>Please input your name and grade, then select the class you participate in.
+            <p>Please input your name, then select a class you participate in.
                 <br>If you participate in multiple classes, pick one that is on timetable</p>
             <form onsubmit="event.preventDefault()">
                 <input style="max-width: 300px;width: 50%;min-width: 100px;" type="text" id="isname" placeholder="Your full name">
                 <br>
-                <label for="isselg">Your Grade </label>
-                <select id="isselg">
-                    <option>Grade 8</option>
-                    <option>Grade 9</option>
-                    <option>Grade 10</option>
-                    <option>Grade 11</option>
-                    <option>Grade 12</option>
+                <select hidden id="isselg">
+                    <option>UNSET</option>
+                    <!--Since I am getting rid of grades, it is easier to force as unset-->
                 </select>
                 <br>
                 <label for="isselc">Your Class </label>
                 <select id="isselc">
-                    <option>Concert Band</option>
-                    <option>Jazz Band</option>
+                    <option>Grade 8 Beginning Concert Band</option>
+                    <option>Junior Concert Band (8/9)</option>
+                    <option>Intermediate Concert Band (9/10)</option>
+                    <option>Senior Concert Band (11/12)</option>
+                    <option>Grade 8 Jazz Band</option>
+                    <option>Grade 9/10 Jazz Band</option>
+                    <option>Senior Jazz Band (11/12)</option>
                     <option>Choir</option>
-                    <option>Strings</option>
+                    <option>Tocatti Strings (8)</option>
+                    <option>Converti Strings (9/10)</option>
+                    <option>Chamber Strings (11/12)</option>
+                    <option>Virtuosi Strings</option>
                 </select>
                 <p>Students: When you are done, click Continue</p>
                 <input type="button" id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true;masterInit()" value="Back">
