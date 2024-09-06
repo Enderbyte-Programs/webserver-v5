@@ -429,6 +429,7 @@ function submitAddPVI() {
             }
             call("add-pvi",args,function(r) {
                 document.getElementById('cpibox').hidden = true
+                resetFields()
                 refreshPage()
             })
         }

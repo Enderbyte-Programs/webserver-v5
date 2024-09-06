@@ -153,12 +153,12 @@ call("get-active-drive",{},function(r) {
         docs.classList.add("noticearea")
         
         docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
-        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
         docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
     } else if (today > ddate && today < adate) {
         docs.classList.add("warningarea")
         docs.appendChild(createWithText("p",`Delieveries were due on <b>${ddate.toDateString()}</b>. If you have not delivered, please do so as soon as possible.`))
-        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
         docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
     } else if (today > ddate && today > adate) {
         docs.classList.add("errorarea")
@@ -169,7 +169,7 @@ call("get-active-drive",{},function(r) {
         docs.classList.add("noticearea")
         //docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
         docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
-        docs.appendChild(createWithText("p",`Please arrive at the bottle drive on <b>${adate.toDateString()}</b>`))
+        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b>`))
     }
 })
 
