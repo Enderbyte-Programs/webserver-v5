@@ -147,30 +147,33 @@ call("get-active-drive",{},function(r) {
     let docs = document.getElementById("notice")
     if (isLoggedInAsParent() && !isadmin) {
         docs.hidden = true//Hide notices for parents
-    }
-    docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
-    if (today < adate && today < ddate) {
-        docs.classList.add("noticearea")
-        
-        docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
-        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
-        docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
-    } else if (today > ddate && today < adate) {
-        docs.classList.add("warningarea")
-        docs.appendChild(createWithText("p",`Delieveries were due on <b>${ddate.toDateString()}</b>. If you have not delivered, please do so as soon as possible.`))
-        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
-        docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
-    } else if (today > ddate && today > adate) {
-        docs.classList.add("errorarea")
-        isClosed = true
-        docs.appendChild(createWithText("p",`The bottle drive's date has passed. This website is now closed.`))
-        document.getElementById("routelist").classList.add("disabled")//If no active drive, hide everything
+        docs.style.display = "none"
     } else {
-        docs.classList.add("noticearea")
-        //docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
-        docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
-        docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b>`))
+        docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
+        if (today < adate && today < ddate) {
+            docs.classList.add("noticearea")
+            
+            docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
+            docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+            docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
+        } else if (today > ddate && today < adate) {
+            docs.classList.add("warningarea")
+            docs.appendChild(createWithText("p",`Delieveries were due on <b>${ddate.toDateString()}</b>. If you have not delivered, please do so as soon as possible.`))
+            docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
+            docs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))
+        } else if (today > ddate && today > adate) {
+            docs.classList.add("errorarea")
+            isClosed = true
+            docs.appendChild(createWithText("p",`The bottle drive's date has passed. This website is now closed.`))
+            document.getElementById("routelist").classList.add("disabled")//If no active drive, hide everything
+        } else {
+            docs.classList.add("noticearea")
+            //docs.appendChild(createWithText("h3",`Notices for ${cname}:`))
+            docs.appendChild(createWithText("p",`Please hand out all flyers by <b>${ddate.toDateString()}</b>`))
+            docs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b>`))
+        }
     }
+    
 })
 
 function deleteDrive() {

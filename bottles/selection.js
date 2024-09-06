@@ -35,6 +35,7 @@ function masterInit() {
 
         } else if (isLoggedInAsParent()) {
             //Hide student data
+            document.getElementById("notice").hidden = true
             document.getElementById("routelist").hidden = true
             document.getElementById("routelists").hidden = true
             username = getCookie("name")

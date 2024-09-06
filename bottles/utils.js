@@ -31,6 +31,7 @@ function endProgress() {
 
 function resetFields() {
     var elements = document.querySelectorAll("input,textarea");
+    addedMapPoints = Array() //Reset map points
     for (var ii=0; ii < elements.length; ii++) {
         if (elements[ii].type == "text") {
             elements[ii].value = "";
