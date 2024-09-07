@@ -196,6 +196,9 @@ function refreshPage(callback) {
                                 let element = edata
                                 eid = edata.id
                                 let cindex = ci
+                                if (isClosed) {
+                                    document.getElementById(eid+"volbutton").disabled = true
+                                }
                                 if (parentContributedToIds.includes(eid)) {
                                     document.getElementById(eid+"volbutton").innerText = "Unvolunteer"
                                     document.getElementById(eid+"volbutton").style.backgroundColor = "pink"
