@@ -98,10 +98,13 @@ function submitPV() {
     setCookie("phone",pphone,60)
     document.getElementById("parentbox").hidden = true
     masterInit()
-    if (ToVolunteerCallback > -1) {
-        runParentVolunteer(ToVolunteerCallback)
-        ToVolunteerCallback = -1//Reset it for the next time
-    }
+    refreshPage(function() {
+        if (ToVolunteerCallback > -1) {
+            runParentVolunteer(ToVolunteerCallback)
+            ToVolunteerCallback = -1//Reset it for the next time
+        }
+    })
+    
 }
 
 function loadsb(callback=null) {
@@ -155,9 +158,12 @@ function submitIS() {
         setCookie("class",ncl,60)
         document.getElementById('infoselect').hidden = true
         masterInit()
-        if (sbcallback != null) {
-            sbcallback()
-        }
+        refreshPage(function() {
+            if (sbcallback != null) {
+                sbcallback()
+            }
+        })
+        
     }
 }
 
