@@ -41,11 +41,12 @@ class Route {
 }
 
 class ParentItem {
-    constructor(id,title,description,slots,contributors) {
+    constructor(id,title,description,slots,contributors,needsdescription) {
         this.id = id
         this.title = title
         this.description = description
         this.slots = deforce(slots)
+        this.nd = needsdescription
         let ncont = Array()
         contributors.forEach(element => {
             if (deforce(element.VolunteerForID) === id) {
@@ -167,7 +168,9 @@ function refreshPage(callback) {
                             let iin = pitem.Title
                             let iis = pitem.Slots
                             let iid = pitem.Description
-                            ParentData.push(new ParentItem(iiid,iin,iid,iis,pvr.data))
+                            let ind = pitem.NeedsDescription
+                            
+                            ParentData.push(new ParentItem(iiid,iin,iid,iis,pvr.data,ind))
                         });
                         //Iter through newly structured data and parse
                         call("get-parent-contributions",{name:username},function(conts) {
@@ -232,6 +235,15 @@ function refreshPage(callback) {
                                 document.getElementById(eid+"volbutton").onclick = function() {
                                     runParentVolunteer(cindex)
                                 }
+                                document.getElementById(eid+"ivolbutton").onclick = function() {
+                                    runParentVolunteeri(cindex,
+                                        document.getElementById(
+                                            ParentData[
+                                                cindex
+                                            ].id+"vbta"
+                                        ).value
+                                    )
+                                }
                                 document.getElementById(eid+"deletebutton").onclick = function() {
                                     runDeleteParentItem(cindex)
                                 }
@@ -268,31 +280,40 @@ function refreshPage(callback) {
     })
 }
 
+function runParentVolunteeri(index,description) {
+    let routedata = ParentData[index]
+    if (parentContributedToIds.includes(routedata.id)) {
+        call("parent-unvolunteer",{
+            name:username,
+            forwhat:routedata.id
+        },function(r) {
+            refreshPage()
+        })
+    } else {
+        call("parent-volunteer",{
+            name : username,
+            email : useremail,
+            phone : userphone,
+            forwhat : routedata.id,
+            description : description
+        },function(r) {
+            refreshPage()
+        })
+    }
+}
+
 function runParentVolunteer(index) {
     let routedata = ParentData[index]
     if (!isLoggedInAsParent()) {
         ToVolunteerCallback = index
         initParent()
-    } else {
-        if (parentContributedToIds.includes(routedata.id)) {
-            call("parent-unvolunteer",{
-                name:username,
-                forwhat:routedata.id
-            },function(r) {
-                refreshPage()
-            })
-        } else {
-            call("parent-volunteer",{
-                name : username,
-                email : useremail,
-                phone : userphone,
-                forwhat : routedata.id
-            },function(r) {
-                refreshPage()
-            })
-        }
+        return
     }
-    
+    if (routedata.nd && !parentContributedToIds.includes(routedata.id)) {
+        document.getElementById(routedata.id+"volbox").hidden = false
+    } else {
+        runParentVolunteeri(index,"")
+    }
 }
 
 function runEditParentItem(index) {
@@ -300,6 +321,7 @@ function runEditParentItem(index) {
     document.getElementById("cpititle").value = routedata.title
     document.getElementById("cpita").value = routedata.description
     document.getElementById("cpislots").value = routedata.slots
+    document.getElementById("cpicb").checked = routedata.nd
     isEditingParentItem = true
     editingParentItemID = routedata.id
     document.getElementById("cpibox").hidden = false
@@ -433,6 +455,7 @@ function submitAddPVI() {
     let slots = document.getElementById("cpislots").value
     let title = document.getElementById("cpititle").value
     let description = document.getElementById("cpita").value
+    let usedescription = b2i(document.getElementById("cpicb").checked)
     if (title === "" || description === "") {
         alert("Ensure you have filled out all text fields.")
         return
@@ -443,17 +466,20 @@ function submitAddPVI() {
                 slots:slots,
                 title:title,
                 description:description,
-                id:editingParentItemID
+                id:editingParentItemID,
+                needsrd:usedescription
             }
             call("update-pvi",args,function(r) {
                 document.getElementById('cpibox').hidden = true
+                resetFields()
                 refreshPage()
             })
         } else {
             args = {
                 slots:slots,
                 title:title,
-                description:description
+                description:description,
+                NeedsDescription:usedescription
             }
             call("add-pvi",args,function(r) {
                 document.getElementById('cpibox').hidden = true

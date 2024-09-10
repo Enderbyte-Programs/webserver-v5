@@ -29,6 +29,14 @@ function endProgress() {
     document.getElementById("progress").hidden = true
 }
 
+function b2i(v) {
+    if (v) {
+        return 1
+    }  else {
+        return 0
+    }
+}
+
 function resetFields() {
     var elements = document.querySelectorAll("input,textarea");
     addedMapPoints = Array() //Reset map points

@@ -193,7 +193,7 @@ call("get-active-drive",{},function(r) {
     pdocs.appendChild(createWithText("h3",`Parent Notices for ${cname}:`))
     if (today < adate) {
         pdocs.classList.add("noticearea")
-        pdocs.appendChild(createWithText("p",`<u>IMPORTANT:</u> If you wish to be a volunteer driver, you must fill out <a href="https://www.sd44.ca/school/handsworth/ProgramsServices/departments/music/hmpa/Documents/hmpa%20volunteer%20driver%20form.pdf">this form</a> and submit it to the school office before you volunteer.<i><br>If you have previously filled out this form you do <b>NOT</b> need to fill it out again.</i>`))
+        pdocs.appendChild(createWithText("p",`<u>IMPORTANT:</u> If you wish to be a volunteer driver, you must fill out <a href="https://www.sd44.ca/school/handsworth/ProgramsServices/departments/music/hmpa/Documents/hmpa%20volunteer%20driver%20form.pdf" target="_blank">this form</a> and submit it to the school office before you volunteer.<i><br>If you have previously filled out this form you do <b>NOT</b> need to fill it out again.</i><br>Should you have any additional questions, please email <a href='mailto:handsworthbottledrive@gmail.com'>handsworthbottledrive@gmail.com</a>`))
 
         pdocs.appendChild(createWithText("p",`The bottle drive will begin on <b>${adate.toDateString()}</b> at <b>${stime}</b>`))
         pdocs.appendChild(createWithText("p",`The bottle drive will end at <b>${etime}</b>`))

@@ -218,10 +218,11 @@
             "accepts" : {
                 "title" : "str",
                 "slots" : "num",
-                "description" : "str"
+                "description" : "str",
+                "NeedsDescription" : "num"
             },
             "sql" : [
-                "insert into ParentItems (Title,Description,Slots) values ('$title','$description',$slots)"
+                "insert into ParentItems (Title,Description,Slots,NeedsDescription) values ('$title','$description',$slots,$NeedsDescription)"
             ],
             "returns" : false,
             "sendbool" : false
@@ -232,10 +233,11 @@
                 "title" : "str",
                 "slots" : "num",
                 "description" : "str",
-                "id" : "num"
+                "id" : "num",
+                "needsrd" : "num"
             },
             "sql" : [
-                "update ParentItems set Title = '$title', Description = '$description', Slots = $slots where ItemID = $id"
+                "update ParentItems set Title = '$title', Description = '$description', Slots = $slots, NeedsDescription = $needsrd where ItemID = $id"
             ],
             "returns" : false,
             "sendbool" : false
@@ -275,10 +277,11 @@
                 "name" : "str",
                 "email" : "str",
                 "phone" : "str",
-                "forwhat" : "num"
+                "forwhat" : "num",
+                "description" : "str"
             },
             "sql" : [
-                "insert into ParentVolunteers values ('$name','$email','$phone',$forwhat,true,NOW())"
+                "insert into ParentVolunteers values ('$name','$email','$phone',$forwhat,true,NOW(),'$description')"
             ],
             "returns" : false,
             "sendbool" : false

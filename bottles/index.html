@@ -259,8 +259,12 @@
                 <p>Write a detailed description:</p>
                 <textarea id="cpita" cols="50" rows="10" placeholder="Write a detailed description"></textarea>
                 <br>
+                <p style="word-break: break-all;inline-size: 100%;overflow-wrap: break-word;">If the item is open-ended, you may want to allow parents to write<br>a response description. For example, parents could respond by<br>saying exactly what snack they are bringing.</p>
+                <label for="cpicb">Allow parents to write a description</label>
+                <input type="checkbox" id="cpicb">
+                <br>
                 <button class="button" style="background-color: pink;" onclick="document.getElementById('cpibox').hidden = true;resetFields()">Cancel</button>
-                <button class="button" style="background-color: lightgreen;" onclick="submitAddPVI()">Save</button>
+                <input type="button" class="button" style="background-color: lightgreen;" onclick="submitAddPVI()" value="Save">
             </form>      
         </div>
     </div>
@@ -280,6 +284,16 @@
             <button id="$pidinfobutton" class="smallbutton" style="display: none;font-size: 20px;">ℹ️</button> <!--Hide from non admins-->
             <button id="$pideditbutton" class="smallbutton" style="display: none;font-size: 20px;">✏️</button>
             <button id="$piddeletebutton" class="smallbutton" style="display: none;font-size: 20px;">❌</button>
+            <div id="$pidvolbox" class="overlaybox" hidden>
+                <div class="overlayboxi">
+                    <h3>$title</h3>
+                    <p>Please write exactly what you will bring for this item</p>
+                    <textarea id="$pidvbta" cols="30" rows="5"></textarea>
+                    <br>
+                    <button id="$pidivolbutton" class="button" style="background-color: lightgreen;">Volunteer</button><!--TODO - Button, more info hidden, description-->
+                    <button class="button" style="background-color: pink;" onclick="document.getElementById('$pidvolbox').hidden = true">Cancel</button>
+                </div>
+            </div>
             <div id="$pidinfobox" class="overlaybox" hidden>
                 <div class="overlayboxi">
                     <h3 style="text-align: center;">Volunteers for $title</h3>
