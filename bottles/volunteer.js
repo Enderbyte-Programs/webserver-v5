@@ -232,9 +232,9 @@ function refreshPage(callback) {
                                     vlist.appendChild(document.createElement("br"))
                                     if (element.nd) {
                                         let dx = createWithText("p",element2.Description)
-                                        
+                                        dx.style.display = "inline"
                                         vlist.appendChild(dx)
-                                        vlist.appendChild(document.createElement("br"))
+                                        vlist.appendChild(document.createElement("hr"))
                                     }
                                 });
     
