@@ -230,6 +230,12 @@ function refreshPage(callback) {
                                     vlist.appendChild(a)
                                     vlist.appendChild(mb)
                                     vlist.appendChild(document.createElement("br"))
+                                    if (element.nd) {
+                                        let dx = createWithText("p",element2.Description)
+                                        
+                                        vlist.appendChild(dx)
+                                        vlist.appendChild(document.createElement("br"))
+                                    }
                                 });
     
                                 document.getElementById(eid+"volbutton").onclick = function() {
