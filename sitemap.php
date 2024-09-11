@@ -29,6 +29,9 @@
                         $br = true;
                     } 
                 }
+                if (!str_contains($fls,".html")) {
+                    $br = true;
+                }
                 if ($br) {
                     continue;
                 } else {
