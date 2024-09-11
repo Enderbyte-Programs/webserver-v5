@@ -12,19 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Apps</title>
 </head>
-<body style="font-family: helvetica;background-image:url('/downloads/assets/appback.png')">
+<body style="font-family: helvetica;">
     <div id="includedContent"></div>
     <!--Remember! Copy this-->
     <h1 style="text-align: center;">My Web Apps</h1>
-    <p style="text-align: center;">Here are some web apps I have created. I mainly dabble in desktop software, so these are all pretty bad.</p>
+    <p style="text-align: center;">Here are some web apps I have created.</p>
     <hr />
     <p style="text-align: center;"><strong>The Big List:</strong></p>
     <ul>
-    <li style="text-align: left;">Teacher Ratings: Rate your teachers. 
-            <a title="Go to Teacher Ratings" href="http://enderbyteprograms.bsite.net" target="_blank" rel="noopener">CLICK HERE
 
-            </a>
-        </li>
         <?php
             function splitlines($ar) {
                 return preg_split("/\r\n|\n|\r/", $ar);

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The official website of Enderbyte Programs, where you can download software and use some web apps, and other things.">
+    <meta name="keywords" content="Software, Computers, Enderbyte Programs, Downloads, Free, Download">
+    <link rel="stylesheet" href="/bottles/style.css">
+    <title>Enderbyte Programs - Software and Other Things</title>
+    <style>
+        .tile {
+            border: 5px lightgray solid;
+            border-radius: 20px;
+            display: flex;
+            width: 400px;
+            height: 100px;
+            cursor: default;
+            margin-left: 50px;
+
+        }
+
+        @keyframes oh {
+            from {
+                border: 5px lightgray solid;
+            border-radius: 20px;
+            display: flex;
+            background-color: lightgray;
+            width: 400px;
+            height: 100px;
+            cursor: default;
+            }
+            to {
+                cursor: pointer;
+            border: 5px black solid;
+            background-color: lightblue;
+
+            }
+        }
+
+        .tile:hover {
+            cursor: pointer;
+            border: 5px black solid;
+            animation-name: oh;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+
+            background-color: lightblue;
+            
+        }
+        .tilei {
+            margin: auto;
+            align-items: center;
+            display: flex;
+
+        }
+        .master {
+            max-width: 500px;
+            align-self: center;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: darkblue;">
+    
+    <div class="master">
+        <h1 style="text-align: center;">Enderbyte Programs</h1>
+        <p>Welcome to the Enderbyte Programs website! Established in 2021, we make all sorts of software, from fun to serious, stylish to utilitarian!</p>
+        <div class="tile" style="background-color: lightgray;" onclick="window.location = '/apps/'">
+            <div class="tilei">
+                <h2>Web Apps</h2>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
