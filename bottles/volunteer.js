@@ -151,6 +151,8 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     });
+                    endProgress()
+                    
                     routes.forEach(routedata => {
                         let map = L.map(routedata.routeid+"map").setView(routedata.centerlocation,15)
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -159,7 +161,6 @@ function refreshPage(callback) {
                         }).addTo(map);
                         new L.Polygon(routedata.polygon).addTo(map)
                     });
-                    endProgress()
                     updateStatus()
                     return
                     //Add parent data
@@ -279,10 +280,11 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     })
-                    
-                    window.scrollTo(0,oldpos)
-                    updateStatus()
-                    endProgress()
+                    if (isLoggedInAsParent() && !isadmin) {
+                        window.scrollTo(0,oldpos)
+                        updateStatus()
+                        endProgress()
+                    }
                     if (callback != null) {
                         callback()
                     }
