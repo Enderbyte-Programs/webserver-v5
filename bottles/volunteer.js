@@ -151,6 +151,7 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     });
+                    window.scrollTo(0,oldpos)
                     endProgress()
                     
                     routes.forEach(routedata => {
