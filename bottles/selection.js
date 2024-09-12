@@ -22,6 +22,8 @@ var userphone;
 var sbcallback;
 
 function masterInit() {
+    
+
     if (!isLoggedInAsStudent() && !isLoggedInAsParent() && !isadmin) {
         document.getElementById("welcomebox").hidden = false
     } else {
@@ -107,13 +109,13 @@ function submitPV() {
     
 }
 
-function loadsb(callback=null) {
-    sbcallback = callback
+function loadsb() {
+    
     if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
         document.getElementById("infoselect").hidden = false//Prompt user
         document.getElementById("isname").value = getCookie("name")
 
-        if (callback == null) {
+        if (ToSBVolunteerCallbackIndex > -1) {
             document.getElementById("isc").disabled = true
             document.getElementById("iss").disabled = false
         } else {
@@ -159,8 +161,10 @@ function submitIS() {
         document.getElementById('infoselect').hidden = true
         masterInit()
         refreshPage(function() {
-            if (sbcallback != null) {
-                sbcallback()
+            console.log("rvi")
+            if (ToSBVolunteerCallbackIndex > -1) {
+                runVolunteerA(ToSBVolunteerCallbackIndex)
+                ToSBVolunteerCallbackIndex = -1
             }
         })
         
@@ -173,4 +177,12 @@ function isLoggedInAsStudent() {
 
 function isLoggedInAsParent() {
     return doesCookieExist("name") && doesCookieExist("email") && doesCookieExist("phone")
+}
+
+function isToBeStudent() {
+    return getCookie("bypass") === "student"
+}
+
+function isToBeParent() {
+    return getCookie("bypass") == "parent"
 }

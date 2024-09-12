@@ -3,6 +3,7 @@ var template = structuredClone(document.getElementById("routelist").innerHTML)
 var ptemplate = structuredClone(document.getElementById("parentlist").innerHTML)
 var parentContributedToIds = Array()
 var ToVolunteerCallback = -1
+var ToSBVolunteerCallbackIndex = -1
 var OpenPviInfoID = 0
 class Route {
     constructor(apiretr,nloc,completedrouteids) {
@@ -166,6 +167,9 @@ function refreshPage(callback) {
                         new L.Polygon(routedata.polygon).addTo(map)
                     });
                     updateStatus()
+                    if (callback != null && isLoggedInAsStudent()) {
+                        callback()
+                    }
                     return
                     //Add parent data
                     
@@ -284,8 +288,9 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     })
+                    window.scrollTo(0,oldpos)
                     if (isLoggedInAsParent() && !isadmin) {
-                        window.scrollTo(0,oldpos)
+                        
                         updateStatus()
                         endProgress()
                     }
@@ -425,9 +430,8 @@ function runVolunteerA(index) {
 
 function runVolunteer(index) {
     if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
-        loadsb(function() {
-            runVolunteerA(index)
-        })
+        ToSBVolunteerCallbackIndex = index
+        loadsb()
     } else {
         username = getCookie("name")
         usergrade = getCookie("grade")
