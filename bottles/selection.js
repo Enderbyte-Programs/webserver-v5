@@ -24,11 +24,13 @@ var sbcallback;
 function masterInit() {
     
 
-    if (!isLoggedInAsStudent() && !isLoggedInAsParent() && !isadmin) {
+    if (!isToBeStudent() && !isToBeParent() && !isadmin) {
         document.getElementById("welcomebox").hidden = false
     } else {
+        
         if (isLoggedInAsStudent()) {
             //Hide parent data
+            document.getElementById("n3").disabled = true
             document.getElementById("parentlist").hidden = true
             document.getElementById("parentlists").hidden = true
             username = getCookie("name")
@@ -37,6 +39,7 @@ function masterInit() {
 
         } else if (isLoggedInAsParent()) {
             //Hide student data
+            document.getElementById("n3").disabled = true
             document.getElementById("notice").hidden = true
             document.getElementById("routelist").hidden = true
             document.getElementById("routelists").hidden = true
@@ -51,8 +54,18 @@ function masterInit() {
                 usergrade = getCookie("grade")
             }
         }
+        else if (isToBeParent()) {
+            document.getElementById("notice").hidden = true
+            document.getElementById("routelist").hidden = true
+            document.getElementById("routelists").hidden = true
+        }
+        else if (isToBeStudent()) {
+            document.getElementById("parentlist").hidden = true
+            document.getElementById("parentlists").hidden = true
+        }
         if (isadmin) {
             //Force show everything
+            document.getElementById("n3").disabled = true
             document.getElementById("parentlist").hidden = false
             document.getElementById("parentlists").hidden = false
             document.getElementById("routelist").hidden = false
@@ -62,9 +75,20 @@ function masterInit() {
     }
 }
 
+function handleLi() {
+    if (isToBeParent()) {
+        document.getElementById("parentbox").hidden = false
+    }
+    if (isToBeStudent()) {
+        loadsb()
+    }
+}
+
 function initStudent() {
     document.getElementById("welcomebox").hidden = true
-    loadsb()
+    //loadsb()
+    setCookie("bypass","student",30)
+    masterInit()
 }
 
 function initTeacher() {
@@ -74,7 +98,8 @@ function initTeacher() {
 
 function initParent() {
     document.getElementById("welcomebox").hidden = true
-    document.getElementById("parentbox").hidden = false
+    setCookie("bypass","parent",30)
+    masterInit()
 }
 
 function submitPV() {
@@ -111,17 +136,10 @@ function submitPV() {
 
 function loadsb() {
     
-    if (!(doesCookieExist("name") && doesCookieExist("grade") && doesCookieExist("class"))) {
+    if (!isLoggedInAsStudent()) {
         document.getElementById("infoselect").hidden = false//Prompt user
         document.getElementById("isname").value = getCookie("name")
 
-        if (ToSBVolunteerCallbackIndex > -1) {
-            document.getElementById("isc").disabled = true
-            document.getElementById("iss").disabled = false
-        } else {
-            document.getElementById("isc").disabled = false
-            document.getElementById("iss").disabled = true
-        }
     } else {
         username = getCookie("name")
         usergrade = getCookie("grade")

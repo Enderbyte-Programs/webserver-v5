@@ -100,7 +100,6 @@
                     <option>Virtuosi Strings</option>
                 </select>
                 <p>Students: When you are done, click Continue</p>
-                <input type="button" id="iss" class="button" onclick="hasAnswered = false;document.getElementById('infoselect').hidden = true;masterInit()" value="Back">
                 <input type="submit" style="background-color: lightgreen;" class="button" onclick="submitIS()" value="Continue">
                 <input type="button" id="isc" style="background-color: pink;" class="button" onclick="document.getElementById('infoselect').hidden = true" value="Cancel">
             </form>
@@ -188,6 +187,7 @@
         <button class="button" onclick="document.getElementById('cpibox').hidden = false">Create Parent Sign-up Item</button>
     </div>
     <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
+    <button id="n3" class="button" onclick="handleLi()">Student / Parent Login</button>
     <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
     
     <div hidden id="addroute" class="overlaybox">

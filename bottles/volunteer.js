@@ -331,7 +331,7 @@ function runParentVolunteer(index) {
     let routedata = ParentData[index]
     if (!isLoggedInAsParent()) {
         ToVolunteerCallback = index
-        initParent()
+        document.getElementById("parentbox").hidden = false
         return
     }
     if (routedata.nd && !parentContributedToIds.includes(routedata.id)) {

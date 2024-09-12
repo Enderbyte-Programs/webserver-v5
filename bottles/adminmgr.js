@@ -17,12 +17,13 @@ function fullLogout() {
     eraseCookie("class")
     eraseCookie("email")
     eraseCookie("phone")
+    eraseCookie("bypass")
     document.location.reload()
 }
 
 function closeLogin() {
     document.getElementById('adminlogin').hidden = true
-    if (!isLoggedInAsStudent() && !isLoggedInAsParent()) {
+    if (!isToBeParent() && !isToBeStudent()) {
         document.getElementById('welcomebox').hidden = false
     }
 }

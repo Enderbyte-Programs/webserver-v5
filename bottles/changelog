@@ -1,8 +1,0 @@
-1.1 [2024-08-31]
-- Overlayboxes are now rounded
-- Notice boxes are now rounded
-- Add time feature
-- Fix bug where pressing cancel on admin log in would not show the welcome box again.
-
-1.0 [2024-07-10]
-- Initial Release
