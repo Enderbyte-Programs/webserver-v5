@@ -56,3 +56,7 @@ function resetFields() {
 function doCopyOf(text) {
     navigator.clipboard.writeText(text)
 }
+
+function dict_has(haystack,needle) {
+    return haystack[needle] !== undefined
+}
