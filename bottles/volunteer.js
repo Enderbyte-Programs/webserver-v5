@@ -82,11 +82,14 @@ function refreshPage(callback) {
                 call("get-all-volunteers",{},function(gavresp) {
                     
                     gavresp.data.forEach(gvri => {
+
                         let gvri_vfid = String(gvri.VolunteeredForID)//Force string for KV goodness
-                        if (!AllVolunteers.has(gvri_vfid)) {
+                        if (!dict_has(AllVolunteers,gvri_vfid)) {
                             AllVolunteers[gvri_vfid] = Array()
+
                             AllVolunteers[gvri_vfid].push(gvri)
                         } else {
+
                             AllVolunteers[gvri_vfid].push(gvri)
                         }
                     });
