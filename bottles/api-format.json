@@ -246,7 +246,7 @@
             "action" : "get-all-pvi",
             "accepts" : {},
             "sql" : [
-                "select * from ParentItems order by Title"
+                "select * from ParentItems"
             ],
             "returns" : true,
             "sendbool" : false

@@ -23,7 +23,7 @@
     <script src="./libcookie.js"></script>
     <script src="./libcollapse.js" defer></script>
     <script src="./drivemgr.js" defer></script>
-    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.21</p>
+    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.24</p>
     <div hidden id="adminlogin" class="overlaybox">
         <div id="adminlogini" class="overlayboxi">
             <p id="loginhead">Insert the admin password to gain access to admin features</p>
@@ -272,7 +272,7 @@
             
         </div>
         <h2 style="text-align: center;">Parent Sign-ups</h2>
-        <b>Don't want to volunteer but still want to contribute? Support the Bottle Drive by sending an e-transfer to <a onclick="doCopyOf('handsworthbottledrive@gmail.com')">handsworthbottledrive@gmail.com</a> so we can buy pizza!</b>
+        <b>Don't want to volunteer but still want to contribute? Support the Bottle Drive by sending an e-transfer to <u onclick="doCopyOf('handsworthbottledrive@gmail.com');email_dco_anim()" style="color: blue;cursor: pointer;">handsworthbottledrive@gmail.com</u><div id="oneccp" style="color: green;display: inline;">Copied</div> so we can buy pizza!</b>
     </div>
     <div id="parentlist">
         <div id="$pidroot" hidden>
@@ -318,5 +318,8 @@
     <script src="routemgr.js"></script>
     <script src="volunteer.js" defer></script>
     <script src="contrib.js" defer></script>
+    <script>
+    hide("oneccp");
+    </script>
 </body>
 </html>

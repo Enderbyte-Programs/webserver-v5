@@ -57,6 +57,14 @@ function doCopyOf(text) {
     navigator.clipboard.writeText(text)
 }
 
+function email_dco_anim() {
+    show("oneccp")
+    setTimeout(() => {
+        hide("oneccp")
+    }, 1000);
+}
+
 function dict_has(haystack,needle) {
     return haystack[needle] !== undefined
 }
+
