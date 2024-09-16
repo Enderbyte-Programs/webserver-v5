@@ -30,6 +30,7 @@ function call(action,variables,callback) {
     }).then(
         function(r) {
             r.text().then(function(t) {
+                t = t.replaceAll("#SQ","'").replaceAll("#DQ",'\\"')
                 console.log(`${action} [${rawvars}] -> ${t}`)
                 //alert(t)
                 callback(new APIResponse(t))
