@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EB3PKRP4H4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EB3PKRP4H4');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/main.css" type="text/css">
-    <script src="../assets/libs/jquery.js"></script>
-    <style>
-        .hb {
-            opacity: 0.5;
-        }
-        .b:hover {
-            opacity: 1;
-        }
-        img {
-            max-width: 300px;
-            max-height: 300px;
-        }
-        .map { 
-            align-self: center;
-            height: 300px; 
-            width: 300px;
-        }
-    </style>
-</head>
-<body style="background-color: rgba(64, 64, 64,1);background-image: url('/assets/pictures/france.png');background-blend-mode: darken;">
-    <button class="button" id="hb" onclick="window.location.href='/napoleon/index.html'" style="position: fixed;">Home</button>
-    <div id="master" style="align-self: center;max-width: 850px;margin: auto;background-color: lightblue;padding: 20px;">
+    <script src="/lib/jquery.js"></script>
+    <script> $(function () { $("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery-->
+    <meta name="description" content="abcdef">
+    <meta name="keywords" content="Keywods,etc">
+<body>
 
-    </div>
 </body>
 </html>
