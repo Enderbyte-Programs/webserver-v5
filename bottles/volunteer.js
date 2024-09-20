@@ -322,6 +322,12 @@ function runParentVolunteeri(index,description) {
             forwhat : routedata.id,
             description : description
         },function(r) {
+            call("send-confirmation-email",{
+                position:routedata.title,
+                comment:description,
+                toemail:useremail,
+                name:username
+            },function(r2){})
             refreshPage()
         })
     }

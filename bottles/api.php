@@ -190,17 +190,20 @@ class ApiAccept {
         return $this->vdata;
     }
 }
+
 class ApiAction {
     public $variables = array();
     public $actionname;
     public $statement;
     private $aq;
     private $retrbool;
+    private $usesql;
 
     function __construct($ar) {
         $this->actionname = $ar["action"];
-        $this->statement = $ar["sql"];
+        $this->statement = $ar["commands"];
         $this->aq = $ar["returns"];
+        $this->usesql = $ar["usesql"];
         foreach ($ar["accepts"] as $key => $value) {
             array_push($this->variables,new ApiAccept($key,$value));
         }
@@ -221,7 +224,14 @@ class ApiAction {
         return $final;
     }
     function execute() {
-        echo_and_run($this->processvars(),$this->aq,$this->retrbool);
+        if ($this->usesql) {
+            echo_and_run($this->processvars(),$this->aq,$this->retrbool);
+        } else {
+            foreach ($this->processvars() as $cmd) {
+                system($cmd . " | tee -a apicmdlog.txt > /dev/null");
+                echo "{\"error\":false,\"data\":{}}";
+            }
+        }
     }
 }
 $body = json_decode(file_get_contents('php://input'),true);

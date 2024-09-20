@@ -106,8 +106,8 @@ function submitPV() {
     let pname = document.getElementById("pvname").value
     let pemail = document.getElementById("pvemail").value
     let pphone = document.getElementById("pvphone").value
-    if (pemail === "" && pphone === "") {
-        alert("You must provide an email or a phone.")
+    if (pemail === "") {
+        alert("You must provide an email.")
         return
     }
     if (pname === "") {

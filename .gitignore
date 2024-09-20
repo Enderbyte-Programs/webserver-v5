@@ -1,14 +1,7 @@
 usercount.txt
 downloads/*
 !downloads/assets
-apps/forwards/*
-apps/petroltrack/
-apps/wordbyword/
-!apps/forwards/.epapp
-!apps/forwards/index.html
-!apps/forwards/main.js
-!apps/forwards/template.php
-!apps/forwards/api/
 .vscode/*
 lib/*
+bottles/mailpass.toml
 ultralicense/

@@ -3,15 +3,17 @@
         {
             "action" : "get-all-drives",
             "accepts" : {},
-            "sql" : ["select * from drives;"],
+            "commands" : ["select * from drives;"],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
             "action" : "get-active-drive",
             "accepts" : {},
-            "sql" : ["select * from drives where IsActive is true;"],
+            "commands" : ["select * from drives where IsActive is true;"],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -20,8 +22,9 @@
                 "forwho":"str",
                 "password":"str"
             },
-            "sql" : ["select * from accounts where UserName = '$forwho' and Password = '$password'"],
+            "commands" : ["select * from accounts where UserName = '$forwho' and Password = '$password'"],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : true
         },
         {
@@ -31,8 +34,9 @@
                 "oldpassword" : "str",
                 "newpassword" : "str"
             },
-            "sql" : ["update accounts set Password = '$newpassword' where UserName = '$forwho' and Password = '$oldpassword'","select * from accounts where UserName = '$forwho' and Password = '$newpassword'"],
+            "commands" : ["update accounts set Password = '$newpassword' where UserName = '$forwho' and Password = '$oldpassword'","select * from accounts where UserName = '$forwho' and Password = '$newpassword'"],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : true
         },
         {
@@ -44,10 +48,11 @@
                 "stime" : "str",
                 "etime" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "update drives set DueDate = STR_TO_DATE('$newddate','%Y-%m-%d'), ActionDate = STR_TO_DATE('$newadate','%Y-%m-%d'), StartTime = '$stime', EndTime = '$etime' where Name = '$drivename'"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -55,10 +60,11 @@
             "accepts" : {
                 "drivename" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "select * from drives where Name = '$drivename'"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : true
         },
         {
@@ -70,7 +76,7 @@
                 "stime" : "str",
                 "etime" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "update drives set IsActive = false where IsActive = true",
                 "update routes set CompletedDate = NULL",
                 "update routes set IsCompleted = false",
@@ -79,16 +85,18 @@
                 "insert into drives values ('$drivename',NOW(),STR_TO_DATE('$ddate','%Y-%m-%d'),STR_TO_DATE('$adate','%Y-%m-%d'),true,'$stime','$etime')"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
             "action" : "close-drive",
             "accepts" : {
             },
-            "sql" : [
+            "commands" : [
                 "update drives set IsActive = false where IsActive = true"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -100,10 +108,11 @@
                 "centerlong" : "str",
                 "people" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "insert into routes (RouteName,MapNodes,NeededPeople,CenterLat,CenterLong,IsCompleted) values ('$name','$points','$people','$centerlat','$centerlong',false)"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -116,10 +125,11 @@
                 "people" : "num",
                 "rid" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "update routes set RouteName = '$name',MapNodes = '$points',CenterLat = '$centerlat',CenterLong = '$centerlong',NeededPeople = $people where RouteID = $rid"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -127,10 +137,11 @@
             "accepts" : {
                 
             },
-            "sql" : [
+            "commands" : [
                 "select * from routes order by RouteName;"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -138,10 +149,11 @@
             "accepts" : {
                 "name" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "delete from routes where Routename = '$name'"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -153,11 +165,12 @@
                 "forwhich" : "num"
 
             },
-            "sql" : [
+            "commands" : [
 
                 "insert into volunteers values ('$name','$grade','$class',$forwhich,NOW(),true)"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -165,10 +178,11 @@
             "accepts" : {
                 "name" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "select VolunteeredForID from volunteers where VolunteerName = '$name' and IsActive = true"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -177,10 +191,11 @@
                 "name" : "str",
                 "forwhich" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "delete from volunteers where VolunteerName = '$name' and VolunteeredForID = $forwhich and IsActive = true"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -188,10 +203,11 @@
             "accepts" : {
                 "routeid" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "select * from volunteers where VolunteeredForID = $routeid and IsActive = true"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -199,18 +215,20 @@
             "accepts" : {
                 "routeid" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "update routes set IsCompleted = IF ( IsCompleted , FALSE, TRUE )  where RouteID = $routeid",
                 "update routes set CompletedDate = IF ( IsCompleted, NOW(), NULL ) where RouteID = $routeid"
             ],
             "returns": false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
             "action" : "get-all-volunteers",
             "accepts" : {},
-            "sql" : ["select * from volunteers where IsActive = true"],
+            "commands" : ["select * from volunteers where IsActive = true"],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -221,10 +239,11 @@
                 "description" : "str",
                 "NeedsDescription" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "insert into ParentItems (Title,Description,Slots,NeedsDescription) values ('$title','$description',$slots,$NeedsDescription)"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -236,28 +255,31 @@
                 "id" : "num",
                 "needsrd" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "update ParentItems set Title = '$title', Description = '$description', Slots = $slots, NeedsDescription = $needsrd where ItemID = $id"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
             "action" : "get-all-pvi",
             "accepts" : {},
-            "sql" : [
+            "commands" : [
                 "select * from ParentItems"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
             "action" : "get-all-parents",
             "accepts" : {},
-            "sql" : [
+            "commands" : [
                 "select * from ParentVolunteers where IsActive = true"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -265,10 +287,11 @@
             "accepts" : {
                 "name" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "select VolunteerForID from ParentVolunteers where VolunteerName = '$name' and IsActive = true"
             ],
             "returns" : true,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -280,10 +303,11 @@
                 "forwhat" : "num",
                 "description" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "insert into ParentVolunteers values ('$name','$email','$phone',$forwhat,true,NOW(),'$description')"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -292,10 +316,11 @@
                 "name" : "str",
                 "forwhat" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "delete from ParentVolunteers where VolunteerForID = $forwhat and VolunteerName = '$name'"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -303,10 +328,11 @@
             "accepts" : {
                 "id" : "num"
             },
-            "sql" : [
+            "commands" : [
                 "delete from ParentItems where ItemID = $id"
             ],
             "returns" : false,
+            "usesql" : true,
             "sendbool" : false
         },
         {
@@ -315,10 +341,36 @@
                 "id" : "num",
                 "name" : "str"
             },
-            "sql" : [
+            "commands" : [
                 "delete from ParentVolunteers where VolunteerForID = $id and VolunteerName = '$name'"
             ],
             "returns" : false,
+            "usesql" : true,
+            "sendbool" : false
+        },
+        {
+            "action" : "say-hi",
+            "accepts" : {},
+            "commands" : [
+                "echo hi"
+            ],
+            "returns" : false,
+            "usesql" : false,
+            "sendbool" : false
+        },
+        {
+            "action" : "send-confirmation-email",
+            "accepts" : {
+                "position" : "str",
+                "name" : "str",
+                "toemail" : "str",
+                "comment" : "str"
+            },
+            "commands" : [
+                "python3 -u mail.py \"$toemail\" \"Handsworth Bottle Drive Volunteer Confirmation\" \"<h2>Volunteer Confirmation</h2><p>Thank you for volunteering to help out at the Handsworth Bottle Drive! Your help is greatly appreciated. A reminder that you have volunteered for the position of <b>$position.</b></p><p>$comment</p>\""
+            ],
+            "returns" : false,
+            "usesql" : false,
             "sendbool" : false
         }
     ]
