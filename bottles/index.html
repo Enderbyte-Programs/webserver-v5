@@ -32,7 +32,7 @@
     <script src="./libcookie.js"></script>
     <script src="./libcollapse.js" defer></script>
     <script src="./drivemgr.js" defer></script>
-    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.24</p>
+    <p style="position: fixed;left: 0;bottom: 0;font-size: 8px;">(c) 2024 Handsworth Secondary School, SD44, Enderbyte Programs. All rights reserved. Software version: 1.26</p>
     <div hidden id="adminlogin" class="overlaybox">
         <div id="adminlogini" class="overlayboxi">
             <p id="loginhead">Insert the admin password to gain access to admin features</p>
@@ -191,13 +191,16 @@
     <div class="area" id="notice">
 
     </div>
-    <div id="addroutebox"  style="display: none;" hidden>
-        <button class="button" onclick="openRouteBox()">Create New Route</button>    
-        <button class="button" onclick="document.getElementById('cpibox').hidden = false">Create Parent Sign-up Item</button>
+    <div id="toolbar" style="position: sticky;top: 0;z-index: 1000001;background-color: white;padding: 5px;">
+        <div id="addroutebox"  style="display: none;" hidden>
+            <button class="button" onclick="openRouteBox()">Create New Route</button>    
+            <button class="button" onclick="document.getElementById('cpibox').hidden = false">Create Parent Sign-up Item</button>
+        </div>
+        <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
+        <button id="n3" class="button" onclick="handleLi()">Student / Parent Login</button>
+        <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
     </div>
-    <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
-    <button id="n3" class="button" onclick="handleLi()">Student / Parent Login</button>
-    <button id="n2" class="button" onclick="fullLogout()">Log Out</button>
+    
     
     <div hidden id="addroute" class="overlaybox">
         <div id="addroutei" class="overlayboxi">

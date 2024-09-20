@@ -174,7 +174,7 @@ content: "\2796";
     top: 0;
     left: 0;
     background-color: rgba(64,64,64,0.8);
-    z-index: 1000000;
+    z-index: 1000002;
     /*If that's not enough, I don't know what is!*/
     width: 100%;
     height:100%;
