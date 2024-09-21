@@ -42,6 +42,7 @@ class Route {
 }
 
 class ParentItem {
+    associatedlid = -1
     constructor(id,title,description,slots,contributors,needsdescription) {
         this.id = id
         this.title = title

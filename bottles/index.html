@@ -195,6 +195,8 @@
         <div id="addroutebox"  style="display: none;" hidden>
             <button class="button" onclick="openRouteBox()">Create New Route</button>    
             <button class="button" onclick="document.getElementById('cpibox').hidden = false">Create Parent Sign-up Item</button>
+            <button class="button xbutton" onclick="exportParentData()">Export Parent Data</button>
+            <!--<button class="button xbutton" onclick="exportStudentData()">Export Student Data</button>-->
         </div>
         <button id="n1" class="button" onclick="openLogin()">Teacher Login</button>
         <button id="n3" class="button" onclick="handleLi()">Student / Parent Login</button>
@@ -330,6 +332,7 @@
     <script src="routemgr.js"></script>
     <script src="volunteer.js" defer></script>
     <script src="contrib.js" defer></script>
+    <script src="exporter.js"></script>
     <script>
     hide("oneccp");
     </script>

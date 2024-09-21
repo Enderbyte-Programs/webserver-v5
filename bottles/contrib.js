@@ -15,17 +15,14 @@ call("get-all-volunteers",{},function(r) {
             volfinal[name] = 1
         }
     });
-    
+    //volfinal = new Map([...volfinal.entries()].sort((a, b) => a[1].localeCompare(b[1])));
+
     let listd = document.getElementById("contriblist")
     let rr = 0
     names.forEach(key => {
         let value = volfinal[key]
         let i = document.createElement("li")
-        if (rr < 5) {
-            i.innerHTML = `<b>${key} - ${value} routes</b>`
-        } else {
-            i.innerHTML = `${key} - ${value} routes`
-        }
+        i.innerHTML = `${key} - ${value} routes`
         listd.appendChild(i)
         rr = rr + 1;
     });
