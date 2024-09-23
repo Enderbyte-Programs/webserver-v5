@@ -22,7 +22,10 @@ with open("mailpass.toml","rb") as f:
 
 message = email.mime.multipart.MIMEMultipart()
 message["Subject"] = MSGSUB
+message["From"] = f"Handsworth Bottle Drive Email Service <handsworthbottledrive@gmail.com>"
 message["To"] = TOADDRESS
+message["Sender"] = address
+message["Reply-To"] = "handsworthbottledrive@gmail.com"
 message.attach(email.mime.text.MIMEText(MSGDATA,"html"))
 print(password)
 with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
