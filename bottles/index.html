@@ -230,6 +230,17 @@
     <div id="routelists">
         <hr>
         <h2 style="text-align: center;">Route List</h2>
+        <div id="ssearchset" hidden>
+            <br><br>
+            <fieldset style="display: inline-block;">
+                <legend>Search</legend>
+                <form onsubmit="event.preventDefault()">
+                    <img src="searchicon.png" style="max-width: 24px;max-height: 24px;top: 5px;position: relative;">
+                    <input id="ssearch" type="text" style="width: 200px;" onkeyup="onssbchange()">
+                </form>
+            </fieldset>
+        </div>
+       
     </div>
     <div id="routelist">
         
@@ -287,9 +298,17 @@
         </div>
         <h2 style="text-align: center;">Parent Sign-ups</h2>
         <b>Don't want to volunteer but still want to contribute? Support the Bottle Drive by sending an e-transfer to <u onclick="doCopyOf('handsworthbottledrive@gmail.com');email_dco_anim()" style="color: blue;cursor: pointer;">handsworthbottledrive@gmail.com</u><div id="oneccp" style="color: green;display: inline;">Copied</div> so we can buy pizza!</b>
+        <br><br>
+        <fieldset style="display: inline-block;">
+            <legend>Search</legend>
+            <form onsubmit="event.preventDefault()">
+                <img src="searchicon.png" style="max-width: 24px;max-height: 24px;top: 5px;position: relative;">
+                <input id="psearch" type="text" style="width: 200px;" onkeyup="onpsbchange()">
+            </form>
+        </fieldset>
     </div>
     <div id="parentlist">
-        <div id="$pidroot" hidden>
+        <div id="$pidproot" hidden>
             <h3>$title</h3>
             <p id="$piddescription">$description</p>
             <p style="display: inline;">$nslots needed ($hslots / $slots)</p>
@@ -327,6 +346,9 @@
         <div class="overlayboxi">
             <p>Loading, Please wait...</p>
         </div>
+    </div>
+    <div id="noresults" hidden>
+        <p style="color: red;">No results</p>
     </div>
     <script src="selection.js"></script>
     <script src="routemgr.js"></script>

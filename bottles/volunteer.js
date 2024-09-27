@@ -522,4 +522,69 @@ function submitAddPVI() {
     }
 }
 
+//This section controls the search system
+
+
+function onpsbchange() {
+    let availableids = get_childrens_id("parentlist")
+    let searchstring = document.getElementById("psearch").value.trim().toLowerCase()
+
+    if (searchstring === "") {
+        availableids.forEach(element => {
+            //Todo return all IDs to shown
+            
+            document.getElementById(element).hidden = false
+        });
+        return//Cancel search
+    }
+    let ci = 0;
+    ParentData.forEach(element => {
+        let sst = element.title+element.description
+        if (sst.toLowerCase().includes(searchstring)) {
+            document.getElementById(availableids[ci]).hidden = false
+        } else {
+            document.getElementById(availableids[ci]).hidden = true
+        }
+        ci += 1;
+    });
+
+}
+
+var wiped;
+wiped = 0
+
+function onssbchange() {
+    let availableids = get_childrens_id("routelist")
+    let searchstring = document.getElementById("ssearch").value.trim().toLowerCase()
+    if (searchstring === "") {
+        availableids.forEach(element => {
+            //Todo return all IDs to shown
+            
+            document.getElementById(element).hidden = false
+        });
+        return//Cancel search
+    }
+    let ci = 0;
+    
+    routes.forEach(element => {
+        let sst = element.routename
+
+        if (sst.toLowerCase().includes(searchstring)) {
+            if (wiped !== 0) {
+                --wiped
+            }
+            document.getElementById(availableids[ci]).hidden = false
+            document.getElementById("noresults").hidden = true
+        } else {
+            ++wiped
+            document.getElementById(availableids[ci]).hidden = true
+        }
+        ci += 1;
+    });
+    if (wiped === availableids.length) {
+        document.getElementById("noresults").hidden = false
+    }
+
+}
+
 refreshPage()

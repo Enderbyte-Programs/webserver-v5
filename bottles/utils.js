@@ -68,3 +68,13 @@ function dict_has(haystack,needle) {
     return haystack[needle] !== undefined
 }
 
+function get_childrens_id(parent) {
+    //This is a suspicious name...
+    var ids = [];
+    var children = document.getElementById(parent).children; //get container element children.
+    for (var i = 0, len = children.length ; i < len; i++) {
+        ids.push(children[i].id); //get child id.
+    }
+    return ids;
+
+}
