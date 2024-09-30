@@ -24,12 +24,18 @@
     <button class="button" id="reset" onclick="reset()">Reset</button>
     <button class="button" id="dolap" onclick="newlap()">Lap</button>
     <br><br><br>
-    <div class="laplist">
-        <table id="laps">
-            <tr>
-                <th>Lap No.</th>
-                <th>Time</th>
-            </tr>
+    <div class="laplist" id="laplist">
+        <table >
+            <thead>
+                <tr>
+                    <th>Lap No.</th>
+                    <th>Lap Time</th>
+                    <th>Total Time</th>
+                </tr>
+            </thead>
+            <tbody id="laps">
+
+            </tbody>
         </table>
     </div>
 

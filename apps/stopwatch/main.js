@@ -38,6 +38,7 @@ var mastertime = new TimeSet()
 var lastCountTime = new TimeSet()
 var laps = Array()
 var isrunning = false
+var lapcount = 0
 
 function pad(num, size) {
     num = num.toString();
@@ -48,6 +49,8 @@ function pad(num, size) {
 function reset() {
     mastertime.reset()
     updateUi()
+    document.getElementById("laps").innerHTML = ""
+    lapcount = 0
 }
 
 function updateUi() {
@@ -77,6 +80,23 @@ function toggle() {
         document.getElementById("toggle").innerText = "Stop"
         step()
     }
+}
+
+function createWithText(element,innerText) {
+    let res = document.createElement(element)
+    res.innerText = innerText
+    return res
+}
+
+function newlap() {
+    lapcount += 1
+    let tr = document.createElement("tr")
+    tr.appendChild(createWithText("td",lapcount))
+    tr.appendChild(createWithText("td",lastCountTime.toStr()))
+    tr.appendChild(createWithText("td",mastertime.toStr()))
+    lastCountTime = new TimeSet()
+    document.getElementById("laps").appendChild(tr)
+    document.getElementById("laplist").scrollTop = document.getElementById("laplist").scrollHeight;
 }
 
 updateUi()
