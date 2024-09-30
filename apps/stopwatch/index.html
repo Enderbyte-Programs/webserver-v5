@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EB3PKRP4H4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EB3PKRP4H4');
+        </script>
+            <script src="/lib/jquery.js"></script>
+            <title>Stopwatch</title>
+        <link rel="stylesheet" href="/bottles/style.css">
+        <link rel="stylesheet" href="msheet.css">
+    </head>
+    <body>
+    <script> $(function(){$("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery--><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bouncing Ball</title></head><body><div id="includedContent"></div><!--Remember! Copy this-->
+    
+    <h1>Stopwatch</h1>
+    <p id="master" style="font-size: 36px;">00:00:00</p>
+    <button class="button" style="background-color: lightgreen;" id="toggle" onclick="toggle()">Start</button>
+    <button class="button" id="reset" onclick="reset()">Reset</button>
+    <button class="button" id="dolap" onclick="newlap()">Lap</button>
+    <br><br><br>
+    <div class="laplist">
+        <table id="laps">
+            <tr>
+                <th>Lap No.</th>
+                <th>Time</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+
+</body></html>
