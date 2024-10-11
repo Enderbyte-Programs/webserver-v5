@@ -66,7 +66,7 @@ var routes = Array()
 var permits = Array()
 //var routeIVolunFor = Array()
 function refreshPage(callback) {
-    let oldpos = window.scrollY
+    let oldpos = [window.scrollX,window.scrollY]
     if (blockinputonreload) {
         startProgress()
     } else {
@@ -161,7 +161,7 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     });
-                    window.scrollTo(0,oldpos)
+                    window.scrollTo(oldpos[0],oldpos[1])
                     endProgress()
                     
                     routes.forEach(routedata => {
@@ -296,7 +296,7 @@ function refreshPage(callback) {
                         }
                         ci = ci + 1
                     })
-                    window.scrollTo(0,oldpos)
+                    window.scrollTo(oldpos[0],oldpos[1])
                     if (isLoggedInAsParent() && !isadmin) {
                         
                         updateStatus()
