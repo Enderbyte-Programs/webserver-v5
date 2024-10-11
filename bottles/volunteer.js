@@ -67,22 +67,27 @@ var permits = Array()
 //var routeIVolunFor = Array()
 function refreshPage(callback) {
     let oldpos = window.scrollY
-    startProgress()
-    routes = Array()
-    //routeIVolunFor = Array()
-    parentContributedToIds = Array()
-    ParentData = Array()
-    routeids = Array()
-    permits = Array()
-    AllVolunteers = new Map()
-    document.getElementById("routelist").innerHTML = ""
-    document.getElementById("parentlist").innerHTML = ""
+    if (blockinputonreload) {
+        startProgress()
+    } else {
+        document.getElementById("loadinganimation").hidden = false
+    }
+    blockinputonreload = false
+    
+    //Version 1.27: To avoid UI interruptions, old data will be destroyed just before new data is inserted
+    
     let ci = 0
     if (!isLoggedInAsParent() || isadmin) {
         call("get-all-routes",{},function(r) {
             call("get-contributions",{name:username},function(r2) {
                 call("get-all-volunteers",{},function(gavresp) {
+                    routes = Array()
+                    //routeIVolunFor = Array()
                     
+                    routeids = Array()
+                    permits = Array()
+                    AllVolunteers = new Map()
+                    document.getElementById("routelist").innerHTML = ""
                     gavresp.data.forEach(gvri => {
 
                         let gvri_vfid = String(gvri.VolunteeredForID)//Force string for KV goodness
@@ -186,7 +191,9 @@ function refreshPage(callback) {
     if (!isLoggedInAsStudent() || isadmin) {
         call("get-all-pvi",{},function(itemr) {
             call("get-all-parents",{},function(pvr) {
-
+                document.getElementById("parentlist").innerHTML = ""
+                parentContributedToIds = Array()
+                ParentData = Array()
                 itemr.data.forEach(pitem => {
                     let iiid = deforce(pitem.ItemID)
                     let iin = pitem.Title
@@ -587,4 +594,30 @@ function onssbchange() {
 
 }
 
+function isInDialogue() {
+    let anyava = false
+    let overlays = document.getElementsByClassName("overlayboxi")
+    for (let index = 0; index < overlays.length; index++) {
+        const element = overlays[index];
+        if (!isHidden(element)) {
+            anyava = true
+        }
+    }
+    return anyava
+}
+
+function scheduleRefreshUpdates() {
+    if (!isInDialogue()) {
+        //Cancel refreshes if user is in dialogue
+        refreshPage()
+    } 
+    
+    setTimeout(() => {
+        scheduleRefreshUpdates()
+    }, 10000);
+}
+
 refreshPage()
+setTimeout(() => {
+    scheduleRefreshUpdates()
+}, 10000);

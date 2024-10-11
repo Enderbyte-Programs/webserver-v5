@@ -23,10 +23,12 @@ function conjugatevolunteers(p) {
 
 function startProgress() {
     document.getElementById("progress").hidden = false
+    document.getElementById("loadinganimation").hidden = false
 }
 
 function endProgress() {
     document.getElementById("progress").hidden = true
+    document.getElementById("loadinganimation").hidden = true
 }
 
 function b2i(v) {
@@ -77,4 +79,8 @@ function get_childrens_id(parent) {
     }
     return ids;
 
+}
+
+function isHidden(el) {
+    return (el.offsetParent === null)
 }

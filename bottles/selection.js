@@ -9,7 +9,7 @@ var positions = [
                     "Senior Jazz Band (11/12)",
                     "Choir",
                     "Tocatti Strings (8)",
-                    "Converti Strings (9/10)",
+                    "Concerti Strings (9/10)",
                     "Chamber Strings (11/12)",
                     "Virtuosi Strings",
 ]
@@ -20,6 +20,7 @@ var userclass;
 var useremail;
 var userphone;
 var sbcallback;
+var blockinputonreload = true//Block input on the first reload.
 
 function masterInit() {
     
