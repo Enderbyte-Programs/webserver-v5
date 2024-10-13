@@ -17,6 +17,24 @@
             "img" : "/apps/desktopsoftware/t22.png",
             "title" : "Tetris 22",
             "description" : "Modern Desktop Tetris app"
+        },
+        {
+            "dir" : "https://github.com/Enderbyte-Programs/EasyTTS/releases/latest",
+            "img" : "/apps/desktopsoftware/microphone.png",
+            "title" : "EasyTTS",
+            "description" : "Compact Desktop Text To Speech app"
+        },
+        {
+            "dir" : "/apps/bouncingball",
+            "img" : "/apps/bouncingball/logo.png",
+            "title" : "Bouncing Ball",
+            "description" : "A fun bouncing ball"
+        },
+        {
+            "dir" : "/apps/stopwatch",
+            "img" : "/apps/stopwatch/logo.png",
+            "title" : "Stopwatch",
+            "description" : "A stopwatch for your timing needs"
         }
     ]
 }
