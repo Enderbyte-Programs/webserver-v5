@@ -1,0 +1,22 @@
+{
+    "apps" : [
+        {
+            "dir" : "/apps/desktopsoftware/",
+            "img" : "/apps/desktopsoftware/root.png",
+            "title" : "Desktop Software",
+            "description" : "Enderbyte Programs software for the desktop"
+        },
+        {
+            "dir" : "http://github.com/Enderbyte-Programs/CraftServerSetup/releases/latest",
+            "img" :"/apps/desktopsoftware/crss.png",
+            "title" : "Craft Server Setup",
+            "description" : "On-prem Minecraft server maker and manager"
+        },
+        {
+            "dir" : "https://github.com/Enderbyte-Programs/pytetris/releases/latest/",
+            "img" : "/apps/desktopsoftware/t22.png",
+            "title" : "Tetris 22",
+            "description" : "Modern Desktop Tetris app"
+        }
+    ]
+}

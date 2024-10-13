@@ -17,84 +17,80 @@
     <link rel="stylesheet" href="/bottles/style.css">
     <title>Enderbyte Programs - Software and Other Things</title>
     <style>
+        .tileparent {
+            width: 100%;
+        }
         .tile {
-            border: 5px lightgray solid;
-            border-radius: 20px;
-            display: flex;
-            width: 400px;
-            max-width: 100%;
-            height: 100px;
-            cursor: default;
+            width: 200px;
+            height: 250px;
+            white-space:nowrap;
+            overflow: hidden;
+            display: inline-block;
+            border: 5px solid white;
+            border-radius: 5px;
+            background-color: white;
+            margin: 50px;
+            text-wrap: wrap;
 
         }
-
-        @keyframes oh {
-            from {
-                border: 5px lightgray solid;
-            border-radius: 20px;
-            display: flex;
-            background-color: lightgray;
-            width: 400px;
-            height: 100px;
-            cursor: default;
-            }
-            to {
-                cursor: pointer;
-            border: 5px black solid;
-            background-color: lightblue;
-
-            }
-        }
-
         .tile:hover {
+            height: auto;
+            scale: 105%;
             cursor: pointer;
-            border: 5px black solid;
-            animation-name: oh;
-            animation-duration: 0.5s;
-            animation-fill-mode: forwards;
-
-            background-color: lightblue;
             
         }
-        .tilei {
-            margin: auto;
-            align-items: center;
-            display: flex;
+        .tile p {
+            color: black;
+        }
+        .tile h4 {
+            color: black;
+            text-align: center;
+        }
 
-        }
-        .master {
-            max-width: 500px;
-            align-self: center;
-            margin: auto;
-            background-color: white;
-            padding: 20px;
-        }
     </style>
 </head>
-<body style="background-color: darkblue;">
+<body style="background-color: darkblue;color: white;">
     <p style="bottom: 0px;position: fixed;color: white;">
         (c) 2021-2024 Enderbyte Programs, all rights reserved. <a href="/privacy.html">Privacy Policy</a> <a href="/sitemap.php">Sitemap</a>
     </p>
     <div class="master">
         <h1 style="text-align: center;">Enderbyte Programs</h1>
-        <p>Welcome to the Enderbyte Programs website! Established in 2021, we make all sorts of software, from fun to serious, stylish to utilitarian!</p>
-        <div class="tile" style="background-color: lightgray;" onclick="window.location = '/apps/'">
-            <div class="tilei">
-                <h2>Web Apps</h2>
+        <p id="_h">Welcome to the Enderbyte Programs website! Since 2021. <b>You are person number #PN to visit this website.</b> || This website contains many apps, some web, some desktop. Enjoy!</p>
+        <div id="tileparent" class="tileparent">
+            <div class="tile" id="template" hidden onclick="document.location.href = '#LINK' ">
+                <img src="#IMG" height="200" width="200" style="object-fit: contain;">
+                <h4>#TITLE</h4>
+                <p>#DESC</p>
             </div>
-        </div><br>
-
-        <div class="tile" style="background-color: lightgray;" onclick="window.location = '/software.html'">
-            <div class="tilei">
-                <h2>Desktop Software</h2>
-            </div>
-        </div><br>
+        </div>
     </div>
     
     <script>
+        var apptemplate = document.getElementById("tileparent").innerHTML
+        document.getElementById("tileparent").innerHTML = ""
         if (window.location.search.substr(1).includes("oldr")) {
             alert("The website you tried to visit is old and out of date. This is the new website.")
         }
+
+        fetch("usercount.txt").then(function(r){r.text().then(function(rt) {
+            document.getElementById("_h").innerHTML = document.getElementById("_h").innerHTML.replace("#PN",rt)
+        })})
+        fetch("increment_user_count.php");
+
+        fetch("/apps/appindex.json").then(function(r) {
+            r.text().then(function(rt) {
+                let prs = JSON.parse(rt).apps
+                prs.forEach(app => {
+                    let newapp = structuredClone(apptemplate)
+                    newapp = newapp.replace("#LINK",app.dir)
+                    newapp = newapp.replace("#IMG",app.img)
+                    newapp = newapp.replace("#TITLE",app.title)
+                    newapp = newapp.replace("#DESC",app.description)
+                    document.getElementById("tileparent").innerHTML += newapp
+                });
+            })
+        })
+
     </script>
 </body>
 </html>

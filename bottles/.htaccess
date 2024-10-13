@@ -1,0 +1,3 @@
+<Files ~ "\.toml$">
+   Require all denied
+</Files>
