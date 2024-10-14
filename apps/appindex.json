@@ -41,6 +41,12 @@
             "img" : "/apps/beeper/logo.png",
             "title" : "Time Beeper",
             "description" : "Beeper system for time events"
+        },
+        {
+            "dir" : "/apps/colourselect/",
+            "img" : "/apps/colourselect/logo.png",
+            "title" : "Colour Select",
+            "description" : "Select colours based on RGB values or HEX values"
         }
     ]
 }

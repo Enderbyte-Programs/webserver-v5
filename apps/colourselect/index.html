@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description" content="Convert RGB colours to hex, display colours, show CSS colour">
+        <meta name="keywords" content="colour,special,hex,rgb,css">
+            <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EB3PKRP4H4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EB3PKRP4H4');
+        </script>
+            <script src="/lib/jquery.js"></script>
+            <title>Colour Select</title>
+        <link rel="stylesheet" href="/bottles/style.css">
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-color: black;">
+    <script> $(function(){$("#includedContent").load("/apps/head.html"); });</script> <!--Import header using Jquery--><div id="includedContent"></div><!--Remember! Copy this-->
+    
+    <div style="margin: 10px;border: 5px solid white;border-radius: 5px;background-color: white;">
+        <h1>Colour Select</h1>
+        <form>
+            <label for="r">Red</label> <output>0</output>
+            <input id="r" type="range" min="0" max="255" style="width: 80%;" value="0" oninput="this.previousElementSibling.value = this.value;onschange()"><br>
+            <label for="g">Green</label> <output>0</output>
+            <input id="g" type="range" min="0" max="255" style="width: 80%;" value="0" oninput="this.previousElementSibling.value = this.value;onschange()"><br>
+            <label for="b">Blue</label> <output>0</output>
+            <input id="b" type="range" min="0" max="255" style="width: 80%;" value="0" oninput="this.previousElementSibling.value = this.value;onschange()"><br>
+            <br>
+            <input id="hex" type="text" placeholder="HEX value" oninput="onhchange()">
+            <input type="button" value="Copy" onclick="copyhex()" class="button" id="cbutton">
+            <br>
+            <p hidden id="error" style="color: red;">Invalid Input</p>
+        </form>
+    </div>
+    
+
+    <script src="main.js"></script>
+
+</body></html>
