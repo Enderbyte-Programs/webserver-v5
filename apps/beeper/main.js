@@ -1,7 +1,8 @@
 var startingtime;
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
+window.Audio = window.Audio || window.webkitAudio;
+var masteraudio = new Audio();
 var context = new AudioContext();
 
 function playSound(arr) {
@@ -50,18 +51,16 @@ function mark8s() {
 
 function markHour() {
     flashDiv("red")
-    let a = new Audio()
-    a.src = "SiratoneEOWSChimesSynth.mp3"
-    a.play().then(function() {
+    masteraudio.src = "SiratoneEOWSChimesSynth.mp3"
+    masteraudio.play().then(function() {
         ttssay(`It is now ${new Date(Date.now()).getHours()} o clock`)
     })
 }
 
 function markDay() {
     flashDiv("purple")
-    let a = new Audio()
-    a.src = "SiratoneEOWSChimesSynth.mp3"
-    a.play().then(function() {
+    masteraudio.src = "SiratoneEOWSChimesSynth.mp3"
+    masteraudio.play().then(function() {
         ttssay(`It is now midnight, beginning ${new Date(Date.now()).toDateString()}.`)
     })
 }
@@ -87,7 +86,7 @@ function ttssay(msgt) {
 function tick() {
     setTimeout(() => {
         tick()
-    }, 980);
+    }, 990);
     startingtime = Math.floor(Date.now() / 1000)
     if (isDivisibleBy(startingtime,3600*24)) {
         markDay()
