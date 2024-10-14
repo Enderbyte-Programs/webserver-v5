@@ -35,6 +35,12 @@
             "img" : "/apps/stopwatch/logo.png",
             "title" : "Stopwatch",
             "description" : "A stopwatch for your timing needs"
+        },
+        {
+            "dir" : "/apps/beeper/",
+            "img" : "/apps/beeper/logo.png",
+            "title" : "Time Beeper",
+            "description" : "Beeper system for time events"
         }
     ]
 }
