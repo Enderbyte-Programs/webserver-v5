@@ -4,55 +4,102 @@
             "dir": "/apps/desktopsoftware/",
             "img": "/apps/desktopsoftware/root.png",
             "title": "Desktop Software",
-            "description": "Enderbyte Programs software for the desktop"
+            "description": "Enderbyte Programs software for the desktop",
+            "tags": [
+                "desktop"
+            ]
         },
         {
             "dir": "http://github.com/Enderbyte-Programs/CraftServerSetup/releases/latest",
             "img": "/apps/desktopsoftware/crss.png",
             "title": "Craft Server Setup",
-            "description": "On-prem Minecraft server maker and manager"
+            "description": "On-prem Minecraft server maker and manager",
+            "tags" : [
+                "desktop",
+                "minecraft"
+            ]
         },
         {
             "dir": "https://github.com/Enderbyte-Programs/pytetris/releases/latest/",
             "img": "/apps/desktopsoftware/t22.png",
             "title": "Tetris 22",
-            "description": "Modern Desktop Tetris app"
+            "description": "Modern Desktop Tetris app",
+            "tags" : [
+                "desktop",
+                "game",
+                "tetris"
+            ]
         },
         {
             "dir": "https://github.com/Enderbyte-Programs/EasyTTS/releases/latest",
             "img": "/apps/desktopsoftware/microphone.png",
             "title": "EasyTTS",
-            "description": "Compact Desktop Text To Speech app"
+            "description": "Compact Desktop Text To Speech app",
+            "tags" : [
+                "desktop"
+            ]
         },
         {
             "dir": "/apps/bouncingball",
             "img": "/apps/bouncingball/logo.png",
             "title": "Bouncing Ball",
-            "description": "A fun bouncing ball"
+            "description": "A fun bouncing ball",
+            "tags" : [
+                "animation"
+            ]
         },
         {
             "dir": "/apps/stopwatch",
             "img": "/apps/stopwatch/logo.png",
             "title": "Stopwatch",
-            "description": "A stopwatch for your timing needs"
+            "description": "A stopwatch for your timing needs",
+            "tags" : [
+                "clock",
+                "stopwatch",
+                "time"
+            ]
         },
         {
             "dir": "/apps/beeper/",
             "img": "/apps/beeper/logo.png",
             "title": "Time Beeper",
-            "description": "Beeper system for time events"
+            "description": "Beeper system for time events",
+            "tags" : [
+                "clock",
+                "beep",
+                "time"
+            ]
         },
         {
             "dir": "/apps/colourselect/",
             "img": "/apps/colourselect/logo.png",
             "title": "Colour Select",
-            "description": "Select colours based on RGB values or HEX values"
+            "description": "Select colours based on RGB values or HEX values",
+            "tags" : [
+                "colour"
+            ]
         },
         {
             "dir": "/apps/ctime/",
             "img": "/apps/ctime/logo.png",
             "title": "Clock",
-            "description": "A clock for your clocking needs"
+            "description": "A clock for your clocking needs",
+            "tags" : [
+                "clock",
+                "time"
+            ]
+        },
+        {
+            "dir": "/apps/onerep/",
+            "img": "/apps/onerep/logo.png",
+            "title": "One Rep Maximum Calculator",
+            "description": "A calculator to calculate your weightlifting 1RM",
+            "tags": [
+                "weight",
+                "strength",
+                "conditioning",
+                "calculator"
+            ]
         }
     ]
 }

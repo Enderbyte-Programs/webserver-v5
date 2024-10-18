@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description"
+            content="A calculator to calculate your one rep maximum for weightlifting">
+        <meta name="keywords" content="weight,strength,conditioning,calculator">
+        <!-- Google tag (gtag.js) -->
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-EB3PKRP4H4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EB3PKRP4H4');
+        </script>
+        <script src="/lib/jquery.js"></script>
+        <title>One Rep Maximum Calculator</title>
+        <link rel="stylesheet" href="/bottles/style.css">
+        <style>
+
+        </style>
+        <meta charset="UTF-8"><meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script> $(function(){$("#includedContent").load("/apps/head.html"); });</script>
+        <!--Import header using Jquery--><div
+            id="includedContent"></div><!--Remember! Copy this-->
+
+        <h1>One Rep Maximum Calculator</h1>
+        <form onsubmit="event.preventDefault()">
+            <fieldset style="display: inline;">
+                <legend>Calculator</legend>
+                <label for="algo-selector">Choose Algorithm (default is usually good)</label>
+                <select id="algo-selector">
+                    <option value="weight * (36 / (37 - reps))">Byrzicki (Default)</option>
+                    <option value="weight * (1 + 0.0333 * reps)">Epley</option>
+                    <option value="(100 * weight) / (101.3 - 2.67123 * reps)">Lander</option>
+                    <option value="(100 * weight) / (52.2 + (41.9 * e-0.055 * reps))">Mayhew</option>
+                    <option value="weight * (1 + 0.025 * reps)">O'Conner</option>
+
+                </select>
+                <br>
+                <label for="weight">Maximum Weight</label>
+                <input step="any" type="number" min="0" value="0" id="weight" placeholder="Weight Tested">
+                <br>
+                <label for="reps">Number of Reps completed</label>
+                <input step="1" type="number" min="0" value="0" id="reps" placeholder="Number of Reps">
+                <br>
+                <input type="checkbox" id="useimp">
+                <label for="useimp">Use pounds (lb) instead of kilograms</label>
+            </fieldset>
+            <br>
+            <input onclick="update()" type="submit" class="button" style="background-color: lightgreen;" value="Go">
+            <input onclick="reset()" type="button" class="button" style="background-color: pink;" value="Clear">
+            <p style="font-size: 24px;">One Rep Max: <b id="output">0</b><b id="outputunit"> kg</b></p>
+        </form>
+
+        <script src="main.js"></script>
+
+    </body></html>

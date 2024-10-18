@@ -1,3 +1,5 @@
+"""Automatically generate new Enderbyte Programs Web App entries"""
+
 import json
 import shutil
 
@@ -14,7 +16,7 @@ def write_json_file(filepath:str,data:dict) -> None:
     with open(filepath,"w+") as f:
         f.write(json.dumps(data,indent=4))
 
-def get_input(prompt:str):
+def get_input(prompt:str) -> str:
     return input(prompt+" >")
 
 def main():
@@ -30,6 +32,7 @@ def main():
     newdict["img"] = APP_PREFIX + bname + "/" + DEFAULT_LOGO
     newdict["title"] = get_input("Application Title")
     newdict["description"] = get_input("Application Description")
+    newdict["tags"] = get_input("Keywords /  Tags").split(",")
 
     #Edit index.html
     nfp = bname+"/index.html"
@@ -40,7 +43,7 @@ def main():
         f.write(
             htd.replace("#TT",newdict["title"])\
             .replace("#DX",get_input("SEO Description"))\
-            .replace("#KW",get_input("Keywords"))
+            .replace("#KW",",".join(newdict["tags"]))
         )
 
     data["apps"].append(newdict)

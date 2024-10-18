@@ -41,10 +41,15 @@
         }
         .tile p {
             color: black;
+            text-decoration: none;
         }
         .tile h4 {
             color: black;
             text-align: center;
+            text-decoration: none;
+        }
+        .tile a {
+            text-decoration: none;
         }
 
     </style>
@@ -57,10 +62,12 @@
         <h1 style="text-align: center;">Enderbyte Programs</h1>
         <p id="_h">Welcome to the Enderbyte Programs website! Since 2021. <b>You are person number #PN to visit this website.</b> || This website contains many apps, some web, some desktop. Enjoy!</p>
         <div id="tileparent" class="tileparent">
-            <div class="tile" id="template" hidden onclick="document.location.href = '#LINK' ">
-                <img src="#IMG" height="200" width="200" style="object-fit: contain;">
-                <h4>#TITLE</h4>
-                <p>#DESC</p>
+            <div class="tile" id="template" hidden>
+                <a href="#LINK">
+                    <img src="#IMG" height="200" width="200" style="object-fit: contain;">
+                    <h4>#TITLE</h4>
+                    <p>#DESC</p>
+                </a>
             </div>
         </div>
     </div>
