@@ -1,44 +1,6 @@
 {
     "apps": [
-        {
-            "dir": "/apps/desktopsoftware/",
-            "img": "/apps/desktopsoftware/root.png",
-            "title": "Desktop Software",
-            "description": "Enderbyte Programs software for the desktop",
-            "tags": [
-                "desktop"
-            ]
-        },
-        {
-            "dir": "http://github.com/Enderbyte-Programs/CraftServerSetup/releases/latest",
-            "img": "/apps/desktopsoftware/crss.png",
-            "title": "Craft Server Setup",
-            "description": "On-prem Minecraft server maker and manager",
-            "tags" : [
-                "desktop",
-                "minecraft"
-            ]
-        },
-        {
-            "dir": "https://github.com/Enderbyte-Programs/pytetris/releases/latest/",
-            "img": "/apps/desktopsoftware/t22.png",
-            "title": "Tetris 22",
-            "description": "Modern Desktop Tetris app",
-            "tags" : [
-                "desktop",
-                "game",
-                "tetris"
-            ]
-        },
-        {
-            "dir": "https://github.com/Enderbyte-Programs/EasyTTS/releases/latest",
-            "img": "/apps/desktopsoftware/microphone.png",
-            "title": "EasyTTS",
-            "description": "Compact Desktop Text To Speech app",
-            "tags" : [
-                "desktop"
-            ]
-        },
+        
         {
             "dir": "/apps/bouncingball",
             "img": "/apps/bouncingball/logo.png",
@@ -99,6 +61,45 @@
                 "strength",
                 "conditioning",
                 "calculator"
+            ]
+        },
+        {
+            "dir": "/apps/desktopsoftware/",
+            "img": "/apps/desktopsoftware/root.png",
+            "title": "Desktop Software",
+            "description": "Enderbyte Programs software for the desktop",
+            "tags": [
+                "desktop"
+            ]
+        },
+        {
+            "dir": "http://github.com/Enderbyte-Programs/CraftServerSetup/releases/latest",
+            "img": "/apps/desktopsoftware/crss.png",
+            "title": "Craft Server Setup",
+            "description": "On-prem Minecraft server maker and manager",
+            "tags" : [
+                "desktop",
+                "minecraft"
+            ]
+        },
+        {
+            "dir": "https://github.com/Enderbyte-Programs/pytetris/releases/latest/",
+            "img": "/apps/desktopsoftware/t22.png",
+            "title": "Tetris 22",
+            "description": "Modern Desktop Tetris app",
+            "tags" : [
+                "desktop",
+                "game",
+                "tetris"
+            ]
+        },
+        {
+            "dir": "https://github.com/Enderbyte-Programs/EasyTTS/releases/latest",
+            "img": "/apps/desktopsoftware/microphone.png",
+            "title": "EasyTTS",
+            "description": "Compact Desktop Text To Speech app",
+            "tags" : [
+                "desktop"
             ]
         }
     ]

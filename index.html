@@ -52,6 +52,16 @@
             text-decoration: none;
         }
 
+        #search * {
+            color: black;
+        }
+        fieldset {
+            display: inline-block;
+        }
+        input[type=radio] {
+            transform: scale(1.5);
+        }
+
     </style>
 </head>
 <body style="background-color: darkblue;color: white;">
@@ -60,11 +70,28 @@
     </p>
     <div class="master">
         <h1 style="text-align: center;">Enderbyte Programs</h1>
-        <p id="_h">Welcome to the Enderbyte Programs website! Since 2021. <b>You are person number #PN to visit this website.</b> || This website contains many apps, some web, some desktop. Enjoy!</p>
+        <p id="_h">Welcome to the Enderbyte Programs website! Since 2021. <b>You are person number #PN to visit this website.</b> || This website contains many apps, some web, some desktop. Enjoy!
+        <br>
+        <b>GUIDE:<br></b>
+        White border apps are web apps only<br>
+        Green border apps are desktop apps.
+        </p>
+
+        <!-- Search Area -->
+        <div id="search" style="position: sticky;width: 100%;background-color: paleturquoise;padding: 10px;top: 0;">
+            <fieldset style="display: inline-block;">
+                <legend>Search</legend>
+                <form onsubmit="event.preventDefault()">
+                    <img src="bottles/searchicon.png" style="max-width: 24px;max-height: 24px;top: 5px;position: relative;">
+                    <input id="ssearch" type="text" style="width: 200px;" onkeyup="onsearch()">
+                </form>
+            </fieldset>
+        </div>
+
         <div id="tileparent" class="tileparent">
             <div class="tile" id="template" hidden>
                 <a href="#LINK">
-                    <img src="#IMG" height="200" width="200" style="object-fit: contain;">
+                    <img src="#IMG" height="200" width="200" style="object-fit: contain;" alt="If you can see this, you need to enable Javascript.">
                     <h4>#TITLE</h4>
                     <p>#DESC</p>
                 </a>
@@ -73,7 +100,32 @@
     </div>
     
     <script>
+
+        function onsearch() {
+            let query = document.getElementById("ssearch").value.trim().toLowerCase()
+            if (query === "") {
+                let li = 0
+                prs.forEach(element => {
+                    document.getElementById("tileparent").children[li].style.display = "inline-block"
+                    li += 1
+                });
+                
+            } else {
+                let li = 0
+                prs.forEach(element => {
+                    
+                    if (element.title.toLowerCase().includes(query) || element.tags.includes(query)) {
+                        document.getElementById("tileparent").children[li].style.display = "inline-block"
+                    } else {
+                        document.getElementById("tileparent").children[li].style.display = "none"
+                    }
+                    li += 1
+                });
+            }
+        }
+
         var apptemplate = document.getElementById("tileparent").innerHTML
+        var prs = []
         document.getElementById("tileparent").innerHTML = ""
         if (window.location.search.substr(1).includes("oldr")) {
             alert("The website you tried to visit is old and out of date. This is the new website.")
@@ -86,14 +138,21 @@
 
         fetch("/apps/appindex.json").then(function(r) {
             r.text().then(function(rt) {
-                let prs = JSON.parse(rt).apps
+                prs = JSON.parse(rt).apps
                 prs.forEach(app => {
                     let newapp = structuredClone(apptemplate)
                     newapp = newapp.replace("#LINK",app.dir)
                     newapp = newapp.replace("#IMG",app.img)
+                    newapp = newapp.replace("If you can see this, you need to enable Javascript.",app.description)
                     newapp = newapp.replace("#TITLE",app.title)
                     newapp = newapp.replace("#DESC",app.description)
+
+                    
                     document.getElementById("tileparent").innerHTML += newapp
+                    if (app.tags.includes("desktop")) {
+                        document.getElementById("tileparent").children[document.getElementById("tileparent").children.length - 1].style.border = "5px green solid"
+                    }
+
                 });
             })
         })
